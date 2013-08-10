@@ -2,8 +2,16 @@ class Report < ActiveRecord::Base
   attr_accessible :node_id, :status
   belongs_to :node
 
+  after_destroy :delete_file
+
+  def delete_file
+    if File.exists? filename
+      File.delete(filename)
+    end
+  end
+
   def filename
-    "spool/report-#{id}.yaml"
+    "/mnt/enc_spool/report-#{id}.yaml"
   end
 
   def write(data)
