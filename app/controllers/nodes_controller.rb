@@ -28,7 +28,7 @@ class NodesController < ApplicationController
 
   def destroy
     @node = Node.find_by_name(params[:id])
-    @node.delete
+    @node.destroy
     redirect_to nodes_path
   end
 
