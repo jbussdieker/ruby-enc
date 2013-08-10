@@ -11,7 +11,7 @@ class Report < ActiveRecord::Base
   end
 
   def filename
-    "/mnt/enc_spool/report-#{id}.yaml"
+    "spool/report-#{id}.yaml"
   end
 
   def write(data)
