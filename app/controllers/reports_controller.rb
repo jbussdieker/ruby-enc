@@ -23,6 +23,17 @@ class ReportsController < ApplicationController
     report = Report.create
     report.write(request.raw_post)
     report.parse
+
+    puts "FORWARD ================================"
+    # Forward report hack
+    client = Net::HTTP.new("localhost", 3000)
+    req = Net::HTTP::Post.new("/reports/upload")
+    req["Content-Type"] = "application/x-yaml"
+    req.body = request.raw_post
+    resp = client.request(req)
+    p resp
+    puts "MARCH ================================"
+
     render :text => "OK"
   end
 end
