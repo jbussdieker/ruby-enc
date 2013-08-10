@@ -10,8 +10,12 @@ class Report < ActiveRecord::Base
     end
   end
 
+  def spool_path
+    File.expand_path("../../../spool", __FILE__)
+  end
+
   def filename
-    "spool/report-#{id}.yaml"
+    File.join(spool_path, "report-#{id}.yaml")
   end
 
   def write(data)
