@@ -34,14 +34,22 @@
       </table>
     </div>
     <div class="tab-pane" id="events">
-      <table class="table table-bordered">
-        <% @report.parsed.resource_statuses.each do |name,status| %>
+      <table class="table table-bordered table-condensed">
         <tr>
-          <td><%= name %></td>
-          <td><%= status.changed %></td>
-          <td><%= status.skipped %></td>
-          <td><%= status.failed %></td>
+          <th>Name</th>
+          <th>Changed</th>
+          <th>Skipped</th>
+          <th>Failed</th>
         </tr>
+        <% @report.parsed.resource_statuses.each do |name,status| %>
+          <% if status.changed or status.failed %>
+          <tr>
+            <td><%= name %></td>
+            <td><%= status.changed ? "Changed" : "" %></td>
+            <td><%= status.skipped ? "Skipped" : "" %></td>
+            <td><%= status.failed ? "Failed" : "" %></td>
+          </tr>
+          <% end %>
         <% end %>
       </table>
     </div>
