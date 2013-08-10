@@ -1,7 +1,7 @@
 module NodesHelper
   def node_report_time(node)
     if node.last_report
-      time_ago_in_words(node.last_report) 
+      time_ago_in_words(node.last_report) + " ago"
     else
       "unreported"
     end
