@@ -1,11 +1,21 @@
+<h2>Nodes</h2>
+
 <div class="btn-toolbar">
   <%= link_to "New Node", new_node_path, :class => 'btn' %>
 </div>
 
-<table class="table table-bordered">
+<table class="table table-bordered table-condensed">
+  <tr>
+    <th><%= sortable "name" %></th>
+    <th><%= sortable "status" %></th>
+    <th><%= sortable "last_report" %></th>
+    <th></th>
+    <th></th>
+  </tr>
 <% @nodes.each do |node| %>
   <tr>
     <td><%= link_to node.name, node %></td>
+    <td><%= node.status %></td>
     <td><%= node.last_report %></td>
     <td><%= link_to "Edit", edit_node_path(node) %></td>
     <td><%= link_to "Delete", node, :method => :delete %></td>
