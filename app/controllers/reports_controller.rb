@@ -15,7 +15,7 @@ class ReportsController < ApplicationController
 
   def destroy
     @report = Report.find(params[:id])
-    @report.delete
+    @report.destroy
     redirect_to reports_path
   end
 
