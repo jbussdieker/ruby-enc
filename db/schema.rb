@@ -15,8 +15,10 @@ ActiveRecord::Schema.define(:version => 20130810181856) do
 
   create_table "nodes", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.string   "status"
+    t.datetime "last_report"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "reports", :force => true do |t|
@@ -27,5 +29,7 @@ ActiveRecord::Schema.define(:version => 20130810181856) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
+
+  add_index "reports", ["node_id"], :name => "index_reports_on_node_id"
 
 end
