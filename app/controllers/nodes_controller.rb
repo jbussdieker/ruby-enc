@@ -44,10 +44,10 @@ class NodesController < ApplicationController
   private
 
   def sort_column
-    Node.column_names.include?(params[:sort]) ? params[:sort] : "name"
+    Node.column_names.include?(params[:sort]) ? params[:sort] : "last_report"
   end
 
   def sort_direction
-    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : "desc"
   end
 end
