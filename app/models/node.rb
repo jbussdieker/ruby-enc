@@ -1,5 +1,5 @@
 class Node < ActiveRecord::Base
-  attr_accessible :name, :status, :reported_at
+  attr_accessible :name, :description, :status, :reported_at
 
   has_many :reports, :order => 'time DESC', :dependent => :destroy
 
