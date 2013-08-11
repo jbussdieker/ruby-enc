@@ -7,12 +7,14 @@
 <table class="table table-bordered table-condensed">
   <tr>
     <th><%= sortable "name" %></th>
+    <th>Nodes</th>
     <th></th>
     <th></th>
   </tr>
 <% @node_classes.each do |node_class| %>
   <tr>
     <td><%= link_to node_class.name, node_class %></td>
+    <td><span class="badge"><%= node_class.nodes.count %></span></td>
     <td><%= link_to "Edit", edit_node_class_path(node_class) %></td>
     <td><%= link_to "Delete", node_class, :method => :delete %></td>
   </tr>
