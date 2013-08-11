@@ -10,12 +10,16 @@
       <td>Failed</td>
     </tr>
     <tr>
-      <td><span class="badge"><%= Node.where(:status => "unchanged").count %></span></td>
-      <td>Unchanged</td>
+      <td><span class="badge"><%= Node.where(:status => "pending").count %></span></td>
+      <td>Pending</td>
     </tr>
     <tr>
       <td><span class="badge"><%= Node.where(:status => "changed").count %></span></td>
       <td>Changed</td>
+    </tr>
+    <tr>
+      <td><span class="badge"><%= Node.where(:status => "unchanged").count %></span></td>
+      <td>Unchanged</td>
     </tr>
     <tr>
       <td><span class="badge"><%= Node.where(:status => nil).count %></span></td>
