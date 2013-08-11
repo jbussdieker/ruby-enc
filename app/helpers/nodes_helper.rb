@@ -13,12 +13,12 @@ module NodesHelper
         when "changed"
           content_tag(:span, node.status, :class => 'label label-success')
         when "unchanged"
-          content_tag(:span, node.status, :class => 'label')
+          content_tag(:span, node.status, :class => 'label label-default')
         when "failed"
           content_tag(:span, node.status, :class => 'label label-important')
       end
     else
-      content_tag(:span, "unreported", :class => 'label')
+      content_tag(:span, "unreported", :class => 'label label-default')
     end
   end
 end
