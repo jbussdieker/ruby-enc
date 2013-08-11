@@ -2,27 +2,27 @@
   <div class="panel-heading"><%= link_to "Nodes", nodes_path %></div>
   <table class="table table-condensed">
     <tr>
-      <td style="text-align: right"><span class="badge"><%= Node.where("reported_at < '#{Time.now - 3600}'").count %></span></td>
+      <td style="text-align: right"><span class="badge"><%= Node.unresponsive.count %></span></td>
       <td><%= link_to "Unresponsive", unresponsive_nodes_path %></td>
     </tr>
     <tr>
-      <td style="text-align: right"><span class="badge"><%= Node.where(:status => "failed").count %></span></td>
+      <td style="text-align: right"><span class="badge"><%= Node.failed.count %></span></td>
       <td><%= link_to "Failed", failed_nodes_path %></td>
     </tr>
     <tr>
-      <td style="text-align: right"><span class="badge"><%= Node.where(:status => "pending").count %></span></td>
+      <td style="text-align: right"><span class="badge"><%= Node.pending.count %></span></td>
       <td><%= link_to "Pending", pending_nodes_path %></td>
     </tr>
     <tr>
-      <td style="text-align: right"><span class="badge"><%= Node.where(:status => "changed").count %></span></td>
+      <td style="text-align: right"><span class="badge"><%= Node.changed.count %></span></td>
       <td><%= link_to "Changed", changed_nodes_path %></td>
     </tr>
     <tr>
-      <td style="text-align: right"><span class="badge"><%= Node.where(:status => "unchanged").count %></span></td>
+      <td style="text-align: right"><span class="badge"><%= Node.unchanged.count %></span></td>
       <td><%= link_to "Unchanged", unchanged_nodes_path %></td>
     </tr>
     <tr>
-      <td style="text-align: right"><span class="badge"><%= Node.where(:status => nil).count %></span></td>
+      <td style="text-align: right"><span class="badge"><%= Node.unreported.count %></span></td>
       <td><%= link_to "Unreported", unreported_nodes_path %></td>
     </tr>
     <tr>
