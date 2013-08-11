@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130811145753) do
+ActiveRecord::Schema.define(:version => 20130811151232) do
 
   create_table "node_group_memberships", :force => true do |t|
     t.integer  "node_id"
@@ -32,6 +32,15 @@ ActiveRecord::Schema.define(:version => 20130811145753) do
     t.datetime "last_report"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+  end
+
+  create_table "parameters", :force => true do |t|
+    t.string   "key"
+    t.string   "value"
+    t.integer  "parameterable_id"
+    t.string   "parameterable_type"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
   end
 
   create_table "reports", :force => true do |t|
