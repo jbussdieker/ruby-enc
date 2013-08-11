@@ -15,7 +15,7 @@ module NodesHelper
         when "unchanged"
           content_tag(:span, node.status, :class => 'label label-default')
         when "failed"
-          content_tag(:span, node.status, :class => 'label label-important')
+          content_tag(:span, node.status, :class => 'label label-danger')
       end
     else
       content_tag(:span, "unreported", :class => 'label label-default')
