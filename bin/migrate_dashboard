@@ -3,6 +3,9 @@ require 'yaml'
 settings = YAML.load(File.read("/etc/puppet-dashboard/database.yml"))
 prod = settings["production"]
 
+dst_settings = YAML.load(File.read("config/database.yml"))
+dst_prod = dst_settings["development"]
+
 cmd = "mysqldump -h #{prod["host"]} -u#{prod["username"]} -p#{prod["password"]} #{prod["database"]}"
 cmd << " --ignore-table=#{prod["database"]}.delayed_job_failures"
 cmd << " --ignore-table=#{prod["database"]}.delayed_jobs"
@@ -24,4 +27,10 @@ cmd << " --ignore-table=#{prod["database"]}.timeline_events"
 
 cmd << " --ignore-table=#{prod["database"]}.schema_migrations"
 
-p cmd
+puts
+puts cmd
+puts "|"
+puts
+cmd = "mysql -h #{dst_prod["host"]} -u#{dst_prod["username"]} -p#{dst_prod["password"]} #{dst_prod["database"]}"
+puts
+puts cmd
