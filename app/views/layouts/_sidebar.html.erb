@@ -38,17 +38,14 @@
 <div class="panel">
   <div class="panel-heading"><%= link_to "Group", node_groups_path %></div>
   <div class="panel-group">
-
-  <ul class="nav nav-pills nav-stacked">
+  <table class="table table-condensed">
     <% NodeGroup.all.each do |node_group| %>
-      <li>
-        <a href="<%= node_group_path(node_group) %>">
-          <span class="badge pull-right"><%= node_group.nodes.count %></span>
-          <%= node_group.name %>
-        </a>
-      </li>
+      <tr>
+        <td><%= link_to node_group.name, node_group %></td>
+        <td><span class="badge"><%= node_group.nodes.count %></span></td>
+      </tr>
     <% end %>
-  </ul>
+  </table>
   </div>
   <div class="panel-footer">
     <%= link_to "Add Group", new_node_group_path, :class => 'btn btn-primary btn-xs' %>
