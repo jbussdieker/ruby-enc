@@ -1,0 +1,20 @@
+<h2>Node Groups</h2>
+
+<div class="btn-toolbar">
+  <%= link_to "New Node Group", new_node_group_path, :class => 'btn' %>
+</div>
+
+<table class="table table-bordered table-condensed">
+  <tr>
+    <th>Name</th>
+    <th></th>
+    <th></th>
+  </tr>
+<% @node_groups.each do |node_group| %>
+  <tr>
+    <td><%= link_to node_group.name, node_group %></td>
+    <td><%= link_to "Edit", edit_node_group_path(node_group) %></td>
+    <td><%= link_to "Delete", node_group, :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
