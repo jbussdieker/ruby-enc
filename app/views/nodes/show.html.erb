@@ -44,7 +44,13 @@
   </div>
   <div class="span6">
     <h4>Classes</h4>
-    <!-- TODO -->
+    <table class="table table-bordered table-condensed">
+    <% @node.node_classes.each do |node_class| %>
+      <tr>
+        <td><%= node_class.name %></td>
+      </tr>
+    <% end %>
+    </table>
   </div>
 </div>
 
