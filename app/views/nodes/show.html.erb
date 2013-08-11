@@ -6,9 +6,35 @@
 <h3><%= @node.name %></h3>
 
 <div class="row">
+  <div class="span12">
+    <h4>Parameters</h4>
+    <table class="table table-bordered table-condensed">
+      <tr>
+        <th>Key</th>
+        <th>Value</th>
+        <th>Source</th>
+      </tr>
+    <% @node.parameters.each do |parameter| %>
+      <tr>
+        <td><%= parameter.key %></td>
+        <td><%= parameter.value %></td>
+        <td><%= @node.name %></td>
+      </tr>
+    <% end %>
+    <% @node.node_groups.each do |group| %>
+      <% group.parameters.each do |parameter| %>
+        <tr>
+          <td><%= parameter.key %></td>
+          <td><%= parameter.value %></td>
+          <td><%= group.name %></td>
+        </tr>
+      <% end %>
+    <% end %>
+    </table>
+  </div>
   <div class="span6">
     <h4>Groups</h4>
-    <table class="table table-bordered">
+    <table class="table table-bordered table-condensed">
     <% @node.node_groups.each do |group| %>
       <tr>
         <td><%= group.name %></td>
