@@ -35,9 +35,9 @@
   <div class="span6">
     <h4>Groups</h4>
     <table class="table table-bordered table-condensed">
-    <% @node.node_groups.each do |group| %>
+    <% @node.node_groups.each do |node_group| %>
       <tr>
-        <td><%= group.name %></td>
+        <td><%= link_to node_group.name, node_group %></td>
       </tr>
     <% end %>
     </table>
@@ -47,7 +47,7 @@
     <table class="table table-bordered table-condensed">
     <% @node.node_classes.each do |node_class| %>
       <tr>
-        <td><%= node_class.name %></td>
+        <td><%= link_to node_class.name, node_class %></td>
       </tr>
     <% end %>
     </table>
