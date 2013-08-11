@@ -1,37 +1,37 @@
 <div class="panel">
-  <div class="panel-heading">Node: <%= @node.name %>
-  <span class="pull-right">
-  <%= link_to "Edit", edit_node_path(@node), :class => 'btn btn-default btn-sm' %>
-  </span>
-</div>
+  <div class="panel-heading">Node: <%= @node.name %></div>
 
-<div class="row">
-  <div class="col-lg-12">
-    <h4>Parameters</h4>
-    <table class="table table-bordered table-condensed table-striped">
-      <tr>
-        <th>Key</th>
-        <th>Value</th>
-        <th>Source</th>
-      </tr>
-    <% @node.parameters.each do |parameter| %>
+  <div class="btn-toolbar">
+    <%= link_to "Back", nodes_path, :class => 'btn btn-default' %>
+    <%= link_to "Edit", edit_node_path(@node), :class => 'btn btn-primary' %>
+  </div>
+
+  <h4>Parameters</h4>
+  <table class="table table-bordered table-condensed table-striped">
+    <tr>
+      <th>Key</th>
+      <th>Value</th>
+      <th>Source</th>
+    </tr>
+  <% @node.parameters.each do |parameter| %>
+    <tr>
+      <td><%= parameter.key %></td>
+      <td><%= parameter.value %></td>
+      <td><%= @node.name %></td>
+    </tr>
+  <% end %>
+  <% @node.node_groups.each do |group| %>
+    <% group.parameters.each do |parameter| %>
       <tr>
         <td><%= parameter.key %></td>
         <td><%= parameter.value %></td>
-        <td><%= @node.name %></td>
+        <td><%= link_to group.name, group %></td>
       </tr>
     <% end %>
-    <% @node.node_groups.each do |group| %>
-      <% group.parameters.each do |parameter| %>
-        <tr>
-          <td><%= parameter.key %></td>
-          <td><%= parameter.value %></td>
-          <td><%= link_to group.name, group %></td>
-        </tr>
-      <% end %>
-    <% end %>
-    </table>
-  </div>
+  <% end %>
+  </table>
+
+<div class="row">
   <div class="col-lg-6">
     <h4>Groups</h4>
     <table class="table table-bordered table-condensed table-striped">

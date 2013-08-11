@@ -1,17 +1,21 @@
-<div class="btn-toolbar">
-  <%= link_to "Back", node_classes_path, :class => 'btn' %>
+<div class="panel">
+  <div class="panel-heading">Class: <%= @node_class.name %></div>
+
+  <div class="btn-toolbar">
+    <%= link_to "Back", node_classes_path, :class => 'btn btn-default' %>
+  </div>
+
+  <h3><%= @node_class.name %></h3>
+
+  <h4>Nodes</h4>
+  <table class="table table-bordered table-condensed">
+    <tr>
+      <th>Name</th>
+    </tr>
+  <% @node_class.nodes.each do |node| %>
+    <tr>
+      <td><%= link_to node.name, node %></td>
+    </tr>
+  <% end %>
+  </table>
 </div>
-
-<h3><%= @node_class.name %></h3>
-
-<h4>Nodes</h4>
-<table class="table table-bordered table-condensed">
-  <tr>
-    <th>Name</th>
-  </tr>
-<% @node_class.nodes.each do |node| %>
-  <tr>
-    <td><%= link_to node.name, node %></td>
-  </tr>
-<% end %>
-</table>
