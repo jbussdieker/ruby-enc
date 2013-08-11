@@ -5,8 +5,13 @@ class NodeGroupsController < ApplicationController
     @node_groups = NodeGroup.order(sort_column + " " + sort_direction)
   end
 
+  def show
+    @node_group = NodeGroup.find(params[:id])
+  end
+
   def new
     @node_group = NodeGroup.new
+    @node_group.parameters.build
   end
 
   def create
@@ -20,6 +25,7 @@ class NodeGroupsController < ApplicationController
 
   def edit
     @node_group = NodeGroup.find(params[:id])
+    @node_group.parameters.build
   end
 
   def update

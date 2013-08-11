@@ -7,6 +7,7 @@ class NodesController < ApplicationController
 
   def new
     @node = Node.new
+    @node.parameters.build
   end
 
   def create
@@ -24,6 +25,7 @@ class NodesController < ApplicationController
 
   def edit
     @node = Node.find_by_name(params[:id])
+    @node.parameters.new
   end
 
   def destroy
@@ -35,7 +37,7 @@ class NodesController < ApplicationController
   def update
     @node = Node.find_by_name(params[:id])
     if @node.update_attributes(params[:node])
-      redirect_to nodes_path
+      redirect_to @node
     else
       render 'edit'
     end

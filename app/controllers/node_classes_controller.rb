@@ -5,6 +5,10 @@ class NodeClassesController < ApplicationController
     @node_classes = NodeClass.order(sort_column + " " + sort_direction)
   end
 
+  def show
+    @node_class = NodeClass.find(params[:id])
+  end
+
   def new
     @node_class = NodeClass.new
   end
