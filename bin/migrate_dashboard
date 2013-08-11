@@ -3,4 +3,5 @@ require 'yaml'
 settings = YAML.load(File.read("/etc/puppet-dashboard/database.yml"))
 prod = settings["production"]
 
-p prod
+cmd = "mysqldump -h #{prod["host"]} -u#{prod["username"]} -p#{prod["password"]} #{prod["database"]}"
+p cmd
