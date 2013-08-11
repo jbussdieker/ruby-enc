@@ -1,6 +1,6 @@
 <div class="panel">
   <div class="panel-heading"><%= link_to "Nodes", nodes_path %></div>
-  <table class="table">
+  <table class="table table-condensed">
     <tr>
       <td><%= Node.where("reported_at < '#{Time.now - 3600}'").count %></td>
       <td>Unresponsive</td>
@@ -31,6 +31,7 @@
 
 <div class="panel">
   <div class="panel-heading"><%= link_to "Group", node_groups_path %></div>
+  <div class="panel-group">
   <table class="table table-condensed">
     <% NodeGroup.all.each do |node_group| %>
       <tr>
@@ -39,11 +40,13 @@
       </tr>
     <% end %>
   </table>
+  </div>
   <%= link_to "Add Group", new_node_group_path, :class => 'btn btn-default' %>
 </div>
 
 <div class="panel">
   <div class="panel-heading"><%= link_to "Class", node_classes_path %></div>
+  <div class="panel-group">
   <table class="table table-condensed">
     <% NodeClass.all.each do |node_class| %>
       <tr>
@@ -52,5 +55,6 @@
       </tr>
     <% end %>
   </table>
+  </div>
   <%= link_to "Add Class", new_node_class_path, :class => 'btn btn-default' %>
 </div>

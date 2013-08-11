@@ -1,12 +1,12 @@
-<div class="btn-toolbar">
-  <%= link_to "Back", nodes_path, :class => 'btn' %>
-  <%= link_to "Edit", edit_node_path(@node), :class => 'btn' %>
+<div class="panel">
+  <div class="panel-heading">Node: <%= @node.name %>
+  <span class="pull-right">
+  <%= link_to "Edit", edit_node_path(@node), :class => 'btn btn-default btn-sm' %>
+  </span>
 </div>
 
-<h3><%= @node.name %></h3>
-
 <div class="row">
-  <div class="span12">
+  <div class="col-lg-12">
     <h4>Parameters</h4>
     <table class="table table-bordered table-condensed table-striped">
       <tr>
@@ -32,7 +32,7 @@
     <% end %>
     </table>
   </div>
-  <div class="span6">
+  <div class="col-lg-6">
     <h4>Groups</h4>
     <table class="table table-bordered table-condensed table-striped">
       <tr>
@@ -47,7 +47,7 @@
     <% end %>
     </table>
   </div>
-  <div class="span6">
+  <div class="col-lg-6">
     <h4>Classes</h4>
     <table class="table table-bordered table-condensed table-striped">
       <tr>
@@ -80,3 +80,4 @@
     </tr>
   <% end %>
 </table>
+</div>
