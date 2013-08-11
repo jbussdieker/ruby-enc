@@ -1,4 +1,4 @@
 #!/usr/bin/env ruby
 require 'yaml'
-settings = YAML.parse(File.read("/etc/puppet-dashboard/database.yml"))
+settings = YAML.load(File.read("/etc/puppet-dashboard/database.yml"))
 p settings
