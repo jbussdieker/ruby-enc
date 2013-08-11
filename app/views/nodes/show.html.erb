@@ -1,9 +1,26 @@
 <div class="btn-toolbar">
   <%= link_to "Back", nodes_path, :class => 'btn' %>
+  <%= link_to "Edit", edit_node_path(@node), :class => 'btn' %>
 </div>
 
 <h3><%= @node.name %></h3>
 
+<div class="row">
+  <div class="span6">
+    <h4>Groups</h4>
+    <table class="table table-bordered">
+    <% @node.node_groups.each do |group| %>
+      <tr>
+        <td><%= group.name %></td>
+      </tr>
+    <% end %>
+    </table>
+  </div>
+  <div class="span6">
+    <h4>Classes</h4>
+    <!-- TODO -->
+  </div>
+</div>
 
 <h4>Recent Reports (<%= @node.reports.count %>)</h4>
 
