@@ -2,31 +2,31 @@
   <div class="panel-heading"><%= link_to "Nodes", nodes_path %></div>
   <table class="table table-condensed">
     <tr>
-      <td><span class="badge"><%= Node.where("reported_at < '#{Time.now - 3600}'").count %></span></td>
+      <td style="text-align: right"><span class="badge"><%= Node.where("reported_at < '#{Time.now - 3600}'").count %></span></td>
       <td>Unresponsive</td>
     </tr>
     <tr>
-      <td><span class="badge"><%= Node.where(:status => "failed").count %></span></td>
+      <td style="text-align: right"><span class="badge"><%= Node.where(:status => "failed").count %></span></td>
       <td>Failed</td>
     </tr>
     <tr>
-      <td><span class="badge"><%= Node.where(:status => "pending").count %></span></td>
+      <td style="text-align: right"><span class="badge"><%= Node.where(:status => "pending").count %></span></td>
       <td>Pending</td>
     </tr>
     <tr>
-      <td><span class="badge"><%= Node.where(:status => "changed").count %></span></td>
+      <td style="text-align: right"><span class="badge"><%= Node.where(:status => "changed").count %></span></td>
       <td>Changed</td>
     </tr>
     <tr>
-      <td><span class="badge"><%= Node.where(:status => "unchanged").count %></span></td>
+      <td style="text-align: right"><span class="badge"><%= Node.where(:status => "unchanged").count %></span></td>
       <td>Unchanged</td>
     </tr>
     <tr>
-      <td><span class="badge"><%= Node.where(:status => nil).count %></span></td>
+      <td style="text-align: right"><span class="badge"><%= Node.where(:status => nil).count %></span></td>
       <td>Unreported</td>
     </tr>
     <tr>
-      <td><span class="badge"><%= Node.count %></span></td>
+      <td style="text-align: right"><span class="badge"><%= Node.count %></span></td>
       <td>All</td>
     </tr>
   </table>
@@ -38,14 +38,17 @@
 <div class="panel">
   <div class="panel-heading"><%= link_to "Group", node_groups_path %></div>
   <div class="panel-group">
-  <table class="table table-condensed">
+
+  <ul class="nav nav-pills nav-stacked">
     <% NodeGroup.all.each do |node_group| %>
-      <tr>
-        <td><%= link_to node_group.name, node_group %></td>
-        <td><span class="badge"><%= node_group.nodes.count %></span></td>
-      </tr>
+      <li>
+        <a href="<%= node_group_path(node_group) %>">
+          <span class="badge pull-right"><%= node_group.nodes.count %></span>
+          <%= node_group.name %>
+        </a>
+      </li>
     <% end %>
-  </table>
+  </ul>
   </div>
   <div class="panel-footer">
     <%= link_to "Add Group", new_node_group_path, :class => 'btn btn-primary btn-xs' %>
