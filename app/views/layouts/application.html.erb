@@ -24,8 +24,15 @@
   </div>
 </div>
 
-<div class="container">
-  <%= yield %>
+<div class="container-fluid">
+  <div class="row">
+    <div class="span4">
+      <%= render 'layouts/sidebar' %>
+    </div>
+    <div class="span8">
+      <%= yield %>
+    </div>
+  </div>
 </div>
 
 </body>
