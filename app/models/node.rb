@@ -3,6 +3,7 @@ class Node < ActiveRecord::Base
   has_many :reports, :order => 'time DESC', :dependent => :destroy
   has_many :node_group_memberships
   has_many :node_groups, :through => :node_group_memberships
+  has_many :parameters, :as => :parameterable
 
   def to_param
     name
