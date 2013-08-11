@@ -16,6 +16,14 @@ class Node < ActiveRecord::Base
 
   before_save :mark_children_for_removal
 
+  scope :responsive, -> { where("reported_at >= '#{Time.now - 3600}'") }
+  scope :unresponsive, -> { where("reported_at < '#{Time.now - 3600}'") }
+  scope :changed, -> { responsive.where(:status => "changed") }
+  scope :unchanged, -> { responsive.where(:status => "unchanged") }
+  scope :failed, -> { responsive.where(:status => "failed") }
+  scope :pending, -> { responsive.where(:status => "pending") }
+  scope :unreported, -> { where(:status => nil) }
+
   def mark_children_for_removal
     parameters.each do |parameter|
       parameter.mark_for_destruction if parameter.key.blank?

@@ -6,32 +6,32 @@ class NodesController < ApplicationController
   end
 
   def unresponsive
-    @nodes = Node.order(sort_column + " " + sort_direction).where("reported_at < '#{Time.now - 3600}'")
+    @nodes = Node.unresponsive.order(sort_column + " " + sort_direction)
     render 'index'
   end
 
   def failed
-    @nodes = Node.order(sort_column + " " + sort_direction).where(:status => "failed")
+    @nodes = Node.failed.order(sort_column + " " + sort_direction)
     render 'index'
   end
 
   def pending
-    @nodes = Node.order(sort_column + " " + sort_direction).where(:status => "pending")
+    @nodes = Node.pending.order(sort_column + " " + sort_direction)
     render 'index'
   end
 
   def changed
-    @nodes = Node.order(sort_column + " " + sort_direction).where(:status => "changed")
+    @nodes = Node.changed.order(sort_column + " " + sort_direction)
     render 'index'
   end
 
   def unchanged
-    @nodes = Node.order(sort_column + " " + sort_direction).where(:status => "unchanged")
+    @nodes = Node.unchanged.order(sort_column + " " + sort_direction)
     render 'index'
   end
 
   def unreported
-    @nodes = Node.order(sort_column + " " + sort_direction).where(:status => nil)
+    @nodes = Node.unreported.order(sort_column + " " + sort_direction)
     render 'index'
   end
 
