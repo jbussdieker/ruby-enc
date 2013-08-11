@@ -1,2 +1,4 @@
 #!/usr/bin/env ruby
-puts "OKAY!"
+require 'yaml'
+settings = YAML.parse(File.read("/etc/puppet-dashboard/database.yml"))
+p settings
