@@ -21,4 +21,7 @@ cmd << " --ignore-table=#{prod["database"]}.reports"
 cmd << " --ignore-table=#{prod["database"]}.resource_events"
 cmd << " --ignore-table=#{prod["database"]}.resource_statuses"
 cmd << " --ignore-table=#{prod["database"]}.timeline_events"
+
+cmd << " --ignore-table=#{prod["database"]}.schema_migrations"
+
 p cmd
