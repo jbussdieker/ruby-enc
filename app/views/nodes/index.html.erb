@@ -16,7 +16,7 @@
   <tr>
     <td><%= link_to node.name, node %></td>
     <td><%= node_status_badge(node) %></td>
-    <td><%= node_report_time(node) %></td>
+    <td><%= node_report_time(node.last_report) %></td>
     <td><%= link_to "Edit", edit_node_path(node) %></td>
     <td><%= link_to "Delete", node, :method => :delete %></td>
   </tr>

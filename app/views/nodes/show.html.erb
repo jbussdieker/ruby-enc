@@ -64,14 +64,19 @@
   </div>
 </div>
 
-<h4>Recent Reports (<%= @node.reports.count %>)</h4>
+<h4>Recent reports (<%= @node.reports.count %>)</h4>
 
 <table class="table table-bordered table-condensed">
+  <tr>
+    <th>Reported at</th>
+    <th>Environment</th>
+    <th>Status</th>
+  </tr>
   <% @node.reports.limit(10).each do |report| %>
     <tr>
-      <td><%= link_to report.time, report %></td>
+      <td><%= link_to node_report_time(report.time), report %></td>
       <td><%= report.environment %></td>
-      <td><%= report.status %></td>
+      <td><%= node_status_badge(report) %></td>
     </tr>
   <% end %>
 </table>
