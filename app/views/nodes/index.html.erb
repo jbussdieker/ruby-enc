@@ -8,7 +8,7 @@
   <tr>
     <th><%= sortable "name" %></th>
     <th><%= sortable "status" %></th>
-    <th><%= sortable "last_report" %></th>
+    <th><%= sortable "reported_at" %></th>
     <th></th>
     <th></th>
   </tr>
@@ -16,7 +16,7 @@
   <tr>
     <td><%= link_to node.name, node %></td>
     <td><%= node_status_badge(node) %></td>
-    <td><%= node_report_time(node.last_report) %></td>
+    <td><%= node_report_time(node.reported_at) %></td>
     <td><%= link_to "Edit", edit_node_path(node) %></td>
     <td><%= link_to "Delete", node, :method => :delete %></td>
   </tr>

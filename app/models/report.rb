@@ -38,6 +38,6 @@ class Report < ActiveRecord::Base
     self.environment = parsed.environment
     self.time = parsed.time
     self.save
-    node.update_attributes(:status => parsed.status, :last_report => parsed.time)
+    node.update_attributes(:status => parsed.status, :reported_at => parsed.time)
   end
 end

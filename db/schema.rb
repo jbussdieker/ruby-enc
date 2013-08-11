@@ -41,11 +41,17 @@ ActiveRecord::Schema.define(:version => 20130811154049) do
 
   create_table "nodes", :force => true do |t|
     t.string   "name"
+    t.text     "description"
+    t.datetime "reported_at"
+    t.integer  "last_apply_report_id"
     t.string   "status"
-    t.datetime "last_report"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.boolean  "hidden"
+    t.integer  "last_inspect_report_id"
+    t.datetime "created_at",             :null => false
+    t.datetime "updated_at",             :null => false
   end
+
+  add_index "nodes", ["name"], :name => "index_nodes_on_name", :unique => true
 
   create_table "parameters", :force => true do |t|
     t.string   "key"
