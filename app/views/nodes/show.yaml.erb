@@ -1,0 +1,15 @@
+--- 
+classes: 
+<% @node.node_classes.each do |node_class| %>
+- <%= node_class.name %>
+<% end %>
+name: apollo-appv01.c1.moovweb.net
+parameters: 
+<% @node.parameters.each do |parameter| %>
+  <%= parameter.key %>: <%= parameter.value %>
+<% end %>
+<% @node.node_groups.each do |node_group| %>
+  <% node_group.parameters.each do |parameter| %>
+  <%= parameter.key %>: <%= parameter.value %>
+  <% end %>
+<% end %>
