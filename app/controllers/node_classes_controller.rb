@@ -1,6 +1,8 @@
 class NodeClassesController < ApplicationController
+  helper_method :sort_column, :sort_direction
+
   def index
-    @node_classes = NodeClass.all
+    @node_classes = NodeClass.order(sort_column + " " + sort_direction)
   end
 
   def new
@@ -33,5 +35,15 @@ class NodeClassesController < ApplicationController
     @node_class = NodeClass.find(params[:id])
     @node_class.destroy
     redirect_to node_classes_path
+  end
+
+  private
+
+  def sort_column
+    NodeClass.column_names.include?(params[:sort]) ? params[:sort] : "name"
+  end
+
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
   end
 end
