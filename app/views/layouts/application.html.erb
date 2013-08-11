@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Enc</title>
+  <title>Puppet Dashboard</title>
   <%= stylesheet_link_tag    "bootstrap", :media => "all" %>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
@@ -11,25 +11,22 @@
 <body>
 
 <div class="navbar navbar-inverse navbar-fixed-top">
-  <div class="navbar-inner">
-    <div class="container">
-      <a class="brand" href="/">ENC</a>
-      <ul class="nav">
-        <li><%= link_to "Nodes", nodes_path %></li>
-        <li><%= link_to "Groups", node_groups_path %></li>
-        <li><%= link_to "Classes", node_classes_path %></li>
-        <li><%= link_to "Reports", reports_path %></li>
-      </ul>
-    </div>
-  </div>
+  <a class="navbar-brand" href="/">Puppet Dashboard</a>
+  <ul class="nav navbar-nav">
+    <li><%= link_to "Home", nodes_path %></li>
+    <li><%= link_to "Nodes", nodes_path %></li>
+    <li><%= link_to "Groups", node_groups_path %></li>
+    <li><%= link_to "Classes", node_classes_path %></li>
+    <li><%= link_to "Reports", reports_path %></li>
+  </ul>
 </div>
 
-<div class="container-fluid">
+<div class="container">
   <div class="row">
-    <div class="span4">
+    <div class="col-lg-3">
       <%= render 'layouts/sidebar' %>
     </div>
-    <div class="span8">
+    <div class="col-lg-9">
       <%= yield %>
     </div>
   </div>

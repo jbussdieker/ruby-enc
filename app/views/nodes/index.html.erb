@@ -1,24 +1,22 @@
-<h2>Nodes</h2>
+<div class="panel">
+  <div class="panel-heading">Nodes</div>
 
-<div class="btn-toolbar">
-  <%= link_to "New Node", new_node_path, :class => 'btn' %>
+  <table class="table table-bordered table-condensed table-striped">
+    <tr>
+      <th><%= sortable "name" %></th>
+      <th><%= sortable "status" %></th>
+      <th><%= sortable "reported_at" %></th>
+      <th></th>
+      <th></th>
+    </tr>
+  <% @nodes.each do |node| %>
+    <tr>
+      <td><%= link_to node.name, node %></td>
+      <td><%= node_status_badge(node) %></td>
+      <td><%= node_report_time(node.reported_at) %></td>
+      <td><%= link_to "Edit", edit_node_path(node) %></td>
+      <td><%= link_to "Delete", node, :method => :delete %></td>
+    </tr>
+  <% end %>
+  </table>
 </div>
-
-<table class="table table-bordered table-condensed">
-  <tr>
-    <th><%= sortable "name" %></th>
-    <th><%= sortable "status" %></th>
-    <th><%= sortable "reported_at" %></th>
-    <th></th>
-    <th></th>
-  </tr>
-<% @nodes.each do |node| %>
-  <tr>
-    <td><%= link_to node.name, node %></td>
-    <td><%= node_status_badge(node) %></td>
-    <td><%= node_report_time(node.reported_at) %></td>
-    <td><%= link_to "Edit", edit_node_path(node) %></td>
-    <td><%= link_to "Delete", node, :method => :delete %></td>
-  </tr>
-<% end %>
-</table>

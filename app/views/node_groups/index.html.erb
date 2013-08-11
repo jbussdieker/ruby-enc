@@ -1,22 +1,20 @@
-<h2>Node Groups</h2>
+<div class="panel">
+  <div class="panel-heading">Groups</div>
 
-<div class="btn-toolbar">
-  <%= link_to "New Node Group", new_node_group_path, :class => 'btn' %>
+  <table class="table table-bordered table-condensed table-striped">
+    <tr>
+      <th><%= sortable "name" %></th>
+      <th>Nodes</th>
+      <th></th>
+      <th></th>
+    </tr>
+  <% @node_groups.each do |node_group| %>
+    <tr>
+      <td><%= link_to node_group.name, node_group %></td>
+      <th><span class="badge"><%= node_group.nodes.count %></span></th>
+      <td><%= link_to "Edit", edit_node_group_path(node_group) %></td>
+      <td><%= link_to "Delete", node_group, :method => :delete %></td>
+    </tr>
+  <% end %>
+  </table>
 </div>
-
-<table class="table table-bordered table-condensed">
-  <tr>
-    <th><%= sortable "name" %></th>
-    <th>Nodes</th>
-    <th></th>
-    <th></th>
-  </tr>
-<% @node_groups.each do |node_group| %>
-  <tr>
-    <td><%= link_to node_group.name, node_group %></td>
-    <th><span class="badge"><%= node_group.nodes.count %></span></th>
-    <td><%= link_to "Edit", edit_node_group_path(node_group) %></td>
-    <td><%= link_to "Delete", node_group, :method => :delete %></td>
-  </tr>
-<% end %>
-</table>

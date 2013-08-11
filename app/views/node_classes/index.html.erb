@@ -1,22 +1,20 @@
-<h2>Node Classes</h2>
+<div class="panel">
+  <div class="panel-heading">Classes</div>
 
-<div class="btn-toolbar">
-  <%= link_to "New Node Class", new_node_class_path, :class => 'btn' %>
+  <table class="table table-bordered table-condensed table-striped">
+    <tr>
+      <th><%= sortable "name" %></th>
+      <th>Nodes</th>
+      <th></th>
+      <th></th>
+    </tr>
+  <% @node_classes.each do |node_class| %>
+    <tr>
+      <td><%= link_to node_class.name, node_class %></td>
+      <td><span class="badge"><%= node_class.nodes.count %></span></td>
+      <td><%= link_to "Edit", edit_node_class_path(node_class) %></td>
+      <td><%= link_to "Delete", node_class, :method => :delete %></td>
+    </tr>
+  <% end %>
+  </table>
 </div>
-
-<table class="table table-bordered table-condensed">
-  <tr>
-    <th><%= sortable "name" %></th>
-    <th>Nodes</th>
-    <th></th>
-    <th></th>
-  </tr>
-<% @node_classes.each do |node_class| %>
-  <tr>
-    <td><%= link_to node_class.name, node_class %></td>
-    <td><span class="badge"><%= node_class.nodes.count %></span></td>
-    <td><%= link_to "Edit", edit_node_class_path(node_class) %></td>
-    <td><%= link_to "Delete", node_class, :method => :delete %></td>
-  </tr>
-<% end %>
-</table>

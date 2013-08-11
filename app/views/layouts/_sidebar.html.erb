@@ -1,47 +1,56 @@
-<h4>Nodes</h4>
-<table class="table table-bordered">
-  <tr>
-    <td><%= Node.where("reported_at < '#{Time.now - 3600}'").count %></td>
-    <td>Unresponsive</td>
-  </tr>
-  <tr>
-    <td><%= Node.where(:status => "failed").count %></td>
-    <td>Failed</td>
-  </tr>
-  <tr>
-    <td><%= Node.where(:status => "unchanged").count %></td>
-    <td>Unchanged</td>
-  </tr>
-  <tr>
-    <td><%= Node.where(:status => "changed").count %></td>
-    <td>Changed</td>
-  </tr>
-  <tr>
-    <td><%= Node.where(:status => nil).count %></td>
-    <td>Unreported</td>
-  </tr>
-  <tr>
-    <td><%= Node.count %></td>
-    <td>All</td>
-  </tr>
-</table>
-
-<h4>Group</h4>
-<table class="table table-bordered table-condensed">
-  <% NodeGroup.all.each do |node_group| %>
+<div class="panel">
+  <div class="panel-heading"><%= link_to "Nodes", nodes_path %></div>
+  <table class="table">
     <tr>
-      <td><%= link_to node_group.name, node_group %></td>
-      <td><span class="badge"><%= node_group.nodes.count %></span></td>
+      <td><%= Node.where("reported_at < '#{Time.now - 3600}'").count %></td>
+      <td>Unresponsive</td>
     </tr>
-  <% end %>
-</table>
-
-<h4>Class</h4>
-<table class="table table-bordered table-condensed">
-  <% NodeClass.all.each do |node_class| %>
     <tr>
-      <td><%= link_to node_class.name, node_class %></td>
-      <td><span class="badge"><%= node_class.nodes.count %></span></td>
+      <td><%= Node.where(:status => "failed").count %></td>
+      <td>Failed</td>
     </tr>
-  <% end %>
-</table>
+    <tr>
+      <td><%= Node.where(:status => "unchanged").count %></td>
+      <td>Unchanged</td>
+    </tr>
+    <tr>
+      <td><%= Node.where(:status => "changed").count %></td>
+      <td>Changed</td>
+    </tr>
+    <tr>
+      <td><%= Node.where(:status => nil).count %></td>
+      <td>Unreported</td>
+    </tr>
+    <tr>
+      <td><%= Node.count %></td>
+      <td>All</td>
+    </tr>
+  </table>
+  <%= link_to "Add Node", new_node_path, :class => 'btn btn-default' %>
+</div>
+
+<div class="panel">
+  <div class="panel-heading"><%= link_to "Group", node_groups_path %></div>
+  <table class="table table-condensed">
+    <% NodeGroup.all.each do |node_group| %>
+      <tr>
+        <td><%= link_to node_group.name, node_group %></td>
+        <td><span class="badge"><%= node_group.nodes.count %></span></td>
+      </tr>
+    <% end %>
+  </table>
+  <%= link_to "Add Group", new_node_group_path, :class => 'btn btn-default' %>
+</div>
+
+<div class="panel">
+  <div class="panel-heading"><%= link_to "Class", node_classes_path %></div>
+  <table class="table table-condensed">
+    <% NodeClass.all.each do |node_class| %>
+      <tr>
+        <td><%= link_to node_class.name, node_class %></td>
+        <td><span class="badge"><%= node_class.nodes.count %></span></td>
+      </tr>
+    <% end %>
+  </table>
+  <%= link_to "Add Class", new_node_class_path, :class => 'btn btn-default' %>
+</div>
