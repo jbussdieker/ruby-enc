@@ -1,4 +1,6 @@
 #!/usr/bin/env ruby
 require 'yaml'
 settings = YAML.load(File.read("/etc/puppet-dashboard/database.yml"))
-p settings
+prod = settings["production"]
+
+p prod
