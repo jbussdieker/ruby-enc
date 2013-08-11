@@ -11,14 +11,14 @@ module NodesHelper
     if node.status
       case node.status
         when "changed"
-          content_tag(:span, node.status, :class => 'badge badge-success')
+          content_tag(:span, node.status, :class => 'label label-success')
         when "unchanged"
-          content_tag(:span, node.status, :class => 'badge')
+          content_tag(:span, node.status, :class => 'label')
         when "failed"
-          content_tag(:span, node.status, :class => 'badge badge-important')
+          content_tag(:span, node.status, :class => 'label label-important')
       end
     else
-      content_tag(:span, "unreported", :class => 'badge')
+      content_tag(:span, "unreported", :class => 'label')
     end
   end
 end
