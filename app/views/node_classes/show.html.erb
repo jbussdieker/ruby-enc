@@ -9,10 +9,14 @@
   <table class="table table-bordered table-condensed table-striped">
     <tr>
       <th>Name</th>
+      <th>Status</th>
+      <th>Reported at</th>
     </tr>
   <% @node_class.nodes.each do |node| %>
     <tr>
       <td><%= link_to node.name, node %></td>
+      <td><%= node_status_badge(node) %></td>
+      <td><%= node_report_time(node.reported_at) %></td>
     </tr>
   <% end %>
   </table>
