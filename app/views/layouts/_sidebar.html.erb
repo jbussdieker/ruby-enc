@@ -30,7 +30,9 @@
       <td>All</td>
     </tr>
   </table>
-  <%= link_to "Add Node", new_node_path, :class => 'btn btn-primary btn-sm' %>
+  <div class="panel-footer">
+    <%= link_to "Add Node", new_node_path, :class => 'btn btn-primary btn-xs' %>
+  </div>
 </div>
 
 <div class="panel">
@@ -45,7 +47,9 @@
     <% end %>
   </table>
   </div>
-  <%= link_to "Add Group", new_node_group_path, :class => 'btn btn-primary btn-sm' %>
+  <div class="panel-footer">
+    <%= link_to "Add Group", new_node_group_path, :class => 'btn btn-primary btn-xs' %>
+  </div>
 </div>
 
 <div class="panel">
@@ -60,5 +64,7 @@
     <% end %>
   </table>
   </div>
-  <%= link_to "Add Class", new_node_class_path, :class => 'btn btn-primary btn-sm' %>
+  <div class="panel-footer">
+    <%= link_to "Add Class", new_node_class_path, :class => 'btn btn-primary btn-xs' %>
+  </div>
 </div>

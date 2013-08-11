@@ -13,6 +13,11 @@
  */
 body {
   margin-top: 60px;
+  background: rgb(232, 238, 240);
+}
+
+.panel-heading {
+  padding: 5px 15px;
 }
 
 .panel-group {
