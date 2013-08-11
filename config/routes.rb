@@ -1,5 +1,14 @@
 Enc::Application.routes.draw do
-  resources :nodes, :id => /[A-Za-z0-9\-\.]+?/, :format => /json|csv|xml|yaml/
+  resources :nodes, :id => /[A-Za-z0-9\-\.]+?/, :format => /json|csv|xml|yaml/ do
+    collection do
+      get 'unresponsive'
+      get 'failed'
+      get 'pending'
+      get 'changed'
+      get 'unchanged'
+      get 'unreported'
+    end
+  end
   resources :node_groups
   resources :node_classes
   resources :reports do
@@ -10,4 +19,5 @@ Enc::Application.routes.draw do
       post 'upload'
     end
   end
+  root :to => 'nodes#index'
 end
