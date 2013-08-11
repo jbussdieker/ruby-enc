@@ -2,27 +2,27 @@
   <div class="panel-heading"><%= link_to "Nodes", nodes_path %></div>
   <table class="table table-condensed">
     <tr>
-      <td><%= Node.where("reported_at < '#{Time.now - 3600}'").count %></td>
+      <td><span class="badge"><%= Node.where("reported_at < '#{Time.now - 3600}'").count %></span></td>
       <td>Unresponsive</td>
     </tr>
     <tr>
-      <td><%= Node.where(:status => "failed").count %></td>
+      <td><span class="badge"><%= Node.where(:status => "failed").count %></span></td>
       <td>Failed</td>
     </tr>
     <tr>
-      <td><%= Node.where(:status => "unchanged").count %></td>
+      <td><span class="badge"><%= Node.where(:status => "unchanged").count %></span></td>
       <td>Unchanged</td>
     </tr>
     <tr>
-      <td><%= Node.where(:status => "changed").count %></td>
+      <td><span class="badge"><%= Node.where(:status => "changed").count %></span></td>
       <td>Changed</td>
     </tr>
     <tr>
-      <td><%= Node.where(:status => nil).count %></td>
+      <td><span class="badge"><%= Node.where(:status => nil).count %></span></td>
       <td>Unreported</td>
     </tr>
     <tr>
-      <td><%= Node.count %></td>
+      <td><span class="badge"><%= Node.count %></span></td>
       <td>All</td>
     </tr>
   </table>
