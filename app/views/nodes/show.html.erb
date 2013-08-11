@@ -26,7 +26,7 @@
         <tr>
           <td><%= parameter.key %></td>
           <td><%= parameter.value %></td>
-          <td><%= group.name %></td>
+          <td><%= link_to group.name, group %></td>
         </tr>
       <% end %>
     <% end %>
@@ -35,9 +35,14 @@
   <div class="span6">
     <h4>Groups</h4>
     <table class="table table-bordered table-condensed">
+      <tr>
+        <th>Group</th>
+        <th>Source</th>
+      </tr>
     <% @node.node_groups.each do |node_group| %>
       <tr>
         <td><%= link_to node_group.name, node_group %></td>
+        <td><%= @node.name %></td>
       </tr>
     <% end %>
     </table>
@@ -45,9 +50,14 @@
   <div class="span6">
     <h4>Classes</h4>
     <table class="table table-bordered table-condensed">
+      <tr>
+        <th>Class</th>
+        <th>Source</th>
+      </tr>
     <% @node.node_classes.each do |node_class| %>
       <tr>
         <td><%= link_to node_class.name, node_class %></td>
+        <td><%= @node.name %></td>
       </tr>
     <% end %>
     </table>
