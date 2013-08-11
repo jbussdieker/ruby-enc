@@ -4,4 +4,21 @@ settings = YAML.load(File.read("/etc/puppet-dashboard/database.yml"))
 prod = settings["production"]
 
 cmd = "mysqldump -h #{prod["host"]} -u#{prod["username"]} -p#{prod["password"]} #{prod["database"]}"
+cmd << " --ignore-table=#{prod["database"]}.delayed_job_failures"
+cmd << " --ignore-table=#{prod["database"]}.delayed_jobs"
+cmd << " --ignore-table=#{prod["database"]}.metrics"
+cmd << " --ignore-table=#{prod["database"]}.node_class_memberships"
+cmd << " --ignore-table=#{prod["database"]}.node_classes"
+cmd << " --ignore-table=#{prod["database"]}.node_group_class_memberships"
+cmd << " --ignore-table=#{prod["database"]}.node_group_edges"
+cmd << " --ignore-table=#{prod["database"]}.node_group_memberships"
+cmd << " --ignore-table=#{prod["database"]}.node_groups"
+cmd << " --ignore-table=#{prod["database"]}.nodes"
+cmd << " --ignore-table=#{prod["database"]}.old_reports"
+cmd << " --ignore-table=#{prod["database"]}.parameters"
+cmd << " --ignore-table=#{prod["database"]}.report_logs"
+cmd << " --ignore-table=#{prod["database"]}.reports"
+cmd << " --ignore-table=#{prod["database"]}.resource_events"
+cmd << " --ignore-table=#{prod["database"]}.resource_statuses"
+cmd << " --ignore-table=#{prod["database"]}.timeline_events"
 p cmd
