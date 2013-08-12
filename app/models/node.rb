@@ -1,7 +1,7 @@
 class Node < ActiveRecord::Base
   attr_accessible :name, :description, :status, :reported_at
 
-  has_many :reports, :order => 'time DESC', :dependent => :destroy
+  has_many :reports, :dependent => :destroy
 
   has_many :node_group_memberships, :dependent => :destroy
   has_many :node_groups, :through => :node_group_memberships
