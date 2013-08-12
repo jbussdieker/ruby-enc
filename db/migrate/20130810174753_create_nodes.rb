@@ -1,7 +1,7 @@
 class CreateNodes < ActiveRecord::Migration
   def change
     create_table :nodes do |t|
-      t.string :name
+      t.string :name, :null => false
       t.text :description
       t.datetime :reported_at
       t.integer :last_apply_report_id

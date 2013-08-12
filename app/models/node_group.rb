@@ -13,6 +13,7 @@ class NodeGroup < ActiveRecord::Base
   before_save :mark_children_for_removal
 
   validates :name, :uniqueness => true
+  validates_presence_of :name
 
   def to_s
     name

@@ -24,6 +24,9 @@ class Node < ActiveRecord::Base
   scope :pending, -> { responsive.where(:status => "pending") }
   scope :unreported, -> { where(:status => nil) }
 
+  validates :name, :uniqueness => true
+  validates_presence_of :name
+
   def mark_children_for_removal
     parameters.each do |parameter|
       parameter.mark_for_destruction if parameter.key.blank?

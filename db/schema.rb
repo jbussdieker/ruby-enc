@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(:version => 20130811154049) do
   end
 
   create_table "node_classes", :force => true do |t|
-    t.string   "name"
+    t.string   "name",       :null => false
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(:version => 20130811154049) do
   end
 
   create_table "node_groups", :force => true do |t|
-    t.string   "name"
+    t.string   "name",       :null => false
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(:version => 20130811154049) do
   add_index "node_groups", ["name"], :name => "index_node_groups_on_name", :unique => true
 
   create_table "nodes", :force => true do |t|
-    t.string   "name"
+    t.string   "name",                   :null => false
     t.text     "description"
     t.datetime "reported_at"
     t.integer  "last_apply_report_id"

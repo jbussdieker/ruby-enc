@@ -1,7 +1,7 @@
 class CreateNodeClasses < ActiveRecord::Migration
   def change
     create_table :node_classes do |t|
-      t.string :name
+      t.string :name, :null => false
 
       t.timestamps
     end

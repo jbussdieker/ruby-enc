@@ -7,6 +7,7 @@ class NodeClass < ActiveRecord::Base
   has_many :nodes, :through => :node_class_memberships
 
   validates :name, :uniqueness => true
+  validates_presence_of :name
 
   def to_s
     name
