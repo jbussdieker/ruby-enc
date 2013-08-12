@@ -2,6 +2,10 @@
 
 one:
   name: MyString
+  description: MyString
+  status: MyString
 
 two:
   name: MyString
+  description: MyString
+  status: MyString
