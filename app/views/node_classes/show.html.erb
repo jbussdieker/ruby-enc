@@ -1,5 +1,5 @@
 <div class="panel">
-  <div class="panel-heading">Class: <%= @node_class.name %></div>
+  <div class="panel-heading">Class: <%= @node_class %></div>
 
   <div class="btn-toolbar">
     <%= link_to "Back", node_classes_path, :class => 'btn btn-default' %>
@@ -14,7 +14,7 @@
     </tr>
   <% @node_class.nodes.each do |node| %>
     <tr>
-      <td><%= link_to node.name, node %></td>
+      <td><%= link_to node, node %></td>
       <td><%= node_status_badge(node) %></td>
       <td><%= node_report_time(node.reported_at) %></td>
     </tr>

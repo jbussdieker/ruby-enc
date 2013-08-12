@@ -10,7 +10,7 @@
     </tr>
   <% @node_groups.each do |node_group| %>
     <tr>
-      <td><%= link_to node_group.name, node_group %></td>
+      <td><%= link_to node_group, node_group %></td>
       <th><span class="badge"><%= node_group.nodes.count %></span></th>
       <td><%= link_to "Edit", edit_node_group_path(node_group) %></td>
       <td><%= link_to "Delete", node_group, :method => :delete %></td>

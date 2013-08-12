@@ -1,5 +1,5 @@
 <div class="panel">
-  <div class="panel-heading">Node: <%= @node.name %></div>
+  <div class="panel-heading">Node: <%= @node %></div>
 
   <div class="btn-toolbar">
     <%= link_to "Back", nodes_path, :class => 'btn btn-default' %>
@@ -17,7 +17,7 @@
     <tr>
       <td><%= parameter.key %></td>
       <td><%= parameter.value %></td>
-      <td><%= @node.name %></td>
+      <td><%= @node %></td>
     </tr>
   <% end %>
   <% @node.node_groups.each do |group| %>
@@ -25,7 +25,7 @@
       <tr>
         <td><%= parameter.key %></td>
         <td><%= parameter.value %></td>
-        <td><%= link_to group.name, group %></td>
+        <td><%= link_to group, group %></td>
       </tr>
     <% end %>
   <% end %>
@@ -41,8 +41,8 @@
       </tr>
     <% @node.node_groups.each do |node_group| %>
       <tr>
-        <td><%= link_to node_group.name, node_group %></td>
-        <td><%= @node.name %></td>
+        <td><%= link_to node_group, node_group %></td>
+        <td><%= @node %></td>
       </tr>
     <% end %>
     </table>
@@ -56,8 +56,8 @@
       </tr>
     <% @node.node_classes.each do |node_class| %>
       <tr>
-        <td><%= link_to node_class.name, node_class %></td>
-        <td><%= @node.name %></td>
+        <td><%= link_to node_classe, node_class %></td>
+        <td><%= @node %></td>
       </tr>
     <% end %>
     </table>

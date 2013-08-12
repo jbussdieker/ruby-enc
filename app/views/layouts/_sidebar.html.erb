@@ -41,7 +41,7 @@
   <table class="table table-condensed">
     <% NodeGroup.all.each do |node_group| %>
       <tr>
-        <td><%= link_to node_group.name, node_group %></td>
+        <td><%= link_to node_group, node_group %></td>
         <td><span class="badge"><%= node_group.nodes.count %></span></td>
       </tr>
     <% end %>
@@ -58,7 +58,7 @@
   <table class="table table-condensed">
     <% NodeClass.all.each do |node_class| %>
       <tr>
-        <td><%= link_to node_class.name, node_class %></td>
+        <td><%= link_to node_class, node_class %></td>
         <td><span class="badge"><%= node_class.nodes.count %></span></td>
       </tr>
     <% end %>

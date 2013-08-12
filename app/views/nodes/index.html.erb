@@ -11,7 +11,7 @@
     </tr>
   <% @nodes.each do |node| %>
     <tr>
-      <td><%= link_to node.name, node %></td>
+      <td><%= link_to node, node %></td>
       <td><%= node_status_badge(node) %></td>
       <td><%= node_report_time(node.reported_at) %></td>
       <td><%= link_to "Edit", edit_node_path(node) %></td>

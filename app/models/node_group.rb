@@ -12,6 +12,10 @@ class NodeGroup < ActiveRecord::Base
 
   before_save :mark_children_for_removal
 
+  def to_s
+    name
+  end
+
   def mark_children_for_removal
     parameters.each do |parameter|
       parameter.mark_for_destruction if parameter.key.blank?
