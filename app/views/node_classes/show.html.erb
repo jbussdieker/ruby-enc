@@ -3,6 +3,8 @@
 
   <div class="btn-toolbar">
     <%= link_to "Back", node_classes_path, :class => 'btn btn-default' %>
+    <%= link_to "Edit", edit_node_class_path(@node_class), :class => 'btn btn-primary' %>
+    <%= link_to "Delete", @node_class, :method => :delete, :confirm => "Are you sure?", :class => 'btn btn-danger pull-right' %>
   </div>
 
   <h4>Nodes</h4>

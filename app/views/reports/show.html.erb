@@ -3,6 +3,7 @@
 
   <div class="btn-toolbar">
     <%= link_to "Back", node_path(@report.node), :class => 'btn btn-default' %>
+    <%= link_to "Delete", @report, :method => :delete, :confirm => "Are you sure?", :class => 'btn btn-danger pull-right' %>
   </div>
 
   <br>

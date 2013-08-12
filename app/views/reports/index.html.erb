@@ -3,12 +3,10 @@
     <table class="table table-bordered table-condensed table-striped">
     <% @reports.each do |report| %>
       <tr>
-        <td><%= link_to report.time, report %></td>
-        <td><%= report.node %></td>
-        <td><%= report.status %></td>
+        <td><%= link_to node_report_time(report.time), report %></td>
+        <td><%= link_to report.node, report.node %></td>
         <td><%= report.environment %></td>
-        <td><%= link_to "Parse", parse_report_path(report) %></td>
-        <td><%= link_to "Delete", report, :method => :delete %></td>
+        <td><%= node_status_badge(report) %></td>
       </tr>
     <% end %>
     </table>
