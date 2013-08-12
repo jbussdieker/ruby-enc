@@ -3,6 +3,11 @@ class NodeClassesController < ApplicationController
 
   def index
     @node_classes = NodeClass.order(sort_column + " " + sort_direction)
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @node_classes }
+    end
   end
 
   def show
@@ -13,32 +18,46 @@ class NodeClassesController < ApplicationController
     @node_class = NodeClass.new
   end
 
-  def create
-    @node_class = NodeClass.new(params[:node_class])
-    if @node_class.save
-      redirect_to node_classes_path
-    else
-      render 'new'
-    end
-  end
-
   def edit
     @node_class = NodeClass.find(params[:id])
   end
 
+  def create
+    @node_class = NodeClass.new(params[:node_class])
+
+    respond_to do |format|
+      if @node_class.save
+        format.html { redirect_to node_classes_path, notice: 'Node class was successfully created.' }
+        format.json { render json: @node_class, status: :created, location: node_classes_path }
+      else
+        format.html { render action: "new" }
+        format.json { render json: @node_class.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   def update
     @node_class = NodeClass.find(params[:id])
-    if @node_class.update_attributes(params[:node_class])
-      redirect_to node_classes_path
-    else
-      render 'edit'
+ 
+    respond_to do |format|
+      if @node_class.update_attributes(params[:node_class])
+        format.html { redirect_to node_classes_path, notice: 'Node class was successfully updated.' }
+        format.json { head :no_content }
+      else
+        format.html { render action: "edit" }
+        format.json { render json: @node_class.errors, status: :unprocessable_entity }
+      end
     end
   end
 
   def destroy
     @node_class = NodeClass.find(params[:id])
     @node_class.destroy
-    redirect_to node_classes_path
+
+    respond_to do |format|
+      format.html { redirect_to node_classes_path }
+      format.json { head :no_content }
+    end
   end
 
   private

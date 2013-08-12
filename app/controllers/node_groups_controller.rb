@@ -19,23 +19,23 @@ class NodeGroupsController < ApplicationController
     @node_group.parameters.build
   end
 
+  def edit
+    @node_group = NodeGroup.find(params[:id])
+    @node_group.parameters.build
+  end
+
   def create
     @node_group = NodeGroup.new(params[:node_group])
 
     respond_to do |format|
       if @node_group.save
-        format.html { redirect_to @node_group, notice: 'Node group was successfully created.' }
+        format.html { redirect_to node_groups_path, notice: 'Node group was successfully created.' }
         format.json { render json: @node_group, status: :created, location: node_groups_path }
       else
         format.html { render action: "new" }
         format.json { render json: @node_group.errors, status: :unprocessable_entity }
       end
     end
-  end
-
-  def edit
-    @node_group = NodeGroup.find(params[:id])
-    @node_group.parameters.build
   end
 
   def update

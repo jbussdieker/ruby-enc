@@ -47,6 +47,8 @@
     <% end %>
   </div>
 
-  <%= f.submit nil, :class => 'btn btn-sm btn-primary' %>
-  <%= link_to "Cancel", @node, :class => 'btn btn-sm btn-default' %>
+  <div class="panel-footer">
+    <%= f.submit nil, :class => 'btn btn-sm btn-primary' %>
+    <%= link_to "Cancel", @node, :class => 'btn btn-sm btn-default' %>
+  </div>
 <% end %>
