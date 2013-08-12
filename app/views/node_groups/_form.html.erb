@@ -1,17 +1,28 @@
 <%= form_for(@node_group) do |f| %>
-  <div>
+  <div class="form-group">
     <%= f.label :name %>
-    <%= f.text_field :name %>
+    <div class="row">
+      <div class="col-lg-6">
+        <%= f.text_field :name, :class => 'form-control' %>
+      </div>
+    </div>
   </div>
 
-  <div>
-    <h4>Parameters</h4>
+  <div class="form-group">
+    <%= f.label :parameters %>
     <%= f.fields_for :parameters do |parameter_form| %>
-      <%= parameter_form.text_field :key, :placeholder => "key" %>
-      <%= parameter_form.text_field :value, :placeholder => "value" %>
+      <div class="row">
+        <div class="col-lg-2">
+          <%= parameter_form.text_field :key, :placeholder => "key", :class => 'form-control' %>
+        </div>
+        <div class="col-lg-8">
+          <%= parameter_form.text_field :value, :placeholder => "value", :class => 'form-control' %>
+        </div>
+      </div>
       <br>
     <% end %>
   </div>
 
-  <%= f.submit nil, :class => 'btn' %>
+  <%= f.submit nil, :class => 'btn btn-sm btn-primary' %>
+  <%= link_to "Cancel", @node_group, :class => 'btn btn-sm btn-default' %>
 <% end %>
