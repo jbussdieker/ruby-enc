@@ -12,6 +12,11 @@ class NodeGroupsController < ApplicationController
 
   def show
     @node_group = NodeGroup.find(params[:id])
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @node_group }
+    end
   end
 
   def new

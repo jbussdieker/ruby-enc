@@ -12,6 +12,11 @@ class NodeClassesController < ApplicationController
 
   def show
     @node_class = NodeClass.find(params[:id])
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @node_class }
+    end
   end
 
   def new
