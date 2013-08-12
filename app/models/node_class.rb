@@ -6,6 +6,8 @@ class NodeClass < ActiveRecord::Base
   has_many :node_class_memberships, :dependent => :destroy
   has_many :nodes, :through => :node_class_memberships
 
+  validates :name, :uniqueness => true
+
   def to_s
     name
   end

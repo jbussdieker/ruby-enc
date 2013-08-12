@@ -5,5 +5,7 @@ class CreateNodeGroups < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    add_index(:node_groups, :name, :unique => true)
   end
 end

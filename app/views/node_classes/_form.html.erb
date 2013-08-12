@@ -1,4 +1,16 @@
 <%= form_for(@node_class) do |f| %>
+  <% if @node_class.errors.any? %>
+    <div id="error_explanation">
+      <h4><%= pluralize(@node_class.errors.count, "error") %> prohibited this class from being saved:</h4>
+
+      <ul>
+      <% @node_class.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
   <div class="form-group">
     <%= f.label :name %>
     <div class="row">

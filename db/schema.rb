@@ -26,6 +26,8 @@ ActiveRecord::Schema.define(:version => 20130811154049) do
     t.datetime "updated_at", :null => false
   end
 
+  add_index "node_classes", ["name"], :name => "index_node_classes_on_name", :unique => true
+
   create_table "node_group_memberships", :force => true do |t|
     t.integer  "node_id"
     t.integer  "node_group_id"
@@ -38,6 +40,8 @@ ActiveRecord::Schema.define(:version => 20130811154049) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  add_index "node_groups", ["name"], :name => "index_node_groups_on_name", :unique => true
 
   create_table "nodes", :force => true do |t|
     t.string   "name"

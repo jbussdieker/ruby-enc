@@ -3,6 +3,11 @@ class NodeGroupsController < ApplicationController
 
   def index
     @node_groups = NodeGroup.order(sort_column + " " + sort_direction)
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @node_groups }
+    end
   end
 
   def show
@@ -16,10 +21,15 @@ class NodeGroupsController < ApplicationController
 
   def create
     @node_group = NodeGroup.new(params[:node_group])
-    if @node_group.save
-      redirect_to node_groups_path
-    else
-      render 'new'
+
+    respond_to do |format|
+      if @node_group.save
+        format.html { redirect_to @node_group, notice: 'Node group was successfully created.' }
+        format.json { render json: @node_group, status: :created, location: node_groups_path }
+      else
+        format.html { render action: "new" }
+        format.json { render json: @node_group.errors, status: :unprocessable_entity }
+      end
     end
   end
 
@@ -30,17 +40,26 @@ class NodeGroupsController < ApplicationController
 
   def update
     @node_group = NodeGroup.find(params[:id])
-    if @node_group.update_attributes(params[:node_group])
-      redirect_to node_groups_path
-    else
-      render 'edit'
+
+    respond_to do |format|
+      if @node_group.update_attributes(params[:node_group])
+        format.html { redirect_to node_groups_path, notice: 'Node group was successfully updated.' }
+        format.json { head :no_content }
+      else
+        format.html { render action: "edit" }
+        format.json { render json: @node_group.errors, status: :unprocessable_entity }
+      end
     end
   end
 
   def destroy
     @node_group = NodeGroup.find(params[:id])
     @node_group.destroy
-    redirect_to node_groups_path
+
+    respond_to do |format|
+      format.html { redirect_to node_groups_path }
+      format.json { head :no_content }
+    end
   end
 
   private

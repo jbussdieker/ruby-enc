@@ -5,5 +5,7 @@ class CreateNodeClasses < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    add_index(:node_classes, :name, :unique => true)
   end
 end
