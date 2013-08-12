@@ -34,8 +34,8 @@ class NodeGroupsController < ApplicationController
 
     respond_to do |format|
       if @node_group.save
-        format.html { redirect_to node_groups_path, notice: 'Node group was successfully created.' }
-        format.json { render json: @node_group, status: :created, location: node_groups_path }
+        format.html { redirect_to @node_group, notice: 'Node group was successfully created.' }
+        format.json { render json: @node_group, status: :created, location: @node_group }
       else
         format.html { render action: "new" }
         format.json { render json: @node_group.errors, status: :unprocessable_entity }
@@ -48,7 +48,7 @@ class NodeGroupsController < ApplicationController
 
     respond_to do |format|
       if @node_group.update_attributes(params[:node_group])
-        format.html { redirect_to node_groups_path, notice: 'Node group was successfully updated.' }
+        format.html { redirect_to @node_group, notice: 'Node group was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

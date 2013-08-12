@@ -1,11 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  name: MyString
-  description: MyString
-  status: MyString
+  name: example1.com
+  description: First example
+  status: unchanged
 
 two:
-  name: MyString
-  description: MyString
-  status: MyString
+  name: example2.com
+  description: Second example
+  status: changed

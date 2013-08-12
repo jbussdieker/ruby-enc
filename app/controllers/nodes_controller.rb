@@ -31,11 +31,11 @@ class NodesController < ApplicationController
 
   def create
     @node = Node.new(params[:node])
- 
+
     respond_to do |format|
       if @node.save
-        format.html { redirect_to nodes_path, notice: 'Node was successfully created.' }
-        format.json { render json: @node, status: :created, location: nodes_path }
+        format.html { redirect_to @node, notice: 'Node was successfully created.' }
+        format.json { render json: @node, status: :created, location: @node }
       else
         format.html { render action: "new" }
         format.json { render json: @node.errors, status: :unprocessable_entity }

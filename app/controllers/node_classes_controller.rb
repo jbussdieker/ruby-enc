@@ -32,8 +32,8 @@ class NodeClassesController < ApplicationController
 
     respond_to do |format|
       if @node_class.save
-        format.html { redirect_to node_classes_path, notice: 'Node class was successfully created.' }
-        format.json { render json: @node_class, status: :created, location: node_classes_path }
+        format.html { redirect_to @node_class, notice: 'Node class was successfully created.' }
+        format.json { render json: @node_class, status: :created, location: @node_class }
       else
         format.html { render action: "new" }
         format.json { render json: @node_class.errors, status: :unprocessable_entity }
@@ -43,10 +43,10 @@ class NodeClassesController < ApplicationController
 
   def update
     @node_class = NodeClass.find(params[:id])
- 
+
     respond_to do |format|
       if @node_class.update_attributes(params[:node_class])
-        format.html { redirect_to node_classes_path, notice: 'Node class was successfully updated.' }
+        format.html { redirect_to @node_class, notice: 'Node class was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
