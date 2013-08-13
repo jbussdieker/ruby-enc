@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  report_id: 1
+  category: MyString
+  name: MyString
+  value: 9.99
+
+two:
+  report_id: 1
+  category: MyString
+  name: MyString
+  value: 9.99

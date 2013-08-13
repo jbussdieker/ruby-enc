@@ -1,6 +1,8 @@
 class Report < ActiveRecord::Base
   attr_accessible :node_id, :status
   belongs_to :node
+  has_many :report_logs, :dependent => :destroy
+  has_many :metrics, :dependent => :destroy
 
   default_scope order("time DESC")
 
@@ -32,7 +34,32 @@ class Report < ActiveRecord::Base
     @parsed ||= YAML.load(raw_report)
   end
 
+  def parse_logs
+    parsed.logs.each do |log|
+      report_logs.create(
+        :time => log.time,
+        :level => log.level,
+        :message => log.message
+      )
+    end
+  end
+
+  def parse_metrics
+    parsed.metrics.each do |name,metric|
+      metric.values.each do |key,description,value|
+        metrics.create(
+          :category => metric.label,
+          :name => description,
+          :value => value
+        )
+      end
+    end
+  end
+
   def parse
+    parse_logs
+    parse_metrics
+
     node_name = parsed.name
     node = Node.find_or_create_by_name(node_name)
     self.node_id = node.id

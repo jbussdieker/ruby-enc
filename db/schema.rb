@@ -11,7 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130811154049) do
+ActiveRecord::Schema.define(:version => 20130813012229) do
+
+  create_table "metrics", :force => true do |t|
+    t.integer  "report_id",                                 :null => false
+    t.string   "category"
+    t.string   "name"
+    t.decimal  "value",      :precision => 12, :scale => 6
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
+  end
+
+  add_index "metrics", ["report_id"], :name => "index_metrics_on_report_id"
 
   create_table "node_class_memberships", :force => true do |t|
     t.integer  "node_id"
@@ -65,6 +76,17 @@ ActiveRecord::Schema.define(:version => 20130811154049) do
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
   end
+
+  create_table "report_logs", :force => true do |t|
+    t.integer  "report_id"
+    t.string   "level"
+    t.text     "message"
+    t.datetime "time"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "report_logs", ["report_id"], :name => "index_report_logs_on_report_id"
 
   create_table "reports", :force => true do |t|
     t.integer  "node_id"

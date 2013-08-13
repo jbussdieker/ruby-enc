@@ -16,16 +16,16 @@
     </ul>
     <div class="tab-content">
       <div class="tab-pane active" id="metrics">
-        <% @report.parsed.metrics.each do |name,metric| %>
+        <% @report.metrics.group(:category).each do |category| %>
           <table class="table table-bordered table-condensed table-striped">
             <tr>
-              <th><%= metric.label %></th>
+              <th><%= category.category %></th>
               <th></th>
             </tr>
-            <% metric.values.each do |key,description,value| %>
+            <% @report.metrics.where(:category => category.category).each do |metric| %>
               <tr>
-                <td><%= description %></td>
-                <td><%= value %></td>
+                <td><%= metric.name %></td>
+                <td><%= metric.value %></td>
               </tr>
             <% end %>
           </table>
@@ -38,7 +38,7 @@
             <th>Level</th>
             <th>Message</th>
           </tr>
-          <% @report.parsed.logs.each do |log| %>
+          <% @report.report_logs.each do |log| %>
             <tr>
               <td><%= log.time %></td>
               <td><%= log.level %></td>
