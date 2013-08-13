@@ -4,7 +4,7 @@ module PuppetDB
   @@options = {}
 
   def self.configure(options = {})
-    @@options.merge! options
+    @@options = options
   end
 
   def self.options

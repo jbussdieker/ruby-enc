@@ -1,0 +1,8 @@
+development:
+  puppetdb:
+    host: hostname
+    port: port
+production:
+  puppetdb:
+    host: hostname
+    port: port
