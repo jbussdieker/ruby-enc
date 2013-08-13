@@ -1,5 +1,5 @@
 ---
-before_script:
+before_install:
   - rm Gemfile.lock
 script:
   - RAILS_ENV=test bundle exec rake db:migrate --trace
