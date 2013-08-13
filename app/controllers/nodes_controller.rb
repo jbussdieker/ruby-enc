@@ -96,6 +96,16 @@ class NodesController < ApplicationController
     render 'index'
   end
 
+  def facts
+    @node = Node.find_by_name(params[:id])
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @node.facts }
+      format.yaml { render text: "unsupported" }
+    end
+  end
+
   private
 
   def sort_column
