@@ -1,10 +1,10 @@
 <div class="panel <%= "visible-lg" unless params[:controller] == 'nodes' and params[:action] == 'index' %>">
   <div class="panel-heading"><%= link_to "Nodes", nodes_path %></div>
   <div class="progress">
-    <div class="progress-bar progress-bar-danger" style="width: <%= (Node.failed.count.to_f / Node.count.to_f) * 100 %>%"></div>
-    <div class="progress-bar progress-bar-warning" style="width: <%= (Node.pending.count.to_f / Node.count.to_f) * 100 %>%"></div>
-    <div class="progress-bar progress-bar-info" style="width: <%= (Node.changed.count.to_f / Node.count.to_f) * 100 %>%"></div>
     <div class="progress-bar progress-bar-success" style="width: <%= (Node.unchanged.count.to_f / Node.count.to_f) * 100 %>%"></div>
+    <div class="progress-bar progress-bar-info" style="width: <%= (Node.changed.count.to_f / Node.count.to_f) * 100 %>%"></div>
+    <div class="progress-bar progress-bar-warning" style="width: <%= (Node.pending.count.to_f / Node.count.to_f) * 100 %>%"></div>
+    <div class="progress-bar progress-bar-danger" style="width: <%= (Node.failed.count.to_f / Node.count.to_f) * 100 %>%"></div>
   </div>
   <table class="table table-condensed table-hover">
     <tr data-link="<%= unresponsive_nodes_path %>">
