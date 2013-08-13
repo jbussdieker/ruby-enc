@@ -1,7 +1,7 @@
 <div class="form-group">
   <div class="row">
     <div class="col-lg-9">
-      <%= f.select :node_group_id, [nil] + NodeGroup.all.collect{|c| [c.name,c.id]}, {}, :class => 'form-control' %>
+      <%= f.select :node_group_id, NodeGroup.all.collect{|c| [c.name,c.id]}, {}, :class => 'form-control' %>
     </div>
     <div class="col-lg-1">
       <%= link_to_remove_fields "Remove", f %>

@@ -1,5 +1,6 @@
 class NodeGroup < ActiveRecord::Base
   attr_accessible :name
+  attr_accessible :parameters_attributes
 
   default_scope order(:name)
 
@@ -7,21 +8,12 @@ class NodeGroup < ActiveRecord::Base
   has_many :nodes, :through => :node_group_memberships
   has_many :parameters, :as => :parameterable, :dependent => :destroy
 
-  accepts_nested_attributes_for :parameters, :allow_destroy => true
-  attr_accessible :parameters_attributes
-
-  before_save :mark_children_for_removal
+  accepts_nested_attributes_for :parameters, :allow_destroy => true, :reject_if => lambda {|p| p[:key].empty? || p[:value].empty?}
 
   validates :name, :uniqueness => true
   validates_presence_of :name
 
   def to_s
     name
-  end
-
-  def mark_children_for_removal
-    parameters.each do |parameter|
-      parameter.mark_for_destruction if parameter.key.blank?
-    end
   end
 end
