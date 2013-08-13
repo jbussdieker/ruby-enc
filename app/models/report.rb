@@ -70,7 +70,19 @@ class Report < ActiveRecord::Base
     end
   end
 
+  def relay
+    if relay_settings = ENC_CONFIG[:report_relay]
+      client = Net::HTTP.new(relay_settings[:host], relay_settings[:port])
+      req = Net::HTTP::Post.new("/reports/upload")
+      req["Content-Type"] = "application/x-yaml"
+      req.body = request.raw_post
+      resp = client.request(req)
+    end
+  end
+
   def parse
+    relay
+
     parse_logs
     parse_metrics
     parse_resource_statuses

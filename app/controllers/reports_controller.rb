@@ -24,14 +24,6 @@ class ReportsController < ApplicationController
     report.write(request.raw_post)
     report.parse
 
-    if relay_settings = ENC_CONFIG[:report_relay]
-      client = Net::HTTP.new(relay_settings[:host], relay_settings[:port])
-      req = Net::HTTP::Post.new("/reports/upload")
-      req["Content-Type"] = "application/x-yaml"
-      req.body = request.raw_post
-      resp = client.request(req)
-    end
-
     render :text => "OK"
   end
 end
