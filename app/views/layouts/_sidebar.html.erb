@@ -2,31 +2,31 @@
   <div class="panel-heading"><%= link_to "Nodes", nodes_path %></div>
   <table class="table table-condensed">
     <tr>
-      <td style="text-align: right"><span class="badge"><%= Node.unresponsive.count %></span></td>
+      <td style="text-align: right"><span class="label label-default"><%= Node.unresponsive.count %></span></td>
       <td><%= link_to "Unresponsive", unresponsive_nodes_path %></td>
     </tr>
     <tr>
-      <td style="text-align: right"><span class="badge"><%= Node.failed.count %></span></td>
+      <td style="text-align: right"><span class="label label-danger"><%= Node.failed.count %></span></td>
       <td><%= link_to "Failed", failed_nodes_path %></td>
     </tr>
     <tr>
-      <td style="text-align: right"><span class="badge"><%= Node.pending.count %></span></td>
+      <td style="text-align: right"><span class="label label-warning"><%= Node.pending.count %></span></td>
       <td><%= link_to "Pending", pending_nodes_path %></td>
     </tr>
     <tr>
-      <td style="text-align: right"><span class="badge"><%= Node.changed.count %></span></td>
+      <td style="text-align: right"><span class="label label-info"><%= Node.changed.count %></span></td>
       <td><%= link_to "Changed", changed_nodes_path %></td>
     </tr>
     <tr>
-      <td style="text-align: right"><span class="badge"><%= Node.unchanged.count %></span></td>
+      <td style="text-align: right"><span class="label label-success"><%= Node.unchanged.count %></span></td>
       <td><%= link_to "Unchanged", unchanged_nodes_path %></td>
     </tr>
     <tr>
-      <td style="text-align: right"><span class="badge"><%= Node.unreported.count %></span></td>
+      <td style="text-align: right"><span class="label label-default"><%= Node.unreported.count %></span></td>
       <td><%= link_to "Unreported", unreported_nodes_path %></td>
     </tr>
     <tr>
-      <td style="text-align: right"><span class="badge"><%= Node.count %></span></td>
+      <td style="text-align: right"><span class="label label-default"><%= Node.count %></span></td>
       <td><%= link_to "All", nodes_path %></td>
     </tr>
   </table>
