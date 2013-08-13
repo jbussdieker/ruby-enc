@@ -6,9 +6,9 @@ script:
   - bundle exec rake db:test:prepare
   - bundle exec rake test
 env:
-  - DB=sqlite
-  - DB=mysql
-  - DB=postgresql
+  - DB=sqlite3
+  - DB=mysql2
+  - DB=pg
 rvm:
   - 1.9.2
   - 1.9.3

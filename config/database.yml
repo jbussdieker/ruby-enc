@@ -2,13 +2,13 @@ sqlite: &sqlite3
   adapter: sqlite3
   database: db/<%= Rails.env %>.sqlite3
 
-mysql: &mysql
+mysql: &mysql2
   adapter: mysql2
   username: root
   password:
   database: enc_<%= Rails.env %>
 
-postgresql: &postgresql
+postgresql: &pg
   adapter: postgresql
   username: postgres
   password:
@@ -19,7 +19,7 @@ defaults: &defaults
   pool: 16
   timeout: 5000
   host: localhost
-  <<: *<%= ENV['DB'] || "postgresql" %>
+  <<: *<%= ENV['DB'] || "pg" %>
 
 development:
   <<: *defaults
