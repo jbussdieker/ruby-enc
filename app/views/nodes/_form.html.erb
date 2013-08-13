@@ -32,13 +32,15 @@
     <%= f.text_area :description, :rows => 4, :class => 'form-control' %>
   </div>
 
-  <%= f.label :parameters %>
-  <%= f.fields_for :parameters do |builder| %>
-    <%= render 'parameter_fields', :f => builder %>
-  <% end %>
+  <div class="well well-sm">
+    <%= f.label :parameters %>
+    <%= f.fields_for :parameters do |builder| %>
+      <%= render 'parameter_fields', :f => builder %>
+    <% end %>
 
-  <div class="form-group">
-    <%= link_to_add_fields "Add Parameter", f, :parameters %>
+    <div>
+      <%= link_to_add_fields "Add Parameter", f, :parameters %>
+    </div>
   </div>
 
   <div class="row">
