@@ -34,13 +34,17 @@
 
   <div class="form-group">
     <%= f.label :parameters %>
-    <%= f.fields_for :parameters do |parameter_form| %>
+    <%= f.fields_for :parameters do |builder| %>
       <div class="row">
         <div class="col-lg-2">
-          <%= parameter_form.text_field :key, :placeholder => "key", :class => 'form-control' %>
+          <%= builder.text_field :key, :placeholder => "key", :class => 'form-control' %>
         </div>
         <div class="col-lg-8">
-          <%= parameter_form.text_field :value, :placeholder => "value", :class => 'form-control' %>
+          <%= builder.text_field :value, :placeholder => "value", :class => 'form-control' %>
+        </div>
+        <div class="col-lg-2">
+          <%= builder.hidden_field :_destroy %>
+          <%= link_to_function "Remove", "remove_fields(this)" %>
         </div>
       </div>
       <br>

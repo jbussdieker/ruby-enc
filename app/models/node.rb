@@ -11,7 +11,7 @@ class Node < ActiveRecord::Base
 
   has_many :parameters, :as => :parameterable, :dependent => :destroy
 
-  accepts_nested_attributes_for :parameters
+  accepts_nested_attributes_for :parameters, :allow_destroy => true
   attr_accessible :parameters_attributes
   accepts_nested_attributes_for :node_class_memberships
   attr_accessible :node_class_memberships_attributes
