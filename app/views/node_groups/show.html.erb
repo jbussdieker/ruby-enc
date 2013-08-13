@@ -24,18 +24,5 @@
   </table>
 
   <h4>Nodes</h4>
-  <table class="table table-bordered table-condensed table-striped">
-    <tr>
-      <th>Name</th>
-      <th>Status</th>
-      <th>Reported at</th>
-    </tr>
-  <% @node_group.nodes.each do |node| %>
-    <tr>
-      <td><%= link_to node, node %></td>
-      <td><%= node_status_badge(node) %></td>
-      <td><%= node_report_time(node.reported_at) %></td>
-    </tr>
-  <% end %>
-  </table>
+  <%= render 'nodes/list', :nodes => @nodes %>
 </div>

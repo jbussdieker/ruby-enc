@@ -1,18 +1,5 @@
 <div class="panel">
   <div class="panel-heading">Nodes</div>
 
-  <table class="table table-bordered table-condensed table-striped">
-    <tr>
-      <th><%= sortable "name" %></th>
-      <th><%= sortable "status" %></th>
-      <th><%= sortable "reported_at" %></th>
-    </tr>
-  <% @nodes.each do |node| %>
-    <tr>
-      <td><%= link_to node, node %></td>
-      <td><%= node_status_badge(node) %></td>
-      <td><%= node_report_time(node.reported_at) %></td>
-    </tr>
-  <% end %>
-  </table>
+  <%= render 'nodes/list', :nodes => @nodes %>
 </div>

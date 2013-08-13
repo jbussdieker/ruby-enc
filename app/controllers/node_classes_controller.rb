@@ -12,6 +12,7 @@ class NodeClassesController < ApplicationController
 
   def show
     @node_class = NodeClass.find(params[:id])
+    @nodes = @node_class.nodes.order(sort_column + " " + sort_direction)
 
     respond_to do |format|
       format.html # show.html.erb
@@ -68,7 +69,7 @@ class NodeClassesController < ApplicationController
   private
 
   def sort_column
-    NodeClass.column_names.include?(params[:sort]) ? params[:sort] : "name"
+    params[:sort] || "name"
   end
 
   def sort_direction
