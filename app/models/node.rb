@@ -1,5 +1,5 @@
 class Node < ActiveRecord::Base
-  include PuppetDB::Facts
+  include PuppetDB::Node
 
   attr_accessible :name, :description, :status, :reported_at
   attr_accessible :parameters_attributes

@@ -5,6 +5,7 @@
     <%= link_to "Back", nodes_path, :class => 'btn btn-sm btn-default' %>
     <%= link_to "Edit", edit_node_path(@node), :class => 'btn btn-sm btn-primary' %>
     <%= link_to "Facts", facts_node_path(@node), :class => 'btn btn-sm btn-primary' %>
+    <%= link_to "Resources", resources_node_path(@node), :class => 'btn btn-sm btn-primary' %>
     <%= link_to "Delete", @node, :method => :delete, :confirm => "Are you sure?", :class => 'btn btn-sm btn-danger pull-right' %>
   </div>
 

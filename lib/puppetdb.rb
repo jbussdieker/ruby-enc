@@ -1,4 +1,4 @@
-require 'puppetdb/facts'
+require 'puppetdb/node'
 
 module PuppetDB
   @@options = {}
