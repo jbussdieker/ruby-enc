@@ -4,7 +4,7 @@
     <th><%= sortable "status" %></th>
     <th><%= sortable "reported_at" %></th>
   </tr>
-<% nodes.each do |node| %>
+<% @nodes.each do |node| %>
   <tr>
     <td><%= link_to node, node %></td>
     <td><%= node_status_badge(node) %></td>
