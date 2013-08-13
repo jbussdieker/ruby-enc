@@ -7,6 +7,13 @@ module NodesHelper
     end
   end
 
+  def node_puppet_status(node)
+    @client ||= Mcollective::Client.new
+    @results ||= @client.run("puppetd", "status")
+    result = @results.find {|r| r.sender == node.name}
+    result
+  end
+
   def node_status_badge(node)
     if node.status
       case node.status

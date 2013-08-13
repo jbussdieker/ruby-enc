@@ -5,12 +5,14 @@
     <tr>
       <th><%= sortable "name" %></th>
       <th><%= sortable "status" %></th>
+      <th>agent</th>
       <th><%= sortable "reported_at" %></th>
     </tr>
   <% @nodes.each do |node| %>
     <tr>
       <td><%= link_to node, node %></td>
       <td><%= node_status_badge(node) %></td>
+      <td><%= node_puppet_status(node) %></td>
       <td><%= node_report_time(node.reported_at) %></td>
     </tr>
   <% end %>
