@@ -8,6 +8,10 @@ Try it out here: http://enc-dashboard.herokuapp.com/
 
 ## Screenshots
 
+### Mobile View
+
+![ScreenShot](https://raw.github.com/jbussdieker/ruby-enc/master/doc/mobile.png)
+
 ### Node View
 
 ![ScreenShot](https://raw.github.com/jbussdieker/ruby-enc/master/doc/node_view.png)
