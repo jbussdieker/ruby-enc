@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  report_id: 1
+  failed: false
+  skipped: false
+  changed: false
+  title: MyText
+
+two:
+  report_id: 1
+  failed: false
+  skipped: false
+  changed: false
+  title: MyText

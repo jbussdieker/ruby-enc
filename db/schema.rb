@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130813012229) do
+ActiveRecord::Schema.define(:version => 20130813014759) do
 
   create_table "metrics", :force => true do |t|
     t.integer  "report_id",                                 :null => false
@@ -98,5 +98,17 @@ ActiveRecord::Schema.define(:version => 20130813012229) do
   end
 
   add_index "reports", ["node_id"], :name => "index_reports_on_node_id"
+
+  create_table "resource_statuses", :force => true do |t|
+    t.integer  "report_id"
+    t.boolean  "failed"
+    t.boolean  "skipped"
+    t.boolean  "is_changed"
+    t.text     "title"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "resource_statuses", ["report_id"], :name => "index_resource_statuses_on_report_id"
 
 end

@@ -55,15 +55,13 @@
             <th>Skipped</th>
             <th>Failed</th>
           </tr>
-          <% @report.parsed.resource_statuses.each do |name,status| %>
-            <% if status.changed or status.failed %>
+          <% @report.resource_statuses.each do |status| %>
             <tr>
-              <td><%= name %></td>
-              <td><%= status.changed ? "Changed" : "" %></td>
+              <td><%= status.title %></td>
+              <td><%= status.is_changed ? "Changed" : "" %></td>
               <td><%= status.skipped ? "Skipped" : "" %></td>
               <td><%= status.failed ? "Failed" : "" %></td>
             </tr>
-            <% end %>
           <% end %>
         </table>
       </div>

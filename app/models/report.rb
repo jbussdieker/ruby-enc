@@ -3,6 +3,7 @@ class Report < ActiveRecord::Base
   belongs_to :node
   has_many :report_logs, :dependent => :destroy
   has_many :metrics, :dependent => :destroy
+  has_many :resource_statuses, :dependent => :destroy
 
   default_scope order("time DESC")
 
@@ -56,9 +57,23 @@ class Report < ActiveRecord::Base
     end
   end
 
+  def parse_resource_statuses
+    parsed.resource_statuses.each do |name,status|
+      if status.changed or status.failed
+        resource_statuses.create(
+          :title => name,
+          :is_changed => status.changed,
+          :skipped => status.skipped,
+          :failed => status.failed
+        )
+      end
+    end
+  end
+
   def parse
     parse_logs
     parse_metrics
+    parse_resource_statuses
 
     node_name = parsed.name
     node = Node.find_or_create_by_name(node_name)
@@ -68,5 +83,7 @@ class Report < ActiveRecord::Base
     self.time = parsed.time
     self.save
     node.update_attributes(:status => parsed.status, :reported_at => parsed.time)
+
+    delete_file
   end
 end
