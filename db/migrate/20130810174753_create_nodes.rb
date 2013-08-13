@@ -6,7 +6,7 @@ class CreateNodes < ActiveRecord::Migration
       t.datetime :reported_at
       t.integer :last_apply_report_id
       t.string :status
-      t.boolean :hidden
+      t.boolean :hidden, :default => false
       t.integer :last_inspect_report_id
 
       t.timestamps

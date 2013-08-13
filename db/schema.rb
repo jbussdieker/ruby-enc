@@ -55,15 +55,15 @@ ActiveRecord::Schema.define(:version => 20130813014759) do
   add_index "node_groups", ["name"], :name => "index_node_groups_on_name", :unique => true
 
   create_table "nodes", :force => true do |t|
-    t.string   "name",                   :null => false
+    t.string   "name",                                      :null => false
     t.text     "description"
     t.datetime "reported_at"
     t.integer  "last_apply_report_id"
     t.string   "status"
-    t.boolean  "hidden"
+    t.boolean  "hidden",                 :default => false
     t.integer  "last_inspect_report_id"
-    t.datetime "created_at",             :null => false
-    t.datetime "updated_at",             :null => false
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
   end
 
   add_index "nodes", ["name"], :name => "index_nodes_on_name", :unique => true
