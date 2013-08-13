@@ -16,6 +16,50 @@
     </ul>
     <div class="tab-content">
       <div class="tab-pane active" id="metrics">
+          <svg id="time_chart" style="display:inline;height:320px;width:320px"></svg>
+          <svg id="resource_chart" style="display:inline;height:320px;width:320px"></svg>
+        <script src="/lib/d3.v3.js"></script>
+        <script src="/nv.d3.js"></script>
+        <script src="/src/models/legend.js"></script>
+        <script src="/src/models/pie.js"></script>
+        <script src="/src/models/pieChart.js"></script>
+        <script src="/src/utils.js"></script>
+        <script>
+        nv.addGraph(function() {
+          var chart = nv.models.pieChart()
+              .x(function(d) { return d.label })
+              .y(function(d) { return d.value })
+              .showLabels(false);
+
+            d3.select("#time_chart")
+                .datum(timeData())
+              .transition().duration(1200)
+                .call(chart);
+
+            d3.select("#resource_chart")
+                .datum(resourceData())
+              .transition().duration(1200)
+                .call(chart);
+          return chart;
+        });
+
+        function timeData() {
+          return [
+          {
+            key: "Time",
+            values: <%= @report.metrics.where(:category => "Time").reject {|m| m.name == "Total"}.collect {|metric| {:label => metric.name, :value => metric.value}}.to_json.html_safe %>
+          }
+          ];
+        }
+        function resourceData() {
+          return [
+          {
+            key: "Resources",
+            values: <%= @report.metrics.where(:category => "Resources").reject {|m| m.name == "Total"}.collect {|metric| {:label => metric.name, :value => metric.value}}.to_json.html_safe %>
+          }
+          ];
+        }
+        </script>
         <% @report.metrics.group(:category).each do |category| %>
           <table class="table table-bordered table-condensed table-striped">
             <tr>
