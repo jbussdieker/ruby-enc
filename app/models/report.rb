@@ -75,7 +75,7 @@ class Report < ActiveRecord::Base
       client = Net::HTTP.new(relay_settings[:host], relay_settings[:port])
       req = Net::HTTP::Post.new("/reports/upload")
       req["Content-Type"] = "application/x-yaml"
-      req.body = request.raw_post
+      req.body = raw_report
       resp = client.request(req)
     end
   end
