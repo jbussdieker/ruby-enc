@@ -25,7 +25,7 @@ function add_fields(link, association, content) {
 }
 
 $(document).ready(function() {
-  $("tr").click(function() {
+  $("tr[data-link]").click(function() {
     window.location = $(this).data("link");
   });
 });
