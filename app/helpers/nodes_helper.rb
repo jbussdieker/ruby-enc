@@ -11,9 +11,11 @@ module NodesHelper
     if node.status
       case node.status
         when "changed"
-          content_tag(:span, node.status, :class => 'label label-success')
+          content_tag(:span, node.status, :class => 'label label-info')
+        when "pending"
+          content_tag(:span, node.status, :class => 'label label-warning')
         when "unchanged"
-          content_tag(:span, node.status, :class => 'label label-default')
+          content_tag(:span, node.status, :class => 'label label-success')
         when "failed"
           content_tag(:span, node.status, :class => 'label label-danger')
       end
