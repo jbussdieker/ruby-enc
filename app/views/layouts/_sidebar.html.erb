@@ -1,4 +1,4 @@
-<div class="panel visible-lg">
+<div class="panel <%= "visible-lg" unless params[:controller] == 'nodes' and params[:action] == 'index' %>">
   <div class="panel-heading"><%= link_to "Nodes", nodes_path %></div>
   <table class="table table-condensed">
     <tr>
