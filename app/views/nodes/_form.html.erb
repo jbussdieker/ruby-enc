@@ -47,6 +47,34 @@
     <% end %>
   </div>
 
+  <div class="row">
+    <div class="col-lg-6">
+      <div class="form-group">
+        <%= f.label :groups %>
+        <%= f.fields_for :node_group_memberships do |group_form| %>
+          <div class="row">
+            <div class="col-lg-8">
+              <%= group_form.select :node_group_id, [nil] + NodeGroup.all.collect{|c| [c.name,c.id]}, {}, :class => 'form-control' %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="col-lg-6">
+      <div class="form-group">
+        <%= f.label :classes %>
+        <%= f.fields_for :node_class_memberships do |class_form| %>
+          <div class="row">
+            <div class="col-lg-8">
+              <%= class_form.select :node_class_id, [nil] + NodeClass.all.collect{|c| [c.name,c.id]}, {}, :class => 'form-control' %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
   <div class="panel-footer">
     <%= f.submit nil, :class => 'btn btn-sm btn-primary' %>
     <%= link_to "Cancel", @node, :class => 'btn btn-sm btn-default' %>

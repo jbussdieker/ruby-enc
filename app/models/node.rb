@@ -13,6 +13,10 @@ class Node < ActiveRecord::Base
 
   accepts_nested_attributes_for :parameters
   attr_accessible :parameters_attributes
+  accepts_nested_attributes_for :node_class_memberships
+  attr_accessible :node_class_memberships_attributes
+  accepts_nested_attributes_for :node_group_memberships
+  attr_accessible :node_group_memberships_attributes
 
   before_save :mark_children_for_removal
 
@@ -30,6 +34,12 @@ class Node < ActiveRecord::Base
   def mark_children_for_removal
     parameters.each do |parameter|
       parameter.mark_for_destruction if parameter.key.blank?
+    end
+    node_class_memberships.each do |nc|
+      nc.mark_for_destruction if nc.node_class_id == nil
+    end
+    node_group_memberships.each do |ng|
+      ng.mark_for_destruction if ng.node_group_id == nil
     end
   end
 
