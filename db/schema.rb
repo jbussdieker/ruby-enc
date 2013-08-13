@@ -70,7 +70,7 @@ ActiveRecord::Schema.define(:version => 20130813014759) do
 
   create_table "parameters", :force => true do |t|
     t.string   "key"
-    t.string   "value"
+    t.text     "value"
     t.integer  "parameterable_id"
     t.string   "parameterable_type"
     t.datetime "created_at",         :null => false
