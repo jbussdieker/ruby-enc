@@ -24,15 +24,13 @@ class ReportsController < ApplicationController
     report.write(request.raw_post)
     report.parse
 
-    puts "FORWARD ================================"
-    # Forward report hack
-    client = Net::HTTP.new("localhost", 3000)
-    req = Net::HTTP::Post.new("/reports/upload")
-    req["Content-Type"] = "application/x-yaml"
-    req.body = request.raw_post
-    resp = client.request(req)
-    p resp
-    puts "MARCH ================================"
+    if relay_settings = ENC_CONFIG[:report_relay]
+      client = Net::HTTP.new(relay_settings[:host], relay_settings[:port])
+      req = Net::HTTP::Post.new("/reports/upload")
+      req["Content-Type"] = "application/x-yaml"
+      req.body = request.raw_post
+      resp = client.request(req)
+    end
 
     render :text => "OK"
   end

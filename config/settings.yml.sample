@@ -2,7 +2,15 @@ development:
   puppetdb:
     host: hostname
     port: port
+# Optionally relay reports
+#  report_relay:
+#    host: hostname
+#    port: port
 production:
   puppetdb:
     host: hostname
     port: port
+# Optionally relay reports
+#  report_relay:
+#    host: hostname
+#    port: port
