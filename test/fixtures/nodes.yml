@@ -1,11 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-one:
+node_one:
+  id: 1
   name: example1.com
   description: First example
   status: unchanged
 
-two:
+node_two:
+  id: 2
   name: example2.com
   description: Second example
   status: changed

@@ -1,9 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-one:
+report_one:
   node_id: 1
-  status: 1
 
-two:
-  node_id: 1
-  status: 1
+report_two:
+  node_id: 2

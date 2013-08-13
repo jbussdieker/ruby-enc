@@ -2,7 +2,7 @@ require 'test_helper'
 
 class NodesControllerTest < ActionController::TestCase
   setup do
-    @node = nodes(:one)
+    @node = nodes(:node_one)
   end
 
   test "should get index" do
