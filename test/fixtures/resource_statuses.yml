@@ -4,12 +4,12 @@ one:
   report_id: 1
   failed: false
   skipped: false
-  changed: false
+  is_changed: false
   title: MyText
 
 two:
   report_id: 1
   failed: false
   skipped: false
-  changed: false
+  is_changed: false
   title: MyText
