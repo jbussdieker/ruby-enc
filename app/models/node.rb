@@ -1,5 +1,8 @@
 class Node < ActiveRecord::Base
   attr_accessible :name, :description, :status, :reported_at
+  attr_accessible :parameters_attributes
+  attr_accessible :node_group_memberships_attributes
+  attr_accessible :node_class_memberships_attributes
 
   has_many :reports, :dependent => :destroy
 
@@ -12,11 +15,8 @@ class Node < ActiveRecord::Base
   has_many :parameters, :as => :parameterable, :dependent => :destroy
 
   accepts_nested_attributes_for :parameters, :allow_destroy => true
-  attr_accessible :parameters_attributes
-  accepts_nested_attributes_for :node_class_memberships
-  attr_accessible :node_class_memberships_attributes
-  accepts_nested_attributes_for :node_group_memberships
-  attr_accessible :node_group_memberships_attributes
+  accepts_nested_attributes_for :node_class_memberships, :allow_destroy => true
+  accepts_nested_attributes_for :node_group_memberships, :allow_destroy => true
 
   before_save :mark_children_for_removal
 
