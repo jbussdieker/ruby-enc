@@ -2,12 +2,10 @@ require 'json'
 
 module Mcollective
   class Results
+    include Enumerable
+
     def initialize(data)
       @data = JSON.parse(data)
-    end
-
-    def sender
-      @data["sender"]
     end
 
     def each(&block)
