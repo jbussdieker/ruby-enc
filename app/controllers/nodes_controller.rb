@@ -21,14 +21,12 @@ class NodesController < ApplicationController
 
   def new
     @node = Node.new
-    @node.parameters.build
     @node.node_class_memberships.build
     @node.node_group_memberships.build
   end
 
   def edit
     @node = Node.find_by_name(params[:id])
-    @node.parameters.new
     @node.node_class_memberships.new
     @node.node_group_memberships.new
   end

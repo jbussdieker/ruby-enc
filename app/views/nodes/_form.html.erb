@@ -32,23 +32,13 @@
     <%= f.text_area :description, :rows => 4, :class => 'form-control' %>
   </div>
 
+  <%= f.label :parameters %>
+  <%= f.fields_for :parameters do |builder| %>
+    <%= render 'parameter_fields', :f => builder %>
+  <% end %>
+
   <div class="form-group">
-    <%= f.label :parameters %>
-    <%= f.fields_for :parameters do |builder| %>
-      <div class="row">
-        <div class="col-lg-2">
-          <%= builder.text_field :key, :placeholder => "key", :class => 'form-control' %>
-        </div>
-        <div class="col-lg-8">
-          <%= builder.text_field :value, :placeholder => "value", :class => 'form-control' %>
-        </div>
-        <div class="col-lg-2">
-          <%= builder.hidden_field :_destroy %>
-          <%= link_to_function "Remove", "remove_fields(this)" %>
-        </div>
-      </div>
-      <br>
-    <% end %>
+    <%= link_to_add_fields "Add Parameter", f, :parameters %>
   </div>
 
   <div class="row">

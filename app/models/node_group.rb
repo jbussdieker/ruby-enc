@@ -7,7 +7,7 @@ class NodeGroup < ActiveRecord::Base
   has_many :nodes, :through => :node_group_memberships
   has_many :parameters, :as => :parameterable, :dependent => :destroy
 
-  accepts_nested_attributes_for :parameters
+  accepts_nested_attributes_for :parameters, :allow_destroy => true
   attr_accessible :parameters_attributes
 
   before_save :mark_children_for_removal

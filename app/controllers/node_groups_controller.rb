@@ -22,12 +22,10 @@ class NodeGroupsController < ApplicationController
 
   def new
     @node_group = NodeGroup.new
-    @node_group.parameters.build
   end
 
   def edit
     @node_group = NodeGroup.find(params[:id])
-    @node_group.parameters.build
   end
 
   def create
