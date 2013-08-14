@@ -60,7 +60,7 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.23)
     multi_json (1.7.8)
-    mysql2 (0.3.13)
+    pg (0.15.0)
     polyglot (0.3.3)
     puppet (3.2.2)
       facter (~> 1.6)
@@ -120,7 +120,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   groupdate
   jquery-rails
-  mysql2
+  pg
   puppet
   rails (= 3.2.12)
   sass-rails (~> 3.2.3)
