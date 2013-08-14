@@ -16,7 +16,7 @@
     </ul>
     <div class="tab-content">
       <div class="tab-pane active" id="metrics">
-        <% @report.metrics.group(:category, :id).each do |category| %>
+        <% @report.metrics.select("distinct(category)").each do |category| %>
           <table class="table table-bordered table-condensed table-striped">
             <tr>
               <th><%= category.category %></th>
