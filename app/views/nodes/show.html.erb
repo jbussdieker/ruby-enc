@@ -67,6 +67,16 @@
     </div>
   </div>
 
+  <h4>Status over last 24 hours</h4>
+  <div class="row">
+    <div class="col-6">
+      <%= pie_chart @node.reports.where("time > '#{Time.now - 60*60*24}'").group(:status).count %>
+    </div>
+    <div class="col-6">
+      <%= pie_chart @node.reports.first.metrics.where(:category => "Time").reject {|n| n.name == "Total"}.collect {|n| [n.name, n.value]} %>
+    </div>
+  </div>
+
   <h4>Recent reports (<%= @node.reports.count %>)</h4>
 
   <table class="table table-bordered table-condensed table-striped">

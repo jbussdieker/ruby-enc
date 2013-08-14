@@ -5,8 +5,6 @@ class Report < ActiveRecord::Base
   has_many :metrics, :dependent => :destroy
   has_many :resource_statuses, :dependent => :destroy
 
-  default_scope order("time DESC")
-
   after_destroy :delete_file
 
   def delete_file

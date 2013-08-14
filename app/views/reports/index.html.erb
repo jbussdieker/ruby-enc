@@ -1,5 +1,8 @@
 <div class="panel">
   <div class="panel-heading">Reports</div>
+    <%= column_chart @reports.group_by_day(:time).count %>
+    <br>
+
     <table class="table table-bordered table-condensed table-striped">
     <% @reports.each do |report| %>
       <tr>
