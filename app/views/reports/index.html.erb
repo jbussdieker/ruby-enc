@@ -1,6 +1,6 @@
 <div class="panel">
   <div class="panel-heading">Reports</div>
-    <%= column_chart Report.group_by_day(:time).count %>
+    <%= column_chart report_history_reports_path %>
     <br>
 
     <table class="table table-bordered table-condensed table-striped">

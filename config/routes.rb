@@ -3,6 +3,8 @@ Enc::Application.routes.draw do
     member do
       get 'facts'
       get 'resources'
+      get 'status_history'
+      get 'resource_times'
     end
     collection do
       get 'unresponsive'
@@ -21,6 +23,7 @@ Enc::Application.routes.draw do
     end
     collection do
       post 'upload'
+      get 'report_history'
     end
   end
   root :to => 'nodes#index'

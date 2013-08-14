@@ -114,6 +114,16 @@ class NodesController < ApplicationController
     end
   end
 
+  def status_history
+    @node = Node.find_by_name(params[:id])
+    render :json => @node.reports.where("time > '#{Time.now - 60*60*24}'").group(:status).count
+  end
+
+  def resource_times
+    @node = Node.find_by_name(params[:id])
+    render :json => @node.reports.first.metrics.where(:category => "Time").reject {|n| n.name == "Total"}.collect {|n| [n.name, n.value]}
+  end
+
   private
 
   def sort_column

@@ -7,6 +7,10 @@ class ReportsController < ApplicationController
     @report = Report.find(params[:id])
   end
 
+  def report_history
+    render :json => Report.group_by_day(:time).count
+  end
+
   def parse
     @report = Report.find(params[:id])
     @report.parse

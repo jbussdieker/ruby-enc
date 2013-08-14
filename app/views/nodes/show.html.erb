@@ -70,11 +70,11 @@
   <div class="row">
     <div class="col-6">
       <h4>Status over last 24 hours</h4>
-      <%= pie_chart @node.reports.where("time > '#{Time.now - 60*60*24}'").group(:status).count %>
+      <%= pie_chart status_history_node_path(@node) %>
     </div>
     <div class="col-6">
       <h4>Run time by resource type</h4>
-      <%= pie_chart @node.reports.first.metrics.where(:category => "Time").reject {|n| n.name == "Total"}.collect {|n| [n.name, n.value]} %>
+      <%= pie_chart resource_times_node_path(@node) %>
     </div>
   </div>
 
