@@ -102,7 +102,11 @@ class Report < ActiveRecord::Base
     self.environment = parsed.environment
     self.time = parsed.time
     self.save
-    node.update_attributes(:status => parse_status, :reported_at => parsed.time)
+    node.update_attributes(
+      :status => parse_status,
+      :reported_at => parsed.time,
+      :last_apply_report_id => self.id
+    )
 
     delete_file
   end
