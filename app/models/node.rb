@@ -6,7 +6,7 @@ class Node < ActiveRecord::Base
   attr_accessible :node_group_memberships_attributes
   attr_accessible :node_class_memberships_attributes
 
-  has_many :reports, :dependent => :destroy, :order => "time DESC"
+  has_many :reports, :dependent => :destroy
 
   has_many :node_group_memberships, :dependent => :destroy
   has_many :node_groups, :through => :node_group_memberships
