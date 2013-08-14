@@ -80,6 +80,16 @@ class Report < ActiveRecord::Base
     end
   end
 
+  def parse_status
+    s = parsed.status
+    parsed.resource_statuses.each do |name,status|
+      if !status.changed and status.out_of_sync
+        s = "pending"
+      end
+    end
+    s
+  end
+
   def parse
     relay
 
@@ -90,11 +100,11 @@ class Report < ActiveRecord::Base
     node_name = parsed.name
     node = Node.find_or_create_by_name(node_name)
     self.node_id = node.id
-    self.status = parsed.status
+    self.status = parse_status
     self.environment = parsed.environment
     self.time = parsed.time
     self.save
-    node.update_attributes(:status => parsed.status, :reported_at => parsed.time)
+    node.update_attributes(:status => parse_status, :reported_at => parsed.time)
 
     delete_file
   end
