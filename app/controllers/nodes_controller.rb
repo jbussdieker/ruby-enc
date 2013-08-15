@@ -16,7 +16,7 @@ class NodesController < ApplicationController
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @node }
-      format.yaml { render text: "unsupported" }
+      format.yaml
     end
   end
 
