@@ -80,9 +80,11 @@ class Report < ActiveRecord::Base
 
   def parse_status
     s = parsed.status
-    parsed.resource_statuses.each do |name,status|
-      if !status.changed and status.out_of_sync
-        s = "pending"
+    if s != "failed"
+      parsed.resource_statuses.each do |name,status|
+        if !status.changed and status.out_of_sync
+          s = "pending"
+        end
       end
     end
     s
