@@ -16,7 +16,7 @@ class NodesController < ApplicationController
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @node }
-      format.yaml
+      format.yaml { render text: @node.to_yaml, content_type: 'text/yaml' }
     end
   end
 

@@ -35,6 +35,25 @@ class Node < ActiveRecord::Base
     name
   end
 
+  def to_yaml
+    all_classes = node_classes.collect {|node_class| node_class.name}
+    all_parameters = {}
+    node_groups.each do |node_group|
+      node_group.parameters.each do |parameter|
+        all_parameters[parameter.key] = parameter.value
+      end
+    end
+    parameters.each do |parameter|
+      all_parameters[parameter.key] = parameter.value
+    end
+
+    {
+      "classes" => all_classes,
+      "name" => name,
+      "parameters" => all_parameters
+    }.to_yaml
+  end
+
   def to_param
     name
   end
