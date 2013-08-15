@@ -11,7 +11,7 @@ class NodeGroupsController < ApplicationController
   end
 
   def show
-    @node_group = NodeGroup.find(params[:id])
+    @node_group = NodeGroup.find_by_name(params[:id])
     @nodes = @node_group.nodes.order(sort_column + " " + sort_direction)
 
     respond_to do |format|
@@ -25,7 +25,7 @@ class NodeGroupsController < ApplicationController
   end
 
   def edit
-    @node_group = NodeGroup.find(params[:id])
+    @node_group = NodeGroup.find_by_name(params[:id])
   end
 
   def create
@@ -43,7 +43,7 @@ class NodeGroupsController < ApplicationController
   end
 
   def update
-    @node_group = NodeGroup.find(params[:id])
+    @node_group = NodeGroup.find_by_name(params[:id])
 
     respond_to do |format|
       if @node_group.update_attributes(params[:node_group])
@@ -57,7 +57,7 @@ class NodeGroupsController < ApplicationController
   end
 
   def destroy
-    @node_group = NodeGroup.find(params[:id])
+    @node_group = NodeGroup.find_by_name(params[:id])
     @node_group.destroy
 
     respond_to do |format|

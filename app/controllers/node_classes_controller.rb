@@ -11,7 +11,7 @@ class NodeClassesController < ApplicationController
   end
 
   def show
-    @node_class = NodeClass.find(params[:id])
+    @node_class = NodeClass.find_by_name(params[:id])
     @nodes = @node_class.nodes.order(sort_column + " " + sort_direction)
 
     respond_to do |format|
@@ -25,7 +25,7 @@ class NodeClassesController < ApplicationController
   end
 
   def edit
-    @node_class = NodeClass.find(params[:id])
+    @node_class = NodeClass.find_by_name(params[:id])
   end
 
   def create
@@ -43,7 +43,7 @@ class NodeClassesController < ApplicationController
   end
 
   def update
-    @node_class = NodeClass.find(params[:id])
+    @node_class = NodeClass.find_by_name(params[:id])
 
     respond_to do |format|
       if @node_class.update_attributes(params[:node_class])
@@ -57,7 +57,7 @@ class NodeClassesController < ApplicationController
   end
 
   def destroy
-    @node_class = NodeClass.find(params[:id])
+    @node_class = NodeClass.find_by_name(params[:id])
     @node_class.destroy
 
     respond_to do |format|
