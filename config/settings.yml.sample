@@ -1,4 +1,5 @@
 development:
+#  spool_path: /tmp/enc_spool
   puppetdb:
     host: hostname
     port: port
@@ -7,6 +8,7 @@ development:
 #    host: hostname
 #    port: port
 production:
+#  spool_path: /tmp/enc_spool
   puppetdb:
     host: hostname
     port: port

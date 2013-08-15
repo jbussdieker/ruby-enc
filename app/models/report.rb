@@ -14,7 +14,7 @@ class Report < ActiveRecord::Base
   end
 
   def spool_path
-    File.expand_path("../../../spool", __FILE__)
+    ENC_CONFIG[:spool_path] || File.expand_path("../../../spool", __FILE__)
   end
 
   def filename
