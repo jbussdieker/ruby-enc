@@ -21,16 +21,8 @@ body {
   padding: 5px 15px;
 }
 
-.panel-group {
-  margin: -15px;
-  margin-bottom: 8px;
+.sidebar-group {
   max-height: 20em;
   overflow: auto;
   font-size: 12px;
-}
-
-.panel-group ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
 }

@@ -1,66 +1,68 @@
-<div class="panel <%= "visible-lg" unless params[:controller] == 'nodes' and params[:action] == 'index' %>">
+<div class="panel panel-default <%= "visible-lg" unless params[:controller] == 'nodes' and params[:action] == 'index' %>">
   <div class="panel-heading"><%= link_to "Nodes", nodes_path %></div>
-  <div class="progress">
-    <div class="progress-bar progress-bar-success" style="width: <%= (Node.unchanged.count.to_f / Node.count.to_f) * 100 %>%"></div>
-    <div class="progress-bar progress-bar-info" style="width: <%= (Node.changed.count.to_f / Node.count.to_f) * 100 %>%"></div>
-    <div class="progress-bar progress-bar-warning" style="width: <%= (Node.pending.count.to_f / Node.count.to_f) * 100 %>%"></div>
-    <div class="progress-bar progress-bar-danger" style="width: <%= (Node.failed.count.to_f / Node.count.to_f) * 100 %>%"></div>
+  <div class="panel-body">
+    <div class="progress">
+      <div class="progress-bar progress-bar-success" style="width: <%= (Node.unchanged.count.to_f / Node.count.to_f) * 100 %>%"></div>
+      <div class="progress-bar progress-bar-info" style="width: <%= (Node.changed.count.to_f / Node.count.to_f) * 100 %>%"></div>
+      <div class="progress-bar progress-bar-warning" style="width: <%= (Node.pending.count.to_f / Node.count.to_f) * 100 %>%"></div>
+      <div class="progress-bar progress-bar-danger" style="width: <%= (Node.failed.count.to_f / Node.count.to_f) * 100 %>%"></div>
+    </div>
+    <table class="table table-condensed table-hover">
+      <tr data-link="<%= unresponsive_nodes_path %>">
+        <td style="text-align: right"><span class="label label-default"><%= Node.unresponsive.count %></span></td>
+        <td><span class="text-muted">Unresponsive</span></td>
+      </tr>
+      <tr data-link="<%= failed_nodes_path %>">
+        <td style="text-align: right"><span class="label label-danger"><%= Node.failed.count %></span></td>
+        <td><span class="text-danger">Failed</span></td>
+      </tr>
+      <tr data-link="<%= pending_nodes_path %>">
+        <td style="text-align: right"><span class="label label-warning"><%= Node.pending.count %></span></td>
+        <td><span class="text-warning">Pending</span></td>
+      </tr>
+      <tr data-link="<%= changed_nodes_path %>">
+        <td style="text-align: right"><span class="label label-info"><%= Node.changed.count %></span></td>
+        <td><span class="text-info">Changed</span></td>
+      </tr>
+      <tr data-link="<%= unchanged_nodes_path %>">
+        <td style="text-align: right"><span class="label label-success"><%= Node.unchanged.count %></span></td>
+        <td><span class="text-success">Unchanged</span></td>
+      </tr>
+      <tr data-link="<%= unreported_nodes_path %>">
+        <td style="text-align: right"><span class="label label-default"><%= Node.unreported.count %></span></td>
+        <td><span class="text-muted">Unreported</span></td>
+      </tr>
+      <tr data-link="<%= nodes_path %>">
+        <td style="text-align: right"><span class="label label-default"><%= Node.count %></span></td>
+        <td>All</td>
+      </tr>
+    </table>
   </div>
-  <table class="table table-condensed table-hover">
-    <tr data-link="<%= unresponsive_nodes_path %>">
-      <td style="text-align: right"><span class="label label-default"><%= Node.unresponsive.count %></span></td>
-      <td><span class="text-muted">Unresponsive</span></td>
-    </tr>
-    <tr data-link="<%= failed_nodes_path %>">
-      <td style="text-align: right"><span class="label label-danger"><%= Node.failed.count %></span></td>
-      <td><span class="text-danger">Failed</span></td>
-    </tr>
-    <tr data-link="<%= pending_nodes_path %>">
-      <td style="text-align: right"><span class="label label-warning"><%= Node.pending.count %></span></td>
-      <td><span class="text-warning">Pending</span></td>
-    </tr>
-    <tr data-link="<%= changed_nodes_path %>">
-      <td style="text-align: right"><span class="label label-info"><%= Node.changed.count %></span></td>
-      <td><span class="text-info">Changed</span></td>
-    </tr>
-    <tr data-link="<%= unchanged_nodes_path %>">
-      <td style="text-align: right"><span class="label label-success"><%= Node.unchanged.count %></span></td>
-      <td><span class="text-success">Unchanged</span></td>
-    </tr>
-    <tr data-link="<%= unreported_nodes_path %>">
-      <td style="text-align: right"><span class="label label-default"><%= Node.unreported.count %></span></td>
-      <td><span class="text-muted">Unreported</span></td>
-    </tr>
-    <tr data-link="<%= nodes_path %>">
-      <td style="text-align: right"><span class="label label-default"><%= Node.count %></span></td>
-      <td>All</td>
-    </tr>
-  </table>
   <div class="panel-footer">
     <%= link_to "Add Node", new_node_path, :class => 'btn btn-primary btn-xs' %>
   </div>
 </div>
 
-<div class="panel visible-lg">
+<div class="panel panel-default visible-lg">
   <div class="panel-heading"><%= link_to "Group", node_groups_path %></div>
-  <div class="panel-group">
-  <table class="table table-condensed">
-    <% NodeGroup.all.each do |node_group| %>
-      <tr>
-        <td><%= link_to node_group, node_group %></td>
-        <td><span class="badge"><%= node_group.nodes.count %></span></td>
-      </tr>
-    <% end %>
-  </table>
+  <div class="sidebar-group">
+    <table class="table table-condensed">
+      <% NodeGroup.all.each do |node_group| %>
+        <tr>
+          <td><%= link_to node_group, node_group %></td>
+          <td><span class="badge"><%= node_group.nodes.count %></span></td>
+        </tr>
+      <% end %>
+    </table>
   </div>
   <div class="panel-footer">
     <%= link_to "Add Group", new_node_group_path, :class => 'btn btn-primary btn-xs' %>
   </div>
 </div>
 
-<div class="panel visible-lg">
+<div class="panel panel-default visible-lg">
   <div class="panel-heading"><%= link_to "Class", node_classes_path %></div>
-  <div class="panel-group">
+  <div class="sidebar-group">
   <table class="table table-condensed">
     <% NodeClass.all.each do |node_class| %>
       <tr>

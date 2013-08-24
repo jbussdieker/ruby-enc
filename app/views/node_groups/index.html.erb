@@ -1,16 +1,17 @@
-<div class="panel">
+<div class="panel panel-default">
   <div class="panel-heading">Groups</div>
-
-  <table class="table table-bordered table-condensed table-striped">
-    <tr>
-      <th><%= sortable "name" %></th>
-      <th>Nodes</th>
-    </tr>
-  <% @node_groups.each do |node_group| %>
-    <tr>
-      <td><%= link_to node_group, node_group %></td>
-      <th><span class="badge"><%= node_group.nodes.count %></span></th>
-    </tr>
-  <% end %>
-  </table>
+  <div class="panel-body">
+    <table class="table table-bordered table-condensed table-striped">
+      <tr>
+        <th><%= sortable "name" %></th>
+        <th>Nodes</th>
+      </tr>
+    <% @node_groups.each do |node_group| %>
+      <tr>
+        <td><%= link_to node_group, node_group %></td>
+        <th><span class="badge"><%= node_group.nodes.count %></span></th>
+      </tr>
+    <% end %>
+    </table>
+  </div>
 </div>

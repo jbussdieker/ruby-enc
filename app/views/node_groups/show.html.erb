@@ -1,28 +1,30 @@
-<div class="panel">
+<div class="panel panel-default">
   <div class="panel-heading">Group: <%= @node_group %></div>
 
-  <div class="btn-toolbar">
-    <%= link_to "Back", node_groups_path, :class => 'btn btn-sm btn-default' %>
-    <%= link_to "Edit", edit_node_group_path(@node_group), :class => 'btn btn-sm btn-primary' %>
-    <%= link_to "Delete", @node_group, :method => :delete, :confirm => "Are you sure?", :class => 'btn btn-sm btn-danger pull-right' %>
+  <div class="panel-body">
+    <div class="btn-toolbar">
+      <%= link_to "Back", node_groups_path, :class => 'btn btn-sm btn-default' %>
+      <%= link_to "Edit", edit_node_group_path(@node_group), :class => 'btn btn-sm btn-primary' %>
+      <%= link_to "Delete", @node_group, :method => :delete, :confirm => "Are you sure?", :class => 'btn btn-sm btn-danger pull-right' %>
+    </div>
+
+    <h4>Parameters</h4>
+    <table class="table table-bordered table-condensed table-striped">
+      <tr>
+        <th>Key</th>
+        <th>Value</th>
+        <th>Source</th>
+      </tr>
+    <% @node_group.parameters.each do |parameter| %>
+      <tr>
+        <td><%= parameter.key %></td>
+        <td><%= parameter.value %></td>
+        <td><%= @node_group %></td>
+      </tr>
+    <% end %>
+    </table>
+
+    <h4>Nodes</h4>
+    <%= render 'nodes/list' %>
   </div>
-
-  <h4>Parameters</h4>
-  <table class="table table-bordered table-condensed table-striped">
-    <tr>
-      <th>Key</th>
-      <th>Value</th>
-      <th>Source</th>
-    </tr>
-  <% @node_group.parameters.each do |parameter| %>
-    <tr>
-      <td><%= parameter.key %></td>
-      <td><%= parameter.value %></td>
-      <td><%= @node_group %></td>
-    </tr>
-  <% end %>
-  </table>
-
-  <h4>Nodes</h4>
-  <%= render 'nodes/list' %>
 </div>

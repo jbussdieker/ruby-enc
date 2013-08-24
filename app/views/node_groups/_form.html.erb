@@ -1,33 +1,35 @@
 <%= form_for(@node_group) do |f| %>
-  <% if @node_group.errors.any? %>
-    <div id="error_explanation">
-      <h4><%= pluralize(@node_group.errors.count, "error") %> prohibited this group from being saved:</h4>
+  <div class="panel-body">
+    <% if @node_group.errors.any? %>
+      <div id="error_explanation">
+        <h4><%= pluralize(@node_group.errors.count, "error") %> prohibited this group from being saved:</h4>
 
-      <ul>
-      <% @node_group.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="form-group">
-    <%= f.label :name %>
-    <div class="row">
-      <div class="col-lg-6">
-        <%= f.text_field :name, :class => 'form-control' %>
+        <ul>
+        <% @node_group.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
       </div>
-    </div>
-  </div>
-
-  <div class="well well-sm">
-    <%= f.label :parameters %>
-    <%= f.fields_for :parameters do |builder| %>
-      <%= render 'parameter_fields', :f => builder %>
     <% end %>
 
-    <div>
-      <%= link_to_add_fields "Add Parameter", f, :parameters %>
+    <div class="form-group">
+      <%= f.label :name %>
+      <div class="row">
+        <div class="col-lg-6">
+          <%= f.text_field :name, :class => 'form-control' %>
+        </div>
+      </div>
+    </div>
+
+    <div class="well well-sm">
+      <%= f.label :parameters %>
+      <%= f.fields_for :parameters do |builder| %>
+        <%= render 'parameter_fields', :f => builder %>
+      <% end %>
+
+      <div>
+        <%= link_to_add_fields "Add Parameter", f, :parameters %>
+      </div>
     </div>
   </div>
 

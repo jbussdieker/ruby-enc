@@ -1,71 +1,73 @@
 <%= form_for(@node) do |f| %>
-  <% if @node.errors.any? %>
-    <div id="error_explanation">
-      <h4><%= pluralize(@node.errors.count, "error") %> prohibited this group from being saved:</h4>
+  <div class="panel-body">
+    <% if @node.errors.any? %>
+      <div id="error_explanation">
+        <h4><%= pluralize(@node.errors.count, "error") %> prohibited this group from being saved:</h4>
 
-      <ul>
-      <% @node.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <% unless @node.persisted? %>
-    <div class="form-group">
-      <%= f.label :name %>
-      <div class="row">
-        <div class="col-lg-6">
-          <%= f.text_field :name, :placeholder => 'Enter the node name here', :class => 'form-control' %>
-        </div>
+        <ul>
+        <% @node.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
       </div>
-    </div>
-  <% else %>
-    <div class="form-group">
-      <%= f.label :name %>
-      <%= @node %>
-    </div>
-  <% end %>
-
-  <div class="form-group">
-    <%= f.label :description %>
-    <%= f.text_area :description, :rows => 4, :class => 'form-control' %>
-  </div>
-
-  <div class="well well-sm">
-    <%= f.label :parameters %>
-    <%= f.fields_for :parameters do |builder| %>
-      <%= render 'parameter_fields', :f => builder %>
     <% end %>
 
-    <div>
-      <%= link_to_add_fields "Add Parameter", f, :parameters %>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-lg-6">
-      <div class="well well-sm">
-        <%= f.label :groups %>
-        <%= f.fields_for :node_group_memberships do |builder| %>
-          <%= render 'node_group_membership_fields', :f => builder %>
-        <% end %>
-
-        <div>
-          <%= link_to_add_fields "Add Group", f, :node_group_memberships %>
+    <% unless @node.persisted? %>
+      <div class="form-group">
+        <%= f.label :name %>
+        <div class="row">
+          <div class="col-lg-6">
+            <%= f.text_field :name, :placeholder => 'Enter the node name here', :class => 'form-control' %>
+          </div>
         </div>
+      </div>
+    <% else %>
+      <div class="form-group">
+        <%= f.label :name %>
+        <%= @node %>
+      </div>
+    <% end %>
+
+    <div class="form-group">
+      <%= f.label :description %>
+      <%= f.text_area :description, :rows => 4, :class => 'form-control' %>
+    </div>
+
+    <div class="well well-sm">
+      <%= f.label :parameters %>
+      <%= f.fields_for :parameters do |builder| %>
+        <%= render 'parameter_fields', :f => builder %>
+      <% end %>
+
+      <div>
+        <%= link_to_add_fields "Add Parameter", f, :parameters %>
       </div>
     </div>
 
-    <div class="col-lg-6">
-      <div class="well well-sm">
-        <%= f.label :classes %>
-        <%= f.fields_for :node_class_memberships do |builder| %>
-          <%= render 'node_class_membership_fields', :f => builder %>
-        <% end %>
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="well well-sm">
+          <%= f.label :groups %>
+          <%= f.fields_for :node_group_memberships do |builder| %>
+            <%= render 'node_group_membership_fields', :f => builder %>
+          <% end %>
 
-        <div>
-          <%= link_to_add_fields "Add Class", f, :node_class_memberships %>
+          <div>
+            <%= link_to_add_fields "Add Group", f, :node_group_memberships %>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <div class="well well-sm">
+          <%= f.label :classes %>
+          <%= f.fields_for :node_class_memberships do |builder| %>
+            <%= render 'node_class_membership_fields', :f => builder %>
+          <% end %>
+
+          <div>
+            <%= link_to_add_fields "Add Class", f, :node_class_memberships %>
+          </div>
         </div>
       </div>
     </div>

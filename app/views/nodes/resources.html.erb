@@ -1,16 +1,18 @@
-<div class="panel">
+<div class="panel panel-default">
   <div class="panel-heading">Node Resources: <%= @node %></div>
 
-  <div class="btn-toolbar">
-    <%= link_to "Back", @node, :class => 'btn btn-sm btn-default' %>
+  <div class="panel-body">
+    <div class="btn-toolbar">
+      <%= link_to "Back", @node, :class => 'btn btn-sm btn-default' %>
+    </div>
+    
+    <h4>Resources</h4>
+    <table class="table table-bordered table-striped table-condensed">
+    <% @node.resource_types.each do |resource| %>
+      <tr>
+        <td><%= resource %></td>
+      </tr>
+    <% end %>
+    </table>
   </div>
-  
-  <h4>Resources</h4>
-  <table class="table table-bordered table-striped table-condensed">
-  <% @node.resource_types.each do |resource| %>
-    <tr>
-      <td><%= resource %></td>
-    </tr>
-  <% end %>
-  </table>
 </div>

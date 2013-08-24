@@ -1,17 +1,19 @@
-<div class="panel">
+<div class="panel panel-default">
   <div class="panel-heading">Node Facts: <%= @node %></div>
 
-  <div class="btn-toolbar">
-    <%= link_to "Back", @node, :class => 'btn btn-sm btn-default' %>
+  <div class="panel-body">
+    <div class="btn-toolbar">
+      <%= link_to "Back", @node, :class => 'btn btn-sm btn-default' %>
+    </div>
+    
+    <h4>Facts</h4>
+    <table class="table table-bordered table-striped table-condensed">
+    <% @node.facts.each do |fact| %>
+      <tr>
+        <td><%= fact["name"] %></td>
+        <td><%= fact["value"] %></td>
+      </tr>
+    <% end %>
+    </table>
   </div>
-  
-  <h4>Facts</h4>
-  <table class="table table-bordered table-striped table-condensed">
-  <% @node.facts.each do |fact| %>
-    <tr>
-      <td><%= fact["name"] %></td>
-      <td><%= fact["value"] %></td>
-    </tr>
-  <% end %>
-  </table>
 </div>
