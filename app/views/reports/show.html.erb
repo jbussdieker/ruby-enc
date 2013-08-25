@@ -1,69 +1,71 @@
-<div class="panel">
+<div class="panel panel-default">
   <div class="panel-heading">Report: <%= @report.time %></div>
 
-  <div class="btn-toolbar">
-    <%= link_to "Back", node_path(@report.node), :class => 'btn btn-sm btn-default' %>
-    <%= link_to "Delete", @report, :method => :delete, :confirm => "Are you sure?", :class => 'btn btn-sm btn-danger pull-right' %>
-  </div>
+  <div class="panel-body">
+    <div class="btn-toolbar">
+      <%= link_to "Back", node_path(@report.node), :class => 'btn btn-sm btn-default' %>
+      <%= link_to "Delete", @report, :method => :delete, :confirm => "Are you sure?", :class => 'btn btn-sm btn-danger pull-right' %>
+    </div>
 
-  <br>
+    <br>
 
-  <div class="tabbable">
-    <ul class="nav nav-tabs">
-      <li class="active"><a href="#metrics" data-toggle="tab">Metrics</a></li>
-      <li><a href="#log" data-toggle="tab">Log</a></li>
-      <li><a href="#events" data-toggle="tab">Events</a></li>
-    </ul>
-    <div class="tab-content">
-      <div class="tab-pane active" id="metrics">
-        <% @report.metrics.select("distinct(category)").each do |category| %>
+    <div class="tabbable">
+      <ul class="nav nav-tabs">
+        <li class="active"><a href="#metrics" data-toggle="tab">Metrics</a></li>
+        <li><a href="#log" data-toggle="tab">Log</a></li>
+        <li><a href="#events" data-toggle="tab">Events</a></li>
+      </ul>
+      <div class="tab-content">
+        <div class="tab-pane active" id="metrics">
+          <% @report.metrics.select("distinct(category)").each do |category| %>
+            <table class="table table-bordered table-condensed table-striped">
+              <tr>
+                <th><%= category.category %></th>
+                <th></th>
+              </tr>
+              <% @report.metrics.where(:category => category.category).each do |metric| %>
+                <tr>
+                  <td><%= metric.name %></td>
+                  <td><%= metric.value %></td>
+                </tr>
+              <% end %>
+            </table>
+          <% end %>
+        </div>
+        <div class="tab-pane" id="log">
           <table class="table table-bordered table-condensed table-striped">
             <tr>
-              <th><%= category.category %></th>
-              <th></th>
+              <th>Time</th>
+              <th>Level</th>
+              <th>Message</th>
             </tr>
-            <% @report.metrics.where(:category => category.category).each do |metric| %>
+            <% @report.report_logs.each do |log| %>
               <tr>
-                <td><%= metric.name %></td>
-                <td><%= metric.value %></td>
+                <td><%= log.time %></td>
+                <td><%= log.level %></td>
+                <td><%= log.message %></td>
               </tr>
             <% end %>
           </table>
-        <% end %>
-      </div>
-      <div class="tab-pane" id="log">
-        <table class="table table-bordered table-condensed table-striped">
-          <tr>
-            <th>Time</th>
-            <th>Level</th>
-            <th>Message</th>
-          </tr>
-          <% @report.report_logs.each do |log| %>
+        </div>
+        <div class="tab-pane" id="events">
+          <table class="table table-bordered table-condensed table-striped">
             <tr>
-              <td><%= log.time %></td>
-              <td><%= log.level %></td>
-              <td><%= log.message %></td>
+              <th>Name</th>
+              <th>Changed</th>
+              <th>Skipped</th>
+              <th>Failed</th>
             </tr>
-          <% end %>
-        </table>
-      </div>
-      <div class="tab-pane" id="events">
-        <table class="table table-bordered table-condensed table-striped">
-          <tr>
-            <th>Name</th>
-            <th>Changed</th>
-            <th>Skipped</th>
-            <th>Failed</th>
-          </tr>
-          <% @report.resource_statuses.each do |status| %>
-            <tr>
-              <td><%= status.title %></td>
-              <td><%= status.is_changed ? "Changed" : "" %></td>
-              <td><%= status.skipped ? "Skipped" : "" %></td>
-              <td><%= status.failed ? "Failed" : "" %></td>
-            </tr>
-          <% end %>
-        </table>
+            <% @report.resource_statuses.each do |status| %>
+              <tr>
+                <td><%= status.title %></td>
+                <td><%= status.is_changed ? "Changed" : "" %></td>
+                <td><%= status.skipped ? "Skipped" : "" %></td>
+                <td><%= status.failed ? "Failed" : "" %></td>
+              </tr>
+            <% end %>
+          </table>
+        </div>
       </div>
     </div>
   </div>
