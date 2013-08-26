@@ -5,13 +5,24 @@
     <div class="btn-toolbar">
       <%= link_to "Back", @node, :class => 'btn btn-sm btn-default' %>
     </div>
-    
-    <h4>Resources</h4>
+
+    <h4>Exported Resources</h4>
     <table class="table table-bordered table-striped table-condensed">
-    <% @node.resource_types.each do |resource| %>
       <tr>
-        <td><%= resource %></td>
+        <th>Type</th>
+        <th>Title</th>
+        <th>Parameters</th>
+        <th>Tags</th>
       </tr>
+    <% @node.resources.each do |resource| %>
+      <% if resource["exported"] %>
+      <tr>
+        <td><%= resource["type"] %></td>
+        <td><%= resource["title"] %></td>
+        <td><%= resource["parameters"].collect {|k,v| "#{k}=#{v}"}.join("\n") %></td>
+        <td><%= resource["tags"].join(", ") %></td>
+      </tr>
+      <% end %>
     <% end %>
     </table>
   </div>
