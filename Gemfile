@@ -10,6 +10,7 @@ gem db
 gem 'puppet'
 gem 'chartkick'
 gem 'groupdate'
+gem 'rails-bootstrap', '~> 3.0.0'
 
 
 # Gems used only for assets and not required
