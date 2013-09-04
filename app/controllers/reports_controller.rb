@@ -9,8 +9,15 @@ class ReportsController < ApplicationController
 
   def report_history
     @history = Report.group_by_day(:time).count
+
     # TODO: There has to be a better way
-    @history = @history.inject({}) {|o, (k,v)| o[(k||"").split.first] = v; o}
+    @history.reject! {|k,v| k == nil}
+    @history = @history.inject({}) do |o, (k,v)|
+      kk = Time.parse(k.to_s)
+      o[kk.to_date] = v
+      o
+    end
+
     render :json => @history
   end
 
