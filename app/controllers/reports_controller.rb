@@ -10,7 +10,7 @@ class ReportsController < ApplicationController
   def report_history
     @history = Report.group_by_day(:time).count
     # TODO: There has to be a better way
-    @history = @history.inject({}) {|o, (k,v)| o[k.split.first] = v; o}
+    @history = @history.inject({}) {|o, (k,v)| o[(k||"").split.first] = v; o}
     render :json => @history
   end
 
