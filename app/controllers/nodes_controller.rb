@@ -15,7 +15,11 @@ class NodesController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @node }
+      format.json { render json: @node.to_json(:include => {
+        :parameters => {},
+        :node_groups => {},
+        :node_classes => {}
+      }) }
       format.yaml { render text: @node.to_yaml, content_type: 'text/yaml' }
     end
   end
