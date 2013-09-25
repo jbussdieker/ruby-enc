@@ -16,7 +16,9 @@ class NodeGroupsController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @node_group }
+      format.json { render json: @node_group.to_json(:include => {
+        :parameters => {}
+      }) }
     end
   end
 
