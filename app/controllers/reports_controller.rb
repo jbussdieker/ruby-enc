@@ -1,6 +1,6 @@
 class ReportsController < ApplicationController
   def index
-    @reports = Report.limit(20).order("time DESC")
+    @reports = Report.order("time DESC").page params[:page]
   end
 
   def show

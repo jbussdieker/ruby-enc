@@ -11,6 +11,7 @@ gem 'puppet'
 gem 'chartkick'
 gem 'groupdate'
 gem 'rails-bootstrap', '~> 3.0.0'
+gem 'kaminari'
 
 
 # Gems used only for assets and not required

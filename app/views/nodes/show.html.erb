@@ -80,19 +80,22 @@
 
     <h4>Recent reports (<%= @node.reports.count %>)</h4>
 
+    <div id="paginator">
+      <%= paginate @reports, :remote => true %>
+    </div>
+
     <table class="table table-bordered table-condensed table-striped">
-      <tr>
-        <th>Reported at</th>
-        <th>Environment</th>
-        <th>Status</th>
-      </tr>
-      <% @node.reports.order("time DESC").limit(10).each do |report| %>
+      <thead>
         <tr>
-          <td><%= link_to node_report_time(report.time), report %></td>
-          <td><%= report.environment %></td>
-          <td><%= node_status_badge(report) %></td>
+          <th>Reported at</th>
+          <th>Node</th>
+          <th>Environment</th>
+          <th>Status</th>
         </tr>
-      <% end %>
+      </thead>
+      <tbody id="reports">
+        <%= render @reports %>
+      </tbody>
     </table>
   </div>
 </div>

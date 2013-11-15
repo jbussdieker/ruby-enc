@@ -16,9 +16,11 @@ class NodesController < ApplicationController
 
   def show
     @node = Node.find_by_name(params[:id])
+    @reports = @node.reports.order("time DESC").page params[:page]
 
     respond_to do |format|
       format.html # show.html.erb
+      format.js # show.js.erb
       format.json { render json: @node.to_json(:include => {
         :parameters => {},
         :node_groups => {},
