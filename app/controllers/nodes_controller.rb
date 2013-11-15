@@ -6,7 +6,11 @@ class NodesController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @nodes }
+      format.json { render json: @nodes.to_json(:include => {
+        :parameters => {},
+        :node_groups => {},
+        :node_classes => {}
+      }) }
     end
   end
 
