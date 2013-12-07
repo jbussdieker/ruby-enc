@@ -15,6 +15,23 @@ describe 'Nodes' do
       expect(page).to have_content "Node: #{name}"
     end
 
+    it 'Adds a new node w/ parameter', :js => true do
+      visit nodes_path
+      name = Faker::Lorem.word
+      parameter = FactoryGirl.attributes_for(:parameter)
+
+      expect {
+        click_link 'Add Node'
+        fill_in 'Name', :with => name
+        click_link 'Add Parameter'
+        fill_in 'key', :with => parameter[:key]
+        fill_in 'value', :with => parameter[:value]
+        click_button 'Create Node'
+      }.to change(Parameter, :count).by(1)
+
+      expect(page).to have_content "Node: #{name}"
+    end
+
     it 'Edits a node', :js => true do
       node = FactoryGirl.create(:node)
       description = Faker::Lorem.word

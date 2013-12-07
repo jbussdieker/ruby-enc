@@ -15,6 +15,23 @@ describe 'Node Groups' do
       expect(page).to have_content "Group: #{name}"
     end
 
+    it 'Adds a new node group w/ parameter', :js => true do
+      visit node_groups_path
+      name = Faker::Lorem.word
+      parameter = FactoryGirl.attributes_for(:parameter)
+
+      expect {
+        click_link 'Add Group'
+        fill_in 'Name', :with => name
+        click_link 'Add Parameter'
+        fill_in 'key', :with => parameter[:key]
+        fill_in 'value', :with => parameter[:value]
+        click_button 'Create Node group'
+      }.to change(Parameter, :count).by(1)
+
+      expect(page).to have_content "Group: #{name}"
+    end
+
     it 'Edits a node group', :js => true do
       node_group = FactoryGirl.create(:node_group)
       name = Faker::Lorem.word
