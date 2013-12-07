@@ -17,8 +17,8 @@ class Node < ActiveRecord::Base
   has_many :parameters, :as => :parameterable, :dependent => :destroy
 
   accepts_nested_attributes_for :parameters, :allow_destroy => true
-  accepts_nested_attributes_for :node_class_memberships, :allow_destroy => true, :reject_if => lambda {|p| p[:node_class_id].empty?}
-  accepts_nested_attributes_for :node_group_memberships, :allow_destroy => true, :reject_if => lambda {|p| p[:node_group_id].empty?}
+  accepts_nested_attributes_for :node_class_memberships, :allow_destroy => true, :reject_if => :all_blank
+  accepts_nested_attributes_for :node_group_memberships, :allow_destroy => true, :reject_if => :all_blank
 
   scope :responsive, -> { where("reported_at >= '#{Time.now.utc - 3600}'") }
   scope :unresponsive, -> { where("reported_at < '#{Time.now.utc - 3600}'") }
