@@ -1,14 +1,10 @@
-<table id="nodes" class="table table-bordered table-condensed table-striped">
+<table class="table table-bordered table-condensed table-striped">
   <tr>
     <th><%= sortable "name" %></th>
     <th class="hidden-sm"><%= sortable "status" %></th>
     <th class="hidden-sm"><%= sortable "reported_at" %></th>
   </tr>
-<% @nodes.each do |node| %>
-  <tr>
-    <td><%= link_to node, node %></td>
-    <td class="hidden-sm"><%= node_status_badge(node) %></td>
-    <td class="hidden-sm"><%= node_report_time(node.reported_at) %></td>
-  </tr>
-<% end %>
+  <tbody id="nodes">
+    <%= render @nodes %>
+  </tbody>
 </table>

@@ -2,17 +2,14 @@
   <div class="panel-heading">Classes</div>
 
   <div class="panel-body">
-    <table id="node_classes" class="table table-bordered table-condensed table-striped">
+    <table class="table table-bordered table-condensed table-striped">
       <tr>
         <th><%= sortable "name" %></th>
         <th>Nodes</th>
       </tr>
-    <% @node_classes.each do |node_class| %>
-      <tr>
-        <td><%= link_to node_class, node_class %></td>
-        <td><span class="badge"><%= node_class.nodes.count %></span></td>
-      </tr>
-    <% end %>
+      <tbody id="node_classes">
+        <%= render @node_classes %>
+      </tbody>
     </table>
   </div>
 </div>
