@@ -1,5 +1,5 @@
 FactoryGirl.define do
   factory :node do
-    name "example.com"
+    name { Faker::Lorem.word }
   end
 end
