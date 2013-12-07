@@ -8,7 +8,7 @@ class NodeGroup < ActiveRecord::Base
   has_many :nodes, :through => :node_group_memberships
   has_many :parameters, :as => :parameterable, :dependent => :destroy
 
-  accepts_nested_attributes_for :parameters, :allow_destroy => true, :reject_if => lambda {|p| p[:key].empty? || p[:value].empty?}
+  accepts_nested_attributes_for :parameters, :allow_destroy => true
 
   validates :name, :uniqueness => true
   validates_presence_of :name
