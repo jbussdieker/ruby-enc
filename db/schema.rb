@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130813014759) do
+ActiveRecord::Schema.define(:version => 20131207182112) do
 
   create_table "metrics", :force => true do |t|
     t.integer  "report_id",                                 :null => false
@@ -84,6 +84,7 @@ ActiveRecord::Schema.define(:version => 20130813014759) do
     t.datetime "time"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "source"
   end
 
   add_index "report_logs", ["report_id"], :name => "index_report_logs_on_report_id"

@@ -38,7 +38,8 @@ class Report < ActiveRecord::Base
       report_logs.create(
         :time => log.time,
         :level => log.level,
-        :message => log.message
+        :message => log.message,
+        :source => log.source
       )
     end
   end

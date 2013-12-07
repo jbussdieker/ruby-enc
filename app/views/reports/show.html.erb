@@ -38,12 +38,14 @@
               <th>Time</th>
               <th>Level</th>
               <th>Message</th>
+              <th>Source</th>
             </tr>
             <% @report.report_logs.each do |log| %>
               <tr>
                 <td><%= log.time %></td>
                 <td><%= log.level %></td>
                 <td><%= log.message %></td>
+                <td><%= log.source %></td>
               </tr>
             <% end %>
           </table>
