@@ -31,6 +31,12 @@ group :development, :test do
   gem 'factory_girl_rails'
 end
 
+group :test do
+  gem 'faker'
+  gem 'capybara'
+  gem 'database_cleaner'
+end
+
 gem 'jquery-rails'
 
 # To use ActiveModel has_secure_password

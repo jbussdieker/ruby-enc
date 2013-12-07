@@ -1,5 +1,5 @@
 FactoryGirl.define do
   factory :node_group do
-    name "mygroup"
+    name { Faker::Lorem.word }
   end
 end
