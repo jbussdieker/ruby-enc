@@ -3,16 +3,8 @@ development:
   puppetdb:
     host: hostname
     port: port
-# Optionally relay reports
-#  report_relay:
-#    host: hostname
-#    port: port
 production:
 #  spool_path: /tmp/enc_spool
   puppetdb:
     host: hostname
     port: port
-# Optionally relay reports
-#  report_relay:
-#    host: hostname
-#    port: port
