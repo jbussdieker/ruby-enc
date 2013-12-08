@@ -1,0 +1,17 @@
+--- 
+  - !ruby/sym time: 2013-12-08 11:42:55.814627 -05:00
+    !ruby/sym level: !ruby/sym info
+    !ruby/sym message: "Caching catalog for synapse"
+    !ruby/sym source: Puppet
+  - !ruby/sym time: 2013-12-08 11:42:55.883028 -05:00
+    !ruby/sym level: !ruby/sym info
+    !ruby/sym message: "Applying configuration version '1386520952'"
+    !ruby/sym source: Puppet
+  - !ruby/sym time: 2013-12-08 11:42:55.892065 -05:00
+    !ruby/sym level: !ruby/sym notice
+    !ruby/sym message: "defined content as '{md5}ae2b1fca515949e5d54fb22b8ed95575'"
+    !ruby/sym source: /Stage[main]//File[/tmp/test]/ensure
+  - !ruby/sym time: 2013-12-08 11:42:55.915087 -05:00
+    !ruby/sym level: !ruby/sym notice
+    !ruby/sym message: "Finished catalog run in 0.04 seconds"
+    !ruby/sym source: Puppet

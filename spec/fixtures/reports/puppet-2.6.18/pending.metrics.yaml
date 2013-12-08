@@ -1,0 +1,31 @@
+--- 
+  - !ruby/sym category: Events
+    !ruby/sym name: Noop
+    !ruby/sym value: 1
+  - !ruby/sym category: Events
+    !ruby/sym name: Total
+    !ruby/sym value: 1
+  - !ruby/sym category: Time
+    !ruby/sym name: "Config retrieval"
+    !ruby/sym value: 0.194375991821289
+  - !ruby/sym category: Time
+    !ruby/sym name: File
+    !ruby/sym value: 0.001098
+  - !ruby/sym category: Time
+    !ruby/sym name: Filebucket
+    !ruby/sym value: 0.000195
+  - !ruby/sym category: Time
+    !ruby/sym name: Schedule
+    !ruby/sym value: 0.001015
+  - !ruby/sym category: Time
+    !ruby/sym name: Total
+    !ruby/sym value: 0.196683991821289
+  - !ruby/sym category: Changes
+    !ruby/sym name: Total
+    !ruby/sym value: 0
+  - !ruby/sym category: Resources
+    !ruby/sym name: "Out of sync"
+    !ruby/sym value: 1
+  - !ruby/sym category: Resources
+    !ruby/sym name: Total
+    !ruby/sym value: 8

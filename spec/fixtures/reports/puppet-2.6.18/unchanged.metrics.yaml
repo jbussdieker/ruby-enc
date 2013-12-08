@@ -1,0 +1,25 @@
+--- 
+  - !ruby/sym category: Events
+    !ruby/sym name: Total
+    !ruby/sym value: 0
+  - !ruby/sym category: Time
+    !ruby/sym name: "Config retrieval"
+    !ruby/sym value: 0.215004205703735
+  - !ruby/sym category: Time
+    !ruby/sym name: File
+    !ruby/sym value: 0.000867
+  - !ruby/sym category: Time
+    !ruby/sym name: Filebucket
+    !ruby/sym value: 0.00021
+  - !ruby/sym category: Time
+    !ruby/sym name: Schedule
+    !ruby/sym value: 0.000957
+  - !ruby/sym category: Time
+    !ruby/sym name: Total
+    !ruby/sym value: 0.217038205703735
+  - !ruby/sym category: Changes
+    !ruby/sym name: Total
+    !ruby/sym value: 0
+  - !ruby/sym category: Resources
+    !ruby/sym name: Total
+    !ruby/sym value: 8

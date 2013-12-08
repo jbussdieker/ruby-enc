@@ -1,0 +1,29 @@
+--- 
+  - !ruby/sym time: 2013-12-08 11:33:10.543980 -05:00
+    !ruby/sym level: !ruby/sym info
+    !ruby/sym message: "Retrieving plugin"
+    !ruby/sym source: Puppet
+  - !ruby/sym time: 2013-12-08 11:33:11.653625 -05:00
+    !ruby/sym level: !ruby/sym info
+    !ruby/sym message: "Caching catalog for synapse"
+    !ruby/sym source: Puppet
+  - !ruby/sym time: 2013-12-08 11:33:11.769006 -05:00
+    !ruby/sym level: !ruby/sym info
+    !ruby/sym message: "Applying configuration version '1386515380'"
+    !ruby/sym source: Puppet
+  - !ruby/sym time: 2013-12-08 11:33:11.782951 -05:00
+    !ruby/sym level: !ruby/sym notice
+    !ruby/sym message: "current_value absent, should be file (noop)"
+    !ruby/sym source: /Stage[main]//File[/tmp/test]/ensure
+  - !ruby/sym time: 2013-12-08 11:33:11.787146 -05:00
+    !ruby/sym level: !ruby/sym notice
+    !ruby/sym message: "Would have triggered 'refresh' from 1 events"
+    !ruby/sym source: Class[Main]
+  - !ruby/sym time: 2013-12-08 11:33:11.788245 -05:00
+    !ruby/sym level: !ruby/sym notice
+    !ruby/sym message: "Would have triggered 'refresh' from 1 events"
+    !ruby/sym source: Stage[main]
+  - !ruby/sym time: 2013-12-08 11:33:11.893132 -05:00
+    !ruby/sym level: !ruby/sym notice
+    !ruby/sym message: "Finished catalog run in 0.16 seconds"
+    !ruby/sym source: Puppet

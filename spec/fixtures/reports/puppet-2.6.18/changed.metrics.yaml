@@ -1,0 +1,34 @@
+--- 
+  - !ruby/sym category: Time
+    !ruby/sym name: "Config retrieval"
+    !ruby/sym value: 0.222079992294312
+  - !ruby/sym category: Time
+    !ruby/sym name: File
+    !ruby/sym value: 0.002275
+  - !ruby/sym category: Time
+    !ruby/sym name: Filebucket
+    !ruby/sym value: 0.00016
+  - !ruby/sym category: Time
+    !ruby/sym name: Schedule
+    !ruby/sym value: 0.000971
+  - !ruby/sym category: Time
+    !ruby/sym name: Total
+    !ruby/sym value: 0.225485992294312
+  - !ruby/sym category: Events
+    !ruby/sym name: Success
+    !ruby/sym value: 1
+  - !ruby/sym category: Events
+    !ruby/sym name: Total
+    !ruby/sym value: 1
+  - !ruby/sym category: Changes
+    !ruby/sym name: Total
+    !ruby/sym value: 1
+  - !ruby/sym category: Resources
+    !ruby/sym name: Changed
+    !ruby/sym value: 1
+  - !ruby/sym category: Resources
+    !ruby/sym name: "Out of sync"
+    !ruby/sym value: 1
+  - !ruby/sym category: Resources
+    !ruby/sym name: Total
+    !ruby/sym value: 8

@@ -1,0 +1,49 @@
+--- 
+  - !ruby/sym category: Time
+    !ruby/sym name: "Config retrieval"
+    !ruby/sym value: 0.234356343
+  - !ruby/sym category: Time
+    !ruby/sym name: File
+    !ruby/sym value: 0.001351017
+  - !ruby/sym category: Time
+    !ruby/sym name: Filebucket
+    !ruby/sym value: 0.000122525
+  - !ruby/sym category: Time
+    !ruby/sym name: Total
+    !ruby/sym value: 0.235829885
+  - !ruby/sym category: Events
+    !ruby/sym name: Failure
+    !ruby/sym value: 0
+  - !ruby/sym category: Events
+    !ruby/sym name: Success
+    !ruby/sym value: 1
+  - !ruby/sym category: Events
+    !ruby/sym name: Total
+    !ruby/sym value: 1
+  - !ruby/sym category: Changes
+    !ruby/sym name: Total
+    !ruby/sym value: 1
+  - !ruby/sym category: Resources
+    !ruby/sym name: Changed
+    !ruby/sym value: 1
+  - !ruby/sym category: Resources
+    !ruby/sym name: Failed
+    !ruby/sym value: 0
+  - !ruby/sym category: Resources
+    !ruby/sym name: "Failed to restart"
+    !ruby/sym value: 0
+  - !ruby/sym category: Resources
+    !ruby/sym name: "Out of sync"
+    !ruby/sym value: 1
+  - !ruby/sym category: Resources
+    !ruby/sym name: Restarted
+    !ruby/sym value: 0
+  - !ruby/sym category: Resources
+    !ruby/sym name: Scheduled
+    !ruby/sym value: 0
+  - !ruby/sym category: Resources
+    !ruby/sym name: Skipped
+    !ruby/sym value: 6
+  - !ruby/sym category: Resources
+    !ruby/sym name: Total
+    !ruby/sym value: 8

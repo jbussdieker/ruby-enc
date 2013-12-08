@@ -1,0 +1,21 @@
+--- 
+  - !ruby/sym time: 2013-12-08 11:43:20.167945 -05:00
+    !ruby/sym level: !ruby/sym info
+    !ruby/sym message: "Retrieving plugin"
+    !ruby/sym source: Puppet
+  - !ruby/sym time: 2013-12-08 11:43:21.269785 -05:00
+    !ruby/sym level: !ruby/sym info
+    !ruby/sym message: "Caching catalog for synapse"
+    !ruby/sym source: Puppet
+  - !ruby/sym time: 2013-12-08 11:43:21.356091 -05:00
+    !ruby/sym level: !ruby/sym info
+    !ruby/sym message: "Applying configuration version '1386520952'"
+    !ruby/sym source: Puppet
+  - !ruby/sym time: 2013-12-08 11:43:21.363236 -05:00
+    !ruby/sym level: !ruby/sym notice
+    !ruby/sym message: "defined content as '{md5}ae2b1fca515949e5d54fb22b8ed95575'"
+    !ruby/sym source: /Stage[main]//File[/tmp/test]/ensure
+  - !ruby/sym time: 2013-12-08 11:43:21.459258 -05:00
+    !ruby/sym level: !ruby/sym notice
+    !ruby/sym message: "Finished catalog run in 0.12 seconds"
+    !ruby/sym source: Puppet

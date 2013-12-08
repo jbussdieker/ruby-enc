@@ -1,0 +1,13 @@
+--- 
+  - !ruby/sym time: 2013-12-08 11:40:45.941129 -05:00
+    !ruby/sym level: !ruby/sym err
+    !ruby/sym message: "Could not retrieve catalog from remote server: Error 400 on SERVER: Puppet::Parser::AST::Resource failed with error ArgumentError: Invalid resource type invalid at /etc/puppet/manifests/site.pp:3 on node synapse"
+    !ruby/sym source: Puppet
+  - !ruby/sym time: 2013-12-08 11:40:45.941477 -05:00
+    !ruby/sym level: !ruby/sym warning
+    !ruby/sym message: "Not using cache on failed catalog"
+    !ruby/sym source: Puppet
+  - !ruby/sym time: 2013-12-08 11:40:45.941622 -05:00
+    !ruby/sym level: !ruby/sym err
+    !ruby/sym message: "Could not retrieve catalog; skipping run"
+    !ruby/sym source: Puppet

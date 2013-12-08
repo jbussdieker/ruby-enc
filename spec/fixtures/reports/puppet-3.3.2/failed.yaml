@@ -1,0 +1,41 @@
+--- !ruby/object:Puppet::Transaction::Report
+  status: failed
+  time: 2013-12-08 11:41:44.724018 -05:00
+  report_format: 3
+  kind: apply
+  resource_statuses: {}
+  puppet_version: "3.2.3"
+  metrics: {}
+  logs: 
+    - !ruby/object:Puppet::Util::Log
+      time: 2013-12-08 11:41:44.843313 -05:00
+      level: !ruby/sym info
+      source: Puppet
+      tags: 
+        - info
+      message: "Retrieving plugin"
+    - !ruby/object:Puppet::Util::Log
+      time: 2013-12-08 11:41:46.226993 -05:00
+      level: !ruby/sym err
+      source: Puppet
+      tags: 
+        - err
+      message: "Could not retrieve catalog from remote server: Error 400 on SERVER: Puppet::Parser::AST::Resource failed with error ArgumentError: Invalid resource type invalid at /etc/puppet/manifests/site.pp:3 on node synapse"
+    - !ruby/object:Puppet::Util::Log
+      time: 2013-12-08 11:41:46.227297 -05:00
+      level: !ruby/sym warning
+      source: Puppet
+      tags: 
+        - warning
+      message: "Not using cache on failed catalog"
+    - !ruby/object:Puppet::Util::Log
+      time: 2013-12-08 11:41:46.227455 -05:00
+      level: !ruby/sym err
+      source: Puppet
+      tags: 
+        - err
+      message: "Could not retrieve catalog; skipping run"
+  environment: 
+  transaction_uuid: 
+  host: synapse
+  configuration_version: 

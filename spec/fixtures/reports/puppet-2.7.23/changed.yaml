@@ -1,0 +1,117 @@
+--- !ruby/object:Puppet::Transaction::Report
+  status: changed
+  time: 2013-12-08 11:42:54.601884 -05:00
+  report_format: 3
+  kind: apply
+  resource_statuses: 
+    Schedule[hourly]: 
+    Schedule[puppet]: 
+    Schedule[never]: 
+    Schedule[weekly]: 
+    Schedule[daily]: 
+    File[/tmp/test]: 
+    Filebucket[puppet]: 
+    Schedule[monthly]: 
+  puppet_version: "2.7.23"
+  metrics: 
+    time: !ruby/object:Puppet::Util::Metric
+      values: 
+        - - file
+          - File
+          - 0.001351017
+        - - filebucket
+          - Filebucket
+          - 0.000122525
+        - - config_retrieval
+          - "Config retrieval"
+          - 0.234356343
+        - - total
+          - Total
+          - 0.235829885
+      label: Time
+      name: time
+    events: !ruby/object:Puppet::Util::Metric
+      values: 
+        - - total
+          - Total
+          - 1
+        - - failure
+          - Failure
+          - 0
+        - - success
+          - Success
+          - 1
+      label: Events
+      name: events
+    changes: !ruby/object:Puppet::Util::Metric
+      values: 
+        - - total
+          - Total
+          - 1
+      label: Changes
+      name: changes
+    resources: !ruby/object:Puppet::Util::Metric
+      values: 
+        - - total
+          - Total
+          - 8
+        - - skipped
+          - Skipped
+          - 6
+        - - failed
+          - Failed
+          - 0
+        - - failed_to_restart
+          - "Failed to restart"
+          - 0
+        - - restarted
+          - Restarted
+          - 0
+        - - changed
+          - Changed
+          - 1
+        - - out_of_sync
+          - "Out of sync"
+          - 1
+        - - scheduled
+          - Scheduled
+          - 0
+      label: Resources
+      name: resources
+  logs: 
+    - !ruby/object:Puppet::Util::Log
+      time: 2013-12-08 11:42:55.814627 -05:00
+      level: !ruby/sym info
+      source: Puppet
+      tags: 
+        - info
+      message: "Caching catalog for synapse"
+    - !ruby/object:Puppet::Util::Log
+      time: 2013-12-08 11:42:55.883028 -05:00
+      level: !ruby/sym info
+      source: Puppet
+      tags: 
+        - info
+      message: "Applying configuration version '1386520952'"
+    - !ruby/object:Puppet::Util::Log
+      line: 3
+      time: 2013-12-08 11:42:55.892065 -05:00
+      file: /etc/puppet/manifests/site.pp
+      level: !ruby/sym notice
+      source: /Stage[main]//File[/tmp/test]/ensure
+      tags: 
+        - notice
+        - file
+        - class
+      message: "defined content as '{md5}ae2b1fca515949e5d54fb22b8ed95575'"
+    - !ruby/object:Puppet::Util::Log
+      time: 2013-12-08 11:42:55.915087 -05:00
+      level: !ruby/sym notice
+      source: Puppet
+      tags: 
+        - notice
+      message: "Finished catalog run in 0.04 seconds"
+  environment: production
+  transaction_uuid: 
+  host: synapse
+  configuration_version: 1386520952

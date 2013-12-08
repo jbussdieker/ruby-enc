@@ -1,0 +1,312 @@
+--- !ruby/object:Puppet::Transaction::Report
+  status: unchanged
+  time: 2013-12-08 10:09:39.030634 -05:00
+  report_format: 4
+  kind: apply
+  resource_statuses: 
+    Schedule[hourly]: !ruby/object:Puppet::Resource::Status
+      resource: Schedule[hourly]
+      file: 
+      line: 
+      evaluation_time: 9.1e-05
+      change_count: 0
+      out_of_sync_count: 0
+      tags: 
+        - schedule
+        - hourly
+      time: 2013-12-08 10:09:40.432023 -05:00
+      events: []
+      out_of_sync: false
+      changed: false
+      resource_type: Schedule
+      title: hourly
+      skipped: false
+      failed: false
+      containment_path: 
+        - Schedule[hourly]
+    Schedule[puppet]: !ruby/object:Puppet::Resource::Status
+      resource: Schedule[puppet]
+      file: 
+      line: 
+      evaluation_time: 9.2e-05
+      change_count: 0
+      out_of_sync_count: 0
+      tags: 
+        - schedule
+        - puppet
+      time: 2013-12-08 10:09:40.442990 -05:00
+      events: []
+      out_of_sync: false
+      changed: false
+      resource_type: Schedule
+      title: puppet
+      skipped: false
+      failed: false
+      containment_path: 
+        - Schedule[puppet]
+    Schedule[never]: !ruby/object:Puppet::Resource::Status
+      resource: Schedule[never]
+      file: 
+      line: 
+      evaluation_time: 0.000144
+      change_count: 0
+      out_of_sync_count: 0
+      tags: 
+        - schedule
+        - never
+      time: 2013-12-08 10:09:40.442036 -05:00
+      events: []
+      out_of_sync: false
+      changed: false
+      resource_type: Schedule
+      title: never
+      skipped: false
+      failed: false
+      containment_path: 
+        - Schedule[never]
+    Schedule[weekly]: !ruby/object:Puppet::Resource::Status
+      resource: Schedule[weekly]
+      file: 
+      line: 
+      evaluation_time: 0.000101
+      change_count: 0
+      out_of_sync_count: 0
+      tags: 
+        - schedule
+        - weekly
+      time: 2013-12-08 10:09:40.442740 -05:00
+      events: []
+      out_of_sync: false
+      changed: false
+      resource_type: Schedule
+      title: weekly
+      skipped: false
+      failed: false
+      containment_path: 
+        - Schedule[weekly]
+    Schedule[daily]: !ruby/object:Puppet::Resource::Status
+      resource: Schedule[daily]
+      file: 
+      line: 
+      evaluation_time: 0.000153
+      change_count: 0
+      out_of_sync_count: 0
+      tags: 
+        - schedule
+        - daily
+      time: 2013-12-08 10:09:40.431440 -05:00
+      events: []
+      out_of_sync: false
+      changed: false
+      resource_type: Schedule
+      title: daily
+      skipped: false
+      failed: false
+      containment_path: 
+        - Schedule[daily]
+    File[/tmp/test]: !ruby/object:Puppet::Resource::Status
+      resource: File[/tmp/test]
+      file: /etc/puppet/manifests/site.pp
+      line: 3
+      evaluation_time: 0.000893
+      change_count: 0
+      out_of_sync_count: 1
+      tags: 
+        - file
+        - class
+      time: 2013-12-08 10:09:40.436611 -05:00
+      events: 
+        - !ruby/object:Puppet::Transaction::Event
+          audited: false
+          property: ensure
+          previous_value: absent
+          desired_value: file
+          historical_value: 
+          message: "current_value absent, should be file (noop)"
+          name: !ruby/sym file_created
+          status: noop
+          time: 2013-12-08 10:09:40.437080 -05:00
+      out_of_sync: true
+      changed: false
+      resource_type: File
+      title: /tmp/test
+      skipped: false
+      failed: false
+      containment_path: 
+        - Stage[main]
+        - ""
+        - File[/tmp/test]
+    Filebucket[puppet]: !ruby/object:Puppet::Resource::Status
+      resource: Filebucket[puppet]
+      file: 
+      line: 
+      evaluation_time: 0.000139
+      change_count: 0
+      out_of_sync_count: 0
+      tags: 
+        - filebucket
+        - puppet
+      time: 2013-12-08 10:09:40.442404 -05:00
+      events: []
+      out_of_sync: false
+      changed: false
+      resource_type: Filebucket
+      title: puppet
+      skipped: false
+      failed: false
+      containment_path: 
+        - Filebucket[puppet]
+    Schedule[monthly]: !ruby/object:Puppet::Resource::Status
+      resource: Schedule[monthly]
+      file: 
+      line: 
+      evaluation_time: 9.6e-05
+      change_count: 0
+      out_of_sync_count: 0
+      tags: 
+        - schedule
+        - monthly
+      time: 2013-12-08 10:09:40.431772 -05:00
+      events: []
+      out_of_sync: false
+      changed: false
+      resource_type: Schedule
+      title: monthly
+      skipped: false
+      failed: false
+      containment_path: 
+        - Schedule[monthly]
+  puppet_version: "3.3.2"
+  metrics: 
+    events: !ruby/object:Puppet::Util::Metric
+      values: 
+        - - noop
+          - Noop
+          - 1
+        - - success
+          - Success
+          - 0
+        - - failure
+          - Failure
+          - 0
+        - - total
+          - Total
+          - 1
+      label: Events
+      name: events
+    time: !ruby/object:Puppet::Util::Metric
+      values: 
+        - - schedule
+          - Schedule
+          - 0.000677
+        - - config_retrieval
+          - "Config retrieval"
+          - 0.306514978408813
+        - - filebucket
+          - Filebucket
+          - 0.000139
+        - - file
+          - File
+          - 0.000893
+        - - total
+          - Total
+          - 0.308223978408813
+      label: Time
+      name: time
+    changes: !ruby/object:Puppet::Util::Metric
+      values: 
+        - - total
+          - Total
+          - 0
+      label: Changes
+      name: changes
+    resources: !ruby/object:Puppet::Util::Metric
+      values: 
+        - - restarted
+          - Restarted
+          - 0
+        - - failed
+          - Failed
+          - 0
+        - - changed
+          - Changed
+          - 0
+        - - out_of_sync
+          - "Out of sync"
+          - 1
+        - - scheduled
+          - Scheduled
+          - 0
+        - - failed_to_restart
+          - "Failed to restart"
+          - 0
+        - - total
+          - Total
+          - 8
+        - - skipped
+          - Skipped
+          - 0
+      label: Resources
+      name: resources
+  logs: 
+    - !ruby/object:Puppet::Util::Log
+      time: 2013-12-08 10:09:39.184390 -05:00
+      level: !ruby/sym info
+      source: Puppet
+      tags: 
+        - info
+      message: "Retrieving plugin"
+    - !ruby/object:Puppet::Util::Log
+      time: 2013-12-08 10:09:40.337793 -05:00
+      level: !ruby/sym info
+      source: Puppet
+      tags: 
+        - info
+      message: "Caching catalog for synapse"
+    - !ruby/object:Puppet::Util::Log
+      time: 2013-12-08 10:09:40.430229 -05:00
+      level: !ruby/sym info
+      source: Puppet
+      tags: 
+        - info
+      message: "Applying configuration version '1386515380'"
+    - !ruby/object:Puppet::Util::Log
+      line: 3
+      time: 2013-12-08 10:09:40.437162 -05:00
+      file: /etc/puppet/manifests/site.pp
+      level: !ruby/sym notice
+      source: /Stage[main]//File[/tmp/test]/ensure
+      tags: 
+        - notice
+        - file
+        - class
+      message: "current_value absent, should be file (noop)"
+    - !ruby/object:Puppet::Util::Log
+      time: 2013-12-08 10:09:40.445441 -05:00
+      level: !ruby/sym notice
+      source: Class[Main]
+      tags: 
+        - notice
+        - completed_class
+        - main
+      message: "Would have triggered 'refresh' from 1 events"
+    - !ruby/object:Puppet::Util::Log
+      time: 2013-12-08 10:09:40.449101 -05:00
+      level: !ruby/sym notice
+      source: Stage[main]
+      tags: 
+        - notice
+        - completed_stage
+        - main
+      message: "Would have triggered 'refresh' from 1 events"
+    - !ruby/object:Puppet::Util::Log
+      time: 2013-12-08 10:09:40.520114 -05:00
+      level: !ruby/sym notice
+      source: Puppet
+      tags: 
+        - notice
+      message: "Finished catalog run in 0.11 seconds"
+  environment: production
+  transaction_uuid: "713645f0-7248-47ec-a34d-da226075f503"
+  host: synapse
+  configuration_version: 1386515380

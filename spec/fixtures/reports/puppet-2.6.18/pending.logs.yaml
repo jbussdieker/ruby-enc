@@ -1,0 +1,17 @@
+--- 
+  - !ruby/sym time: 2013-12-08 11:38:24.476455 -05:00
+    !ruby/sym level: !ruby/sym info
+    !ruby/sym message: "Caching catalog for synapse"
+    !ruby/sym source: Puppet
+  - !ruby/sym time: 2013-12-08 11:38:24.500064 -05:00
+    !ruby/sym level: !ruby/sym info
+    !ruby/sym message: "Applying configuration version '1386515380'"
+    !ruby/sym source: Puppet
+  - !ruby/sym time: 2013-12-08 11:38:24.501601 -05:00
+    !ruby/sym level: !ruby/sym notice
+    !ruby/sym message: "current_value absent, should be file (noop)"
+    !ruby/sym source: /Stage[main]//File[/tmp/test]/ensure
+  - !ruby/sym time: 2013-12-08 11:38:24.518545 -05:00
+    !ruby/sym level: !ruby/sym notice
+    !ruby/sym message: "Finished catalog run in 0.02 seconds"
+    !ruby/sym source: Puppet
