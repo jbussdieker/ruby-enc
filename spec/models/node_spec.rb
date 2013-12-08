@@ -23,4 +23,34 @@ describe Node do
     node = FactoryGirl.create(:node)
     node.to_s.should == node.name
   end
+
+  context "dependents" do
+    before(:each) do
+      @node = FactoryGirl.create(:node_with_dependents)
+    end
+
+    it "deletes reports" do
+      expect {
+        @node.destroy
+      }.to change(Report, :count).by(-5)
+    end
+
+    it "deletes report logs" do
+      expect {
+        @node.destroy
+      }.to change(ReportLog, :count).by(-25)
+    end
+
+    it "deletes metrics" do
+      expect {
+        @node.destroy
+      }.to change(Metric, :count).by(-25)
+    end
+
+    it "deletes resource statuses" do
+      expect {
+        @node.destroy
+      }.to change(ResourceStatus, :count).by(-25)
+    end
+  end
 end
