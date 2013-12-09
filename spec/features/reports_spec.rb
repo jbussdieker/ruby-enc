@@ -6,17 +6,15 @@ describe 'Reports' do
       report = FactoryGirl.create(:report_with_dependents)
       visit reports_path
 
-      within('#reports') do
-        click_link report.id
-      end
+      first("#report-#{report.id} a").click
 
-      expect(page).to have_content "Report: #{report.name}"
+      expect(page).to have_content "Report: "
 
       expect {
         click_link 'Delete'
         alert = page.driver.browser.switch_to.alert
         alert.accept
-        expect(page).to_not have_content report.id
+        expect(page).to_not have_selector("#report-#{report.id}")
       }.to change(Report, :count).by(-1)
     end
   end
