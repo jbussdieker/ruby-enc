@@ -5,12 +5,6 @@ describe NodeGroup do
     FactoryGirl.create(:node_group).should be_valid
   end
 
-  it "orders by ascending name" do
-    group_one = FactoryGirl.create(:node_group, name: "foo")
-    group_two = FactoryGirl.create(:node_group, name: "bar")
-    NodeGroup.all.should eq [group_two, group_one]
-  end
-
   it "does not allow duplicate names" do
     node_group = FactoryGirl.create(:node_group)
     FactoryGirl.build(:node_group, name: node_group.name).should_not be_valid

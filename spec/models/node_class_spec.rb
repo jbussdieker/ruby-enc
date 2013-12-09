@@ -5,12 +5,6 @@ describe NodeClass do
     FactoryGirl.create(:node_class).should be_valid
   end
 
-  it "orders by ascending name" do
-    class_one = FactoryGirl.create(:node_class, name: "foo")
-    class_two = FactoryGirl.create(:node_class, name: "bar")
-    NodeClass.all.should eq [class_two, class_one]
-  end
-
   it "does not allow duplicate names" do
     node_class = FactoryGirl.create(:node_class)
     FactoryGirl.build(:node_class, name: node_class.name).should_not be_valid
