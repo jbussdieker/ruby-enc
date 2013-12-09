@@ -1,6 +1,6 @@
 <tr id="report-<%= report.id %>">
   <td><%= link_to node_report_time(report.time), report %></td>
   <td><%= link_to report.node, report.node %></td>
-  <td><%= report.environment %></td>
+  <td class="hidden-xs"><%= report.environment %></td>
   <td><%= node_status_badge(report) %></td>
 </tr>
