@@ -50,7 +50,7 @@ module ReportProcessing
 
   def parse_resource_statuses
     parsed.resource_statuses.collect do |name, status|
-      if status.changed or status.failed
+      if status and (status.changed or status.failed)
         {
           :title => name,
           :is_changed => status.changed,
