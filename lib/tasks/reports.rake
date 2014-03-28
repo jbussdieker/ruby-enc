@@ -3,7 +3,7 @@ namespace :report do
   task :clean => [:environment] do
     include ActionView::Helpers::TextHelper
 
-    reports = ReportCleaning.new.clean
+    reports = ReportCleaning.new(ENV["AGE"].to_i.days.ago).clean
     puts "Cleaned #{pluralize(reports.count, 'report')}"
   end
 end
