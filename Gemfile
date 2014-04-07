@@ -12,7 +12,7 @@ gem 'chartkick'
 gem 'groupdate'
 gem 'rails-bootstrap', '~> 3.0.0'
 gem 'kaminari'
-
+gem 'coveralls', require: false
 
 # Gems used only for assets and not required
 # in production environments by default.
