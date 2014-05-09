@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131207182112) do
+ActiveRecord::Schema.define(:version => 20140509184854) do
 
   create_table "metrics", :force => true do |t|
     t.integer  "report_id",                                 :null => false
@@ -64,6 +64,7 @@ ActiveRecord::Schema.define(:version => 20131207182112) do
     t.integer  "last_inspect_report_id"
     t.datetime "created_at",                                :null => false
     t.datetime "updated_at",                                :null => false
+    t.string   "environment"
   end
 
   add_index "nodes", ["name"], :name => "index_nodes_on_name", :unique => true
