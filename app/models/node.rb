@@ -1,7 +1,7 @@
 class Node < ActiveRecord::Base
   include PuppetDB::Node
 
-  attr_accessible :name, :description, :status, :reported_at, :last_apply_report_id
+  attr_accessible :name, :description, :status, :environment, :reported_at, :last_apply_report_id
   attr_accessible :parameters_attributes
   attr_accessible :node_group_memberships_attributes
   attr_accessible :node_class_memberships_attributes
@@ -35,6 +35,10 @@ class Node < ActiveRecord::Base
     name
   end
 
+  def environment
+    super.to_s.empty? ? "production" : super
+  end
+
   def to_yaml
     all_classes = node_classes.collect {|node_class| node_class.name}
     all_parameters = {}
@@ -50,6 +54,7 @@ class Node < ActiveRecord::Base
     {
       "classes" => all_classes,
       "name" => name,
+      "environment" => environment,
       "parameters" => all_parameters
     }.to_yaml
   end
