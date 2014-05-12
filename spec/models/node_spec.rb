@@ -53,4 +53,34 @@ describe Node do
       }.to change(ResourceStatus, :count).by(-25)
     end
   end
+
+  describe "environment" do
+    subject { node.environment }
+
+    context "when nil" do
+      let(:node) { FactoryGirl.create(:node, environment: nil) }
+      it { should == "production" }
+    end
+
+    context "when stage" do
+      let(:node) { FactoryGirl.create(:node, environment: "stage") }
+      it { should == "stage" }
+    end
+  end
+
+  describe "to_yaml" do
+    subject { node.to_yaml }
+
+    context "basic node" do
+      let(:node) { FactoryGirl.create(:node, name: "example.com") }
+      let(:result) {
+"--- 
+  classes: []
+  name: example.com
+  environment: production
+  parameters: {}"
+      }
+      it { should == result }
+    end
+  end
 end
