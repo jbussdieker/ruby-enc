@@ -1,8 +1,9 @@
 # ENC Dashboard
 
 [![Build Status](https://travis-ci.org/jbussdieker/ruby-enc.png?branch=master)](https://travis-ci.org/jbussdieker/ruby-enc)
-[![Coverage Status](https://coveralls.io/repos/jbussdieker/ruby-enc/badge.png)](https://coveralls.io/r/jbussdieker/ruby-enc)
 [![Code Climate](https://codeclimate.com/github/jbussdieker/ruby-enc.png)](https://codeclimate.com/github/jbussdieker/ruby-enc)
+[![Coverage Status](https://coveralls.io/repos/jbussdieker/ruby-enc/badge.png)](https://coveralls.io/r/jbussdieker/ruby-enc)
+[![Dependency Status](https://gemnasium.com/jbussdieker/ruby-enc.svg)](https://gemnasium.com/jbussdieker/ruby-enc)
 
 Drop in replacement for Puppet Dashboard. Completely rewritten in Rails 3 with support for sqlite3, mysql2 and postgres.
 
