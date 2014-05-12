@@ -5,12 +5,12 @@ script:
   - RAILS_ENV=test bundle exec rake db:create
   - RAILS_ENV=test bundle exec rake db:migrate --trace
   - bundle exec rake db:test:prepare
-  - bundle exec rake spec
+  - bundle exec rspec -t ~js
 env:
   - DB=sqlite3
   - DB=mysql2
   - DB=pg
 rvm:
-  - 1.9.2
   - 1.9.3
   - 2.0.0
+  - 2.1.1

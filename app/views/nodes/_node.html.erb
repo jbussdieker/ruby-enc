@@ -1,5 +1,6 @@
 <tr>
   <td><%= link_to node, node %></td>
   <td class="hidden-xs"><%= node_status_badge(node) %></td>
+  <td class="hidden-xs"><%= node.environment %></td>
   <td class="hidden-xs"><%= node_report_time(node.reported_at) %></td>
 </tr>
