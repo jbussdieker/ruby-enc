@@ -66,4 +66,44 @@ describe NodeGroupsController do
       response.should redirect_to NodeGroup.last
     end
   end
+
+  describe "PUT #update" do
+    before :each do
+      @node_group = FactoryGirl.create(:node_group, name: 'foo')
+    end
+
+    context "valid attributes" do
+      it "located the requested @node_group" do
+        put :update, id: @node_group, node: FactoryGirl.attributes_for(:node_group)
+        assigns(:node_group).should eq(@node_group)
+      end
+
+      it "changes @node_group's attributes" do
+        put :update, id: @node_group, 
+          node_group: FactoryGirl.attributes_for(:node_group, name: 'bar')
+        @node_group.reload
+        @node_group.name.should eq('bar')
+      end
+
+      it "redirects to show updated node group" do
+        put :update, id: @node_group, node: FactoryGirl.attributes_for(:node_group)
+        response.should redirect_to NodeGroup.last
+      end
+    end
+  end
+
+  describe "DELETE #destroy" do
+    it "deletes the node group" do
+      node_group = FactoryGirl.create(:node_group)
+      expect {
+        delete :destroy, id: node_group
+      }.to change(NodeGroup, :count).by(-1)
+    end
+
+    it "redirects back to #index" do
+      node_group = FactoryGirl.create(:node_group)
+      delete :destroy, id: node_group
+      response.should redirect_to node_groups_path
+    end
+  end
 end

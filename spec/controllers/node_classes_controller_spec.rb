@@ -94,15 +94,15 @@ describe NodeClassesController do
 
   describe "DELETE #destroy" do
     it "deletes the node class" do
-      node = FactoryGirl.create(:node_class)
+      node_class = FactoryGirl.create(:node_class)
       expect {
-        delete :destroy, id: node
+        delete :destroy, id: node_class
       }.to change(NodeClass, :count).by(-1)
     end
 
     it "redirects back to #index" do
-      node = FactoryGirl.create(:node_class)
-      delete :destroy, id: node
+      node_class = FactoryGirl.create(:node_class)
+      delete :destroy, id: node_class
       response.should redirect_to node_classes_path
     end
   end
