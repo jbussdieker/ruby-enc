@@ -66,4 +66,44 @@ describe NodeClassesController do
       response.should redirect_to NodeClass.last
     end
   end
+
+  describe "PUT #update" do
+    before :each do
+      @node_class = FactoryGirl.create(:node_class, name: 'foo')
+    end
+
+    context "valid attributes" do
+      it "located the requested @node_class" do
+        put :update, id: @node_class, node: FactoryGirl.attributes_for(:node_class)
+        assigns(:node_class).should eq(@node_class)
+      end
+
+      it "changes @node_class's attributes" do
+        put :update, id: @node_class, 
+          node_class: FactoryGirl.attributes_for(:node_class, name: 'bar')
+        @node_class.reload
+        @node_class.name.should eq('bar')
+      end
+
+      it "redirects to show updated node class" do
+        put :update, id: @node_class, node: FactoryGirl.attributes_for(:node_class)
+        response.should redirect_to NodeClass.last
+      end
+    end
+  end
+
+  describe "DELETE #destroy" do
+    it "deletes the node class" do
+      node = FactoryGirl.create(:node_class)
+      expect {
+        delete :destroy, id: node
+      }.to change(NodeClass, :count).by(-1)
+    end
+
+    it "redirects back to #index" do
+      node = FactoryGirl.create(:node_class)
+      delete :destroy, id: node
+      response.should redirect_to node_classes_path
+    end
+  end
 end
