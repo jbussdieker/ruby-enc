@@ -34,15 +34,7 @@ class NodeGroupsController < ApplicationController
   def create
     @node_group = NodeGroup.new(params[:node_group])
 
-    respond_to do |format|
-      if @node_group.save
-        format.html { redirect_to @node_group, notice: 'Node group was successfully created.' }
-        format.json { render json: @node_group, status: :created, location: @node_group }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @node_group.errors, status: :unprocessable_entity }
-      end
-    end
+    render_create(@node_group)
   end
 
   def update

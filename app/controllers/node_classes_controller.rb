@@ -30,15 +30,7 @@ class NodeClassesController < ApplicationController
   def create
     @node_class = NodeClass.new(params[:node_class])
 
-    respond_to do |format|
-      if @node_class.save
-        format.html { redirect_to @node_class, notice: 'Node class was successfully created.' }
-        format.json { render json: @node_class, status: :created, location: @node_class }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @node_class.errors, status: :unprocessable_entity }
-      end
-    end
+    render_create(@node_class)
   end
 
   def update
