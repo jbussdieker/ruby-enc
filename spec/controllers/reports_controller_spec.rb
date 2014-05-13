@@ -30,22 +30,24 @@ describe ReportsController do
     end
   end
 
-  describe "GET #report_history" do
-    let(:time) { Time.parse("2014-01-01 23:59:00 +0000") }
-    let(:result) { { time.to_date => 1 } }
+  if ENV["DB"] != "sqlite3"
+    describe "GET #report_history" do
+      let(:time) { Time.parse("2014-01-01 23:59:00 +0000") }
+      let(:result) { { time.to_date => 1 } }
 
-    before :each do
-      @report = FactoryGirl.create(:report, time: time)
-    end
+      before :each do
+        @report = FactoryGirl.create(:report, time: time)
+      end
 
-    it "assigns the requested report to @report" do
-      get :report_history
-      assigns(:history).should eq(result)
-    end
+      it "assigns the requested report to @report" do
+        get :report_history
+        assigns(:history).should eq(result)
+      end
 
-    it "renders the #show view" do
-      get :report_history
-      response.body.should == result.to_json
+      it "renders the #show view" do
+        get :report_history
+        response.body.should == result.to_json
+      end
     end
   end
 
