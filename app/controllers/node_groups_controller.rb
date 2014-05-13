@@ -38,15 +38,7 @@ class NodeGroupsController < ApplicationController
   end
 
   def update
-    respond_to do |format|
-      if @node_group.update_attributes(params[:node_group])
-        format.html { redirect_to @node_group, notice: 'Node group was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @node_group.errors, status: :unprocessable_entity }
-      end
-    end
+    render_update(@node_group, params[:node_group])
   end
 
   def destroy

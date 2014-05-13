@@ -34,15 +34,7 @@ class NodeClassesController < ApplicationController
   end
 
   def update
-    respond_to do |format|
-      if @node_class.update_attributes(params[:node_class])
-        format.html { redirect_to @node_class, notice: 'Node class was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @node_class.errors, status: :unprocessable_entity }
-      end
-    end
+    render_update(@node_class, params[:node_class])
   end
 
   def destroy

@@ -14,4 +14,15 @@ class ApplicationController < ActionController::Base
       end
     end
   end
+
+  def render_update(model, params)
+    respond_to do |format|
+      if model.update_attributes(params)
+        format.html { redirect_to model, notice: "#{model.class.model_name.titleize} was successfully updated." }
+        format.json { head :no_content }
+      else
+        format.html { render action: "edit" }
+        format.json { render json: model.errors, status: :unprocessable_entity }
+      end
+    end
 end
