@@ -31,7 +31,7 @@ describe ReportsController do
   end
 
   describe "GET #report_history" do
-    let(:time) { Time.now }
+    let(:time) { Time.parse("2014-01-01 23:59:00 +0000") }
     let(:result) { { time.to_date => 1 } }
 
     before :each do

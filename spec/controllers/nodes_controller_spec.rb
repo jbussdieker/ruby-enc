@@ -117,15 +117,30 @@ describe NodesController do
   end
 
   describe "POST #create" do
-    it "creates a new node" do
-      expect {
+    context "with valid attributes" do
+      it "creates a new node" do
+        expect {
+          post :create, node: FactoryGirl.attributes_for(:node)
+        }.to change(Node, :count).by(1)
+      end
+
+      it "redirects to the new node" do
         post :create, node: FactoryGirl.attributes_for(:node)
-      }.to change(Node, :count).by(1)
+        response.should redirect_to Node.last
+      end
     end
 
-    it "renders the #edit view" do
-      post :create, node: FactoryGirl.attributes_for(:node)
-      response.should redirect_to Node.last
+    context "with invalid attributes" do
+      it "does not create a new node" do
+        expect {
+          post :create, node: FactoryGirl.attributes_for(:invalid_node)
+        }.to_not change(Node, :count)
+      end
+
+      it "renders the #new view" do
+        post :create, node: FactoryGirl.attributes_for(:invalid_node)
+        response.should render_template :new
+      end
     end
   end
 
@@ -134,7 +149,7 @@ describe NodesController do
       @node = FactoryGirl.create(:node, description: 'foo')
     end
 
-    context "valid attributes" do
+    context "with valid attributes" do
       it "located the requested @node" do
         put :update, id: @node, node: FactoryGirl.attributes_for(:node)
         assigns(:node).should eq(@node)
@@ -150,6 +165,25 @@ describe NodesController do
       it "redirects to show new node" do
         put :update, id: @node, node: FactoryGirl.attributes_for(:node)
         response.should redirect_to Node.last
+      end
+    end
+
+    context "with invalid attributes" do
+      it "located the requested @node" do
+        put :update, id: @node, node: FactoryGirl.attributes_for(:invalid_node)
+        assigns(:node).should eq(@node)
+      end
+
+      it "does not change @node's attributes" do
+        put :update, id: @node, 
+          node: FactoryGirl.attributes_for(:invalid_node, description: 'bar')
+        @node.reload
+        @node.description.should eq('foo')
+      end
+
+      it "renders the #edit view" do
+        put :update, id: @node, node: FactoryGirl.attributes_for(:invalid_node)
+        response.should render_template :edit
       end
     end
   end

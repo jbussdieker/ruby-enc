@@ -3,6 +3,10 @@ FactoryGirl.define do
     name { Faker::Lorem.word }
   end
 
+  factory :invalid_node, parent: :node do
+    name { nil }
+  end
+
   factory :unreported_node, parent: :node do
     reported_at { nil }
   end
@@ -21,13 +25,24 @@ FactoryGirl.define do
     end
   end
 
-  factory :node_with_dependents, parent: :node do
+  factory :node_with_all_dependents, parent: :node do
+    after(:create) do |node|
+      create(:parameter, parameterable: node)
+      create(:report_with_dependents, node: node)
+      node_class = create(:node_class)
+      create(:node_class_membership, node_class: node_class, node: node)
+      node_group = create(:node_group_with_parameters)
+      create(:node_group_membership, node_group: node_group, node: node)
+    end
+  end
+
+  factory :node_with_reports, parent: :node do
     ignore do
       report_count 5
     end
 
     after(:create) do |node, evaluator|
-      FactoryGirl.create_list(:report_with_dependents, evaluator.report_count, node: node)
+      create_list(:report_with_dependents, evaluator.report_count, node: node)
     end
   end
 

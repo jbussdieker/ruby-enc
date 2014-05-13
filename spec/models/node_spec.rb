@@ -26,7 +26,7 @@ describe Node do
 
   context "dependents" do
     before(:each) do
-      @node = FactoryGirl.create(:node_with_dependents)
+      @node = FactoryGirl.create(:node_with_reports)
     end
 
     it "deletes reports" do
@@ -81,6 +81,12 @@ describe Node do
   parameters: {}"
       }
       it { should == result }
+    end
+
+    context "normal node" do
+      let(:node) { FactoryGirl.create(:node_with_all_dependents, name: "example.com") }
+
+      it { should be_kind_of String }
     end
   end
 end
