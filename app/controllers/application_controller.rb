@@ -3,6 +3,13 @@ class ApplicationController < ActionController::Base
 
   private
 
+  def render_index(collection)
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: collection }
+    end
+  end
+
   def render_create(model)
     respond_to do |format|
       if model.save

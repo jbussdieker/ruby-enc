@@ -5,12 +5,7 @@ class NodeGroupsController < ApplicationController
   def index
     @node_groups = NodeGroup.order(sort_column + " " + sort_direction)
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @node_groups.to_json(:include => {
-        :parameters => {}
-      }) }
-    end
+    render_index(@node_groups)
   end
 
   def show
@@ -18,9 +13,7 @@ class NodeGroupsController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @node_group.to_json(:include => {
-        :parameters => {}
-      }) }
+      format.json { render json: @node_group }
     end
   end
 

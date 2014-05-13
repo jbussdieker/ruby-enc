@@ -5,10 +5,7 @@ class NodesController < ApplicationController
   def index
     @nodes = Node.order(sort_column + " " + sort_direction)
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @nodes }
-    end
+    render_index(@nodes)
   end
 
   def show
