@@ -3,8 +3,8 @@ FactoryGirl.define do
     association :report
   end
 
-  factory :fake_metric, parent: :metric do
-    category { Faker::Lorem.word }
+  factory :time_metric, parent: :metric do
+    category { "Time" }
     name { Faker::Lorem.word }
     value { Faker::Number.digit }
   end

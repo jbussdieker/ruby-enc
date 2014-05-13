@@ -16,7 +16,7 @@ FactoryGirl.define do
     end
 
     after(:create) do |report, evaluator|
-      create_list(:fake_metric, evaluator.metric_count, report: report)
+      create_list(:time_metric, evaluator.metric_count, report: report)
       create_list(:fake_report_log, evaluator.report_log_count, report: report)
       create_list(:fake_resource_status, evaluator.resource_status_count, report: report)
     end

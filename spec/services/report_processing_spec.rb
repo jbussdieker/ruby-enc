@@ -8,6 +8,52 @@ describe ReportProcessing do
     @dummy.extend(ReportProcessing)
   end
 
+  describe 'delete_file' do
+    subject { @dummy.delete_file }
+    before { @dummy.stub(:filename).and_return("file") }
+
+    context 'when filename exists' do
+      before { File.stub(:exists?).and_return(true) }
+
+      it 'deletes the file' do
+        File.should_receive(:delete)
+        subject
+      end
+    end
+
+    context 'when filename does not exist' do
+      before { File.stub(:exists?).and_return(false) }
+
+      it 'does not delete the file' do
+        File.should_not_receive(:delete)
+        subject
+      end
+    end
+  end
+
+  describe 'write' do
+    let(:data) { "foobar" }
+    let(:file) { double.as_null_object }
+    subject { @dummy.write(data) }
+    before { @dummy.stub(:filename).and_return("file") }
+
+    it 'writes to the file' do
+      File.should_receive(:open).and_yield(file)
+      file.should_receive(:write).with(data)
+      subject
+    end
+  end
+
+  describe 'raw_report' do
+    subject { @dummy.raw_report }
+    before { @dummy.stub(:filename).and_return("file") }
+
+    it 'should read the file' do
+      File.should_receive(:read).with("file")
+      subject
+    end
+  end
+
   describe '#spool_path' do
     it 'Uses the config setting if present' do
       ENC_CONFIG.should_receive(:[]).with(:spool_path).and_return("/path/to")
