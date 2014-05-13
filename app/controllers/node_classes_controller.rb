@@ -17,12 +17,12 @@ class NodeClassesController < ApplicationController
   end
 
   def create
-    @node_class = NodeClass.new(params[:node_class])
+    @node_class = NodeClass.new(node_class_params)
     render_create(@node_class)
   end
 
   def update
-    render_update(@node_class, params[:node_class])
+    render_update(@node_class, node_class_params)
   end
 
   def destroy
@@ -33,6 +33,10 @@ class NodeClassesController < ApplicationController
 
   def set_node_class
     @node_class = NodeClass.find_by_name(params[:id])
+  end
+
+  def node_class_params
+    params.require(:node_class).permit(:name)
   end
 
   def sort_column

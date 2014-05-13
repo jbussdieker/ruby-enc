@@ -1,5 +1,4 @@
 class Report < ActiveRecord::Base
-  attr_accessible :node_id, :status, :environment, :time
   belongs_to :node
 
   has_many :report_logs, :dependent => :delete_all

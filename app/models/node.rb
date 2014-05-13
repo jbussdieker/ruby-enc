@@ -1,8 +1,6 @@
 class Node < ActiveRecord::Base
   include PuppetDB::Node
 
-  attr_accessible :name, :description, :status, :environment, :reported_at, :last_apply_report_id, :parameters_attributes, :node_group_memberships_attributes, :node_class_memberships_attributes
-
   has_many :reports, :dependent => :destroy
 
   has_many :node_group_memberships, :dependent => :destroy

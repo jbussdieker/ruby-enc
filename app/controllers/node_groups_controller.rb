@@ -17,12 +17,12 @@ class NodeGroupsController < ApplicationController
   end
 
   def create
-    @node_group = NodeGroup.new(params[:node_group])
+    @node_group = NodeGroup.new(node_group_params)
     render_create(@node_group)
   end
 
   def update
-    render_update(@node_group, params[:node_group])
+    render_update(@node_group, node_group_params)
   end
 
   def destroy
@@ -33,6 +33,10 @@ class NodeGroupsController < ApplicationController
 
   def set_node_group
     @node_group = NodeGroup.find_by_name(params[:id])
+  end
+
+  def node_group_params
+    params.require(:node_group).permit(:name, parameters_attributes: [ :key, :value, :_destroy ])
   end
 
   def sort_column

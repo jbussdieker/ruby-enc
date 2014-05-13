@@ -1,4 +1,4 @@
-Enc::Application.routes.draw do
+Rails.application.routes.draw do
   resources :nodes, :id => /[A-Za-z0-9\-\.]+?/, :format => /json|csv|xml|yaml/ do
     member do
       get 'facts'

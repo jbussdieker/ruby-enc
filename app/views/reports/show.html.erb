@@ -4,7 +4,7 @@
   <div class="panel-body">
     <div class="btn-toolbar">
       <%= link_to "Back", @report.node ? node_path(@report.node) : reports_path, :class => 'btn btn-sm btn-default' %>
-      <%= link_to "Delete", @report, :method => :delete, :confirm => "Are you sure?", :class => 'btn btn-sm btn-danger pull-right' %>
+      <%= link_to "Delete", @report, :method => :delete, data: { confirm: "Are you sure?" }, :class => 'btn btn-sm btn-danger pull-right' %>
     </div>
 
     <br>

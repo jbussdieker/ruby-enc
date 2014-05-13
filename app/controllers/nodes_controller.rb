@@ -23,12 +23,12 @@ class NodesController < ApplicationController
   end
 
   def create
-    @node = Node.new(params[:node])
+    @node = Node.new(node_params)
     render_create(@node)
   end
 
   def update
-    render_update(@node, params[:node])
+    render_update(@node, node_params)
   end
 
   def destroy
@@ -86,7 +86,7 @@ class NodesController < ApplicationController
   def resource_times
     @report = @node.reports.order("time DESC").first
     if @report
-      @metrics = @report.metrics.where(:category => "Time")
+      @metrics = @report.metrics.where(:category => "Time").to_a
       @metrics.reject! {|n| n.name == "Total"}
       @metrics = @metrics.collect {|n| [n.name, n.value]}
     else
@@ -99,6 +99,10 @@ class NodesController < ApplicationController
 
   def set_node
     @node = Node.find_by_name(params[:id])
+  end
+
+  def node_params
+    params.require(:node).permit(:name, :environment, :description, parameters_attributes: [ :id, :key, :value, :_destroy ], node_group_memberships_attributes: [ :id, :node_group_id, :_destroy ], node_class_memberships_attributes: [ :id, :node_class_id, :_destroy ])
   end
 
   def sort_column
