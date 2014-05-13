@@ -25,4 +25,14 @@ class ApplicationController < ActionController::Base
         format.json { render json: model.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def render_destroy(model)
+    model.destroy
+
+    respond_to do |format|
+      format.html { redirect_to polymorphic_path(model.class) }
+      format.json { head :no_content }
+    end
+  end
 end

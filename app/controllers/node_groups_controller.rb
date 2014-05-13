@@ -42,12 +42,7 @@ class NodeGroupsController < ApplicationController
   end
 
   def destroy
-    @node_group.destroy
-
-    respond_to do |format|
-      format.html { redirect_to node_groups_path }
-      format.json { head :no_content }
-    end
+    render_destroy(@node_group)
   end
 
   private

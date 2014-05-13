@@ -38,12 +38,7 @@ class NodeClassesController < ApplicationController
   end
 
   def destroy
-    @node_class.destroy
-
-    respond_to do |format|
-      format.html { redirect_to node_classes_path }
-      format.json { head :no_content }
-    end
+    render_destroy(@node_class)
   end
 
   private
