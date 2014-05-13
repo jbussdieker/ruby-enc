@@ -11,10 +11,7 @@ class NodeClassesController < ApplicationController
   def show
     @nodes = @node_class.nodes.order(sort_column + " " + sort_direction)
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @node_class }
-    end
+    render_show(@node_class)
   end
 
   def new

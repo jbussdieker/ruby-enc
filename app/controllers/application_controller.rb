@@ -10,6 +10,13 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def render_show(model)
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: model }
+    end
+  end
+
   def render_create(model)
     respond_to do |format|
       if model.save
