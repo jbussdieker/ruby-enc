@@ -49,7 +49,7 @@ class NodesController < ApplicationController
         format.json { render json: @node.errors, status: :unprocessable_entity }
       end
     end
- end
+  end
 
   def update
     respond_to do |format|
