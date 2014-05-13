@@ -83,10 +83,20 @@ describe NodesController do
   end
 
   describe "GET #resource_times" do
-    it "assigns the requested node to @node" do
-      node = FactoryGirl.create(:node_with_all_dependents)
-      get :resource_times, id: node
-      assigns(:node).should eq(node)
+    context "with report" do
+      it "assigns the requested node to @node" do
+        node = FactoryGirl.create(:node_with_all_dependents)
+        get :resource_times, id: node
+        assigns(:node).should eq(node)
+      end
+    end
+
+    context "without report" do
+      it "assigns the requested node to @node" do
+        node = FactoryGirl.create(:node)
+        get :resource_times, id: node
+        assigns(:node).should eq(node)
+      end
     end
   end
 
