@@ -5,9 +5,6 @@ class ReportsController < ApplicationController
     @reports = Report.order("time DESC").page params[:page]
   end
 
-  def show
-  end
-
   def report_history
     @history = Report.group_by_day(:time).count
 

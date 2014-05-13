@@ -4,13 +4,11 @@ class NodeClassesController < ApplicationController
 
   def index
     @node_classes = NodeClass.order(sort_column + " " + sort_direction)
-
     render_index(@node_classes)
   end
 
   def show
     @nodes = @node_class.nodes.order(sort_column + " " + sort_direction)
-
     render_show(@node_class)
   end
 
@@ -18,12 +16,8 @@ class NodeClassesController < ApplicationController
     @node_class = NodeClass.new
   end
 
-  def edit
-  end
-
   def create
     @node_class = NodeClass.new(params[:node_class])
-
     render_create(@node_class)
   end
 

@@ -4,29 +4,20 @@ class NodeGroupsController < ApplicationController
 
   def index
     @node_groups = NodeGroup.order(sort_column + " " + sort_direction)
-
     render_index(@node_groups)
   end
 
   def show
     @nodes = @node_group.nodes.order(sort_column + " " + sort_direction)
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @node_group }
-    end
+    render_show(@node_group)
   end
 
   def new
     @node_group = NodeGroup.new
   end
 
-  def edit
-  end
-
   def create
     @node_group = NodeGroup.new(params[:node_group])
-
     render_create(@node_group)
   end
 
