@@ -1,10 +1,11 @@
 class ReportsController < ApplicationController
+  before_filter :set_report, only: [:show, :parse, :destroy]
+
   def index
     @reports = Report.order("time DESC").page params[:page]
   end
 
   def show
-    @report = Report.find(params[:id])
   end
 
   def report_history
@@ -22,13 +23,11 @@ class ReportsController < ApplicationController
   end
 
   def parse
-    @report = Report.find(params[:id])
     @report.parse
     redirect_to reports_path
   end
 
   def destroy
-    @report = Report.find(params[:id])
     @report.destroy
     redirect_to reports_path
   end
@@ -39,5 +38,11 @@ class ReportsController < ApplicationController
     report.parse
 
     render :text => "OK"
+  end
+
+  private
+
+  def set_report
+    @report = Report.find(params[:id])
   end
 end

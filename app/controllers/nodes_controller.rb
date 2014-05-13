@@ -1,5 +1,6 @@
 class NodesController < ApplicationController
   helper_method :sort_column, :sort_direction
+  before_filter :set_node, only: [:show, :edit, :update, :destroy, :facts, :resources, :status_history, :resource_times]
 
   def index
     @nodes = Node.order(sort_column + " " + sort_direction)
@@ -15,7 +16,6 @@ class NodesController < ApplicationController
   end
 
   def show
-    @node = Node.find_by_name(params[:id])
     @reports = @node.reports.order("time DESC").page params[:page]
 
     respond_to do |format|
@@ -35,7 +35,6 @@ class NodesController < ApplicationController
   end
 
   def edit
-    @node = Node.find_by_name(params[:id])
   end
 
   def create
@@ -53,8 +52,6 @@ class NodesController < ApplicationController
  end
 
   def update
-    @node = Node.find_by_name(params[:id])
- 
     respond_to do |format|
       if @node.update_attributes(params[:node])
         format.html { redirect_to @node, notice: 'Node was successfully updated.' }
@@ -67,7 +64,6 @@ class NodesController < ApplicationController
   end
 
   def destroy
-    @node = Node.find_by_name(params[:id])
     @node.destroy
 
     respond_to do |format|
@@ -107,8 +103,6 @@ class NodesController < ApplicationController
   end
 
   def facts
-    @node = Node.find_by_name(params[:id])
-
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @node.facts }
@@ -116,8 +110,6 @@ class NodesController < ApplicationController
   end
 
   def resources
-    @node = Node.find_by_name(params[:id])
-
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @node.resources }
@@ -125,12 +117,10 @@ class NodesController < ApplicationController
   end
 
   def status_history
-    @node = Node.find_by_name(params[:id])
     render :json => @node.reports.where("time > '#{Time.now - 60*60*24}'").group(:status).count
   end
 
   def resource_times
-    @node = Node.find_by_name(params[:id])
     @report = @node.reports.order("time DESC").first
     if @report
       @metrics = @report.metrics.where(:category => "Time")
@@ -143,6 +133,10 @@ class NodesController < ApplicationController
   end
 
   private
+
+  def set_node
+    @node = Node.find_by_name(params[:id])
+  end
 
   def sort_column
     Node.column_names.include?(params[:sort]) ? params[:sort] : "reported_at"

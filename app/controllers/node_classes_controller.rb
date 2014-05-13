@@ -1,5 +1,6 @@
 class NodeClassesController < ApplicationController
   helper_method :sort_column, :sort_direction
+  before_filter :set_node_class, only: [:show, :edit, :update, :destroy]
 
   def index
     @node_classes = NodeClass.order(sort_column + " " + sort_direction)
@@ -11,7 +12,6 @@ class NodeClassesController < ApplicationController
   end
 
   def show
-    @node_class = NodeClass.find_by_name(params[:id])
     @nodes = @node_class.nodes.order(sort_column + " " + sort_direction)
 
     respond_to do |format|
@@ -25,7 +25,6 @@ class NodeClassesController < ApplicationController
   end
 
   def edit
-    @node_class = NodeClass.find_by_name(params[:id])
   end
 
   def create
@@ -43,8 +42,6 @@ class NodeClassesController < ApplicationController
   end
 
   def update
-    @node_class = NodeClass.find_by_name(params[:id])
-
     respond_to do |format|
       if @node_class.update_attributes(params[:node_class])
         format.html { redirect_to @node_class, notice: 'Node class was successfully updated.' }
@@ -57,7 +54,6 @@ class NodeClassesController < ApplicationController
   end
 
   def destroy
-    @node_class = NodeClass.find_by_name(params[:id])
     @node_class.destroy
 
     respond_to do |format|
@@ -67,6 +63,10 @@ class NodeClassesController < ApplicationController
   end
 
   private
+
+  def set_node_class
+    @node_class = NodeClass.find_by_name(params[:id])
+  end
 
   def sort_column
     params[:sort] || "name"

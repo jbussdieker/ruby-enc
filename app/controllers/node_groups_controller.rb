@@ -1,5 +1,6 @@
 class NodeGroupsController < ApplicationController
   helper_method :sort_column, :sort_direction
+  before_filter :set_node_group, only: [:show, :edit, :update, :destroy]
 
   def index
     @node_groups = NodeGroup.order(sort_column + " " + sort_direction)
@@ -13,7 +14,6 @@ class NodeGroupsController < ApplicationController
   end
 
   def show
-    @node_group = NodeGroup.find_by_name(params[:id])
     @nodes = @node_group.nodes.order(sort_column + " " + sort_direction)
 
     respond_to do |format|
@@ -29,7 +29,6 @@ class NodeGroupsController < ApplicationController
   end
 
   def edit
-    @node_group = NodeGroup.find_by_name(params[:id])
   end
 
   def create
@@ -47,8 +46,6 @@ class NodeGroupsController < ApplicationController
   end
 
   def update
-    @node_group = NodeGroup.find_by_name(params[:id])
-
     respond_to do |format|
       if @node_group.update_attributes(params[:node_group])
         format.html { redirect_to @node_group, notice: 'Node group was successfully updated.' }
@@ -61,7 +58,6 @@ class NodeGroupsController < ApplicationController
   end
 
   def destroy
-    @node_group = NodeGroup.find_by_name(params[:id])
     @node_group.destroy
 
     respond_to do |format|
@@ -71,6 +67,10 @@ class NodeGroupsController < ApplicationController
   end
 
   private
+
+  def set_node_group
+    @node_group = NodeGroup.find_by_name(params[:id])
+  end
 
   def sort_column
     params[:sort] || "name"
