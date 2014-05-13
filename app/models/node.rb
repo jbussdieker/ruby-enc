@@ -31,6 +31,17 @@ class Node < ActiveRecord::Base
   validates :name, :uniqueness => true
   validates_presence_of :name
 
+  def serializable_hash(options={})
+    options = { 
+      :include => {
+        :parameters => {},
+        :node_groups => {},
+        :node_classes => {}
+      }
+    }.update(options)
+    super(options)
+  end
+
   def to_s
     name
   end
