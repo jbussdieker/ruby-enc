@@ -8,14 +8,18 @@ class ReportsController < ApplicationController
   end
 
   def report_history
-    @history = Report.group_by_day(:time).count
+    begin
+      @history = Report.group_by_day(:time).count
 
-    # TODO: There has to be a better way
-    @history.reject! {|k,v| k == nil}
-    @history = @history.inject({}) do |o, (k,v)|
-      kk = Time.parse(k.to_s)
-      o[kk.to_date] = v
-      o
+      # TODO: There has to be a better way
+      @history.reject! {|k,v| k == nil}
+      @history = @history.inject({}) do |o, (k,v)|
+        kk = Time.parse(k.to_s)
+        o[kk.to_date] = v
+        o
+      end
+    rescue RuntimeError => e
+      @history = {}
     end
 
     render :json => @history
