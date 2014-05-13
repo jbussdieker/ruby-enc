@@ -47,24 +47,31 @@ class Node < ActiveRecord::Base
     super.to_s.empty? ? "production" : super
   end
 
-  def to_yaml
-    all_classes = node_classes.collect {|node_class| node_class.name}
-    all_parameters = {}
-    node_groups.each do |node_group|
-      node_group.parameters.each do |parameter|
-        all_parameters[parameter.key] = parameter.value
+
+  def collapse_parameters
+    {}.tap do |params|
+      node_groups.each do |node_group|
+        node_group.parameters.each do |parameter|
+          params[parameter.key] = parameter.value
+        end
+      end
+      parameters.each do |parameter|
+        params[parameter.key] = parameter.value
       end
     end
-    parameters.each do |parameter|
-      all_parameters[parameter.key] = parameter.value
-    end
+  end
 
+  def to_hash
     {
-      "classes" => all_classes,
       "name" => name,
       "environment" => environment,
-      "parameters" => all_parameters
-    }.to_yaml
+      "classes" => node_classes.collect(&:name),
+      "parameters" => collapse_parameters
+    }
+  end
+
+  def to_yaml
+    to_hash.to_yaml
   end
 
   def to_param
