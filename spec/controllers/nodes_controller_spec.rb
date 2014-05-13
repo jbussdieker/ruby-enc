@@ -1,16 +1,24 @@
 require 'spec_helper'
 
 describe NodesController do
+  let(:node) { FactoryGirl.create(:node) }
+
   describe "GET #index" do
     it "populates an array of nodes" do
-      node = FactoryGirl.create(:node)
+      node
       get :index
       assigns(:nodes).should eq([node])
     end
 
     it "renders the #index view" do
+      node
       get :index
       response.should render_template :index
+    end
+
+    it "renders json" do
+      node
+      get :index, format: :json
     end
   end
 
@@ -34,27 +42,27 @@ describe NodesController do
 
   describe "GET #show" do
     it "assigns the requested node to @node" do
-      node = FactoryGirl.create(:node)
       get :show, id: node
       assigns(:node).should eq(node)
     end
 
     it "renders the #show view" do
-      node = FactoryGirl.create(:node)
       get :show, id: node
       response.should render_template :show
+    end
+
+    it "renders json" do
+      get :show, id: node, format: :json
     end
   end
 
   describe "GET #facts" do
     it "assigns the requested node to @node" do
-      node = FactoryGirl.create(:node)
       get :facts, id: node
       assigns(:node).should eq(node)
     end
 
     it "renders the #facts view" do
-      node = FactoryGirl.create(:node)
       get :facts, id: node
       response.should render_template :facts
     end
@@ -62,13 +70,11 @@ describe NodesController do
 
   describe "GET #resources" do
     it "assigns the requested node to @node" do
-      node = FactoryGirl.create(:node)
       get :resources, id: node
       assigns(:node).should eq(node)
     end
 
     it "renders the #resources view" do
-      node = FactoryGirl.create(:node)
       get :resources, id: node
       response.should render_template :resources
     end
@@ -76,7 +82,6 @@ describe NodesController do
 
   describe "GET #status_history" do
     it "assigns the requested node to @node" do
-      node = FactoryGirl.create(:node)
       get :status_history, id: node
       assigns(:node).should eq(node)
     end
@@ -84,8 +89,9 @@ describe NodesController do
 
   describe "GET #resource_times" do
     context "with report" do
+      let(:node) { FactoryGirl.create(:node_with_all_dependents) }
+
       it "assigns the requested node to @node" do
-        node = FactoryGirl.create(:node_with_all_dependents)
         get :resource_times, id: node
         assigns(:node).should eq(node)
       end
@@ -93,7 +99,6 @@ describe NodesController do
 
     context "without report" do
       it "assigns the requested node to @node" do
-        node = FactoryGirl.create(:node)
         get :resource_times, id: node
         assigns(:node).should eq(node)
       end
@@ -114,13 +119,11 @@ describe NodesController do
 
   describe "GET #edit" do
     it "assigns the requested node to @node" do
-      node = FactoryGirl.create(:node)
       get :edit, id: node
       assigns(:node).should eq(node)
     end
 
     it "renders the #edit view" do
-      node = FactoryGirl.create(:node)
       get :edit, id: node
       response.should render_template :edit
     end
@@ -200,14 +203,13 @@ describe NodesController do
 
   describe "DELETE #destroy" do
     it "deletes the node" do
-      node = FactoryGirl.create(:node)
+      node
       expect {
         delete :destroy, id: node
       }.to change(Node, :count).by(-1)
     end
 
     it "redirects back to #index" do
-      node = FactoryGirl.create(:node)
       delete :destroy, id: node
       response.should redirect_to nodes_path
     end

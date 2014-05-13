@@ -12,6 +12,11 @@ describe NodeGroupsController do
       get :index
       response.should render_template :index
     end
+
+    it "renders json" do
+      node_group = FactoryGirl.create(:node_group)
+      get :index, format: :json
+    end
   end
 
   describe "GET #show" do
@@ -25,6 +30,11 @@ describe NodeGroupsController do
       node_group = FactoryGirl.create(:node_group)
       get :show, id: node_group
       response.should render_template :show
+    end
+
+    it "renders json" do
+      node_group = FactoryGirl.create(:node_group)
+      get :show, id: node_group, format: :json
     end
   end
 
