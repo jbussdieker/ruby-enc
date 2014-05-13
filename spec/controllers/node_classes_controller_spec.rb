@@ -89,7 +89,7 @@ describe NodeClassesController do
 
     context "with valid attributes" do
       it "located the requested @node_class" do
-        put :update, id: @node_class, node: FactoryGirl.attributes_for(:node_class)
+        put :update, id: @node_class, node_class: FactoryGirl.attributes_for(:node_class)
         assigns(:node_class).should eq(@node_class)
       end
 
