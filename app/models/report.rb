@@ -1,6 +1,4 @@
 class Report < ActiveRecord::Base
-  include ::ReportProcessing
-
   attr_accessible :node_id, :status, :environment, :time
   belongs_to :node
 

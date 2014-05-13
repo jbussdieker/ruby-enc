@@ -1,10 +1,14 @@
-module ReportProcessing
+class ReportProcessing
+  def initialize(report)
+    @report = report
+  end
+
   def spool_path
     ENC_CONFIG[:spool_path] || File.expand_path("../../../spool", __FILE__)
   end
 
   def filename
-    File.join(spool_path, "report-#{id}.yaml")
+    File.join(spool_path, "report-#{@report.id}.yaml")
   end
 
   def delete_file
@@ -75,23 +79,23 @@ module ReportProcessing
 
   def parse
     node_name = parsed.name
-    node = Node.find_or_create_by_name(node_name)
 
-    report_logs.create(parse_logs)
-    metrics.create(parse_metrics)
-    resource_statuses.create(parse_resource_statuses)
+    @report.node = Node.find_or_create_by_name(node_name)
+    @report.report_logs.create(parse_logs)
+    @report.metrics.create(parse_metrics)
+    @report.resource_statuses.create(parse_resource_statuses)
 
-    update_attributes(
-      :node_id     => node.id,
+    @report.update_attributes(
+      :node_id     => @report.node.id,
       :status      => parse_status,
       :environment => parsed.environment,
       :time        => parsed.time
     )
 
-    node.update_attributes(
+    @report.node.update_attributes(
       :status               => parse_status,
       :reported_at          => parsed.time,
-      :last_apply_report_id => id
+      :last_apply_report_id => @report.id
     )
 
     delete_file

@@ -1,11 +1,12 @@
 require 'spec_helper.rb'
-
-class Dummy; end
+require 'tempfile'
 
 describe ReportProcessing do
+  let(:report) { FactoryGirl.create(:report) }
+  let(:report_processing) { ReportProcessing.new(report) }
+
   before(:each) do
-    @dummy = Dummy.new
-    @dummy.extend(ReportProcessing)
+    @dummy = report_processing
   end
 
   describe 'delete_file' do
@@ -54,7 +55,7 @@ describe ReportProcessing do
     end
   end
 
-  describe '#spool_path' do
+  describe 'spool_path' do
     it 'Uses the config setting if present' do
       ENC_CONFIG.should_receive(:[]).with(:spool_path).and_return("/path/to")
       @dummy.spool_path.should eql('/path/to')
@@ -66,7 +67,7 @@ describe ReportProcessing do
     end
   end
 
-  describe '#filename' do
+  describe 'filename' do
     before(:each) do
       @id = Faker::Number.number(3)
       @dummy.stub(:id).and_return(@id)
@@ -79,7 +80,34 @@ describe ReportProcessing do
 
     it 'Generates the proper path' do
       @dummy.should_receive(:spool_path).and_return("/")
-      @dummy.filename.should eql("/report-#{@id}.yaml")
+      @dummy.filename.should eql("/report-#{report.id}.yaml")
+    end
+  end
+
+  describe 'parse' do
+    before :each do
+      file = Tempfile.new('parsetest')
+      file.write(File.read("spec/fixtures/reports/puppet-3.3.2/changed.yaml"))
+      file.rewind
+      @dummy.stub(:filename).and_return(file.path)
+    end
+
+    it "creates 5 report logs" do
+      expect {
+        @dummy.parse
+      }.to change(ReportLog, :count).by(5)
+    end
+
+    it "creates 16 metrics" do
+      expect {
+        @dummy.parse
+      }.to change(Metric, :count).by(16)
+    end
+
+    it "creates 1 resource statuses" do
+      expect {
+        @dummy.parse
+      }.to change(ResourceStatus, :count).by(1)
     end
   end
 
