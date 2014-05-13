@@ -55,15 +55,30 @@ describe NodeClassesController do
   end
 
   describe "POST #create" do
-    it "creates a new node_class" do
-      expect {
+    context "with valid attributes" do
+      it "creates a new node_class" do
+        expect {
+          post :create, node_class: FactoryGirl.attributes_for(:node_class)
+        }.to change(NodeClass, :count).by(1)
+      end
+
+      it "redirects to the new node class" do
         post :create, node_class: FactoryGirl.attributes_for(:node_class)
-      }.to change(NodeClass, :count).by(1)
+        response.should redirect_to NodeClass.last
+      end
     end
 
-    it "renders the #edit view" do
-      post :create, node_class: FactoryGirl.attributes_for(:node_class)
-      response.should redirect_to NodeClass.last
+    context "with invalid attributes" do
+      it "does not create a new node_class" do
+        expect {
+          post :create, node_class: FactoryGirl.attributes_for(:invalid_node_class)
+        }.to_not change(NodeClass, :count)
+      end
+
+      it "renders the #new view" do
+        post :create, node_class: FactoryGirl.attributes_for(:invalid_node_class)
+        response.should render_template :new
+      end
     end
   end
 
@@ -72,7 +87,7 @@ describe NodeClassesController do
       @node_class = FactoryGirl.create(:node_class, name: 'foo')
     end
 
-    context "valid attributes" do
+    context "with valid attributes" do
       it "located the requested @node_class" do
         put :update, id: @node_class, node: FactoryGirl.attributes_for(:node_class)
         assigns(:node_class).should eq(@node_class)
@@ -86,8 +101,21 @@ describe NodeClassesController do
       end
 
       it "redirects to show updated node class" do
-        put :update, id: @node_class, node: FactoryGirl.attributes_for(:node_class)
+        put :update, id: @node_class, node_class: FactoryGirl.attributes_for(:node_class)
         response.should redirect_to NodeClass.last
+      end
+    end
+
+    context "with invalid attributes" do
+      it "does not update the node_class" do
+        put :update, id: @node_class, node_class: FactoryGirl.attributes_for(:invalid_node_class)
+        @node_class.reload
+        @node_class.name.should eq('foo')
+      end
+
+      it "renders the #edit view" do
+        put :update, id: @node_class, node_class: FactoryGirl.attributes_for(:invalid_node_class)
+        response.should render_template :edit
       end
     end
   end

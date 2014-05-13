@@ -55,15 +55,34 @@ describe NodeGroupsController do
   end
 
   describe "POST #create" do
-    it "creates a new node_group" do
-      expect {
-        post :create, node_group: FactoryGirl.attributes_for(:node_group)
-      }.to change(NodeGroup, :count).by(1)
+    context "with valid attributes" do
+      let(:attributes) { FactoryGirl.attributes_for(:node_group) }
+
+      it "creates a new node_group" do
+        expect {
+          post :create, node_group: attributes
+        }.to change(NodeGroup, :count).by(1)
+      end
+
+      it "renders the #edit view" do
+        post :create, node_group: attributes
+        response.should redirect_to NodeGroup.last
+      end
     end
 
-    it "renders the #edit view" do
-      post :create, node_group: FactoryGirl.attributes_for(:node_group)
-      response.should redirect_to NodeGroup.last
+    context "with invalid attributes" do
+      let(:attributes) { FactoryGirl.attributes_for(:invalid_node_group) }
+
+      it "does not create a new node_group" do
+        expect {
+          post :create, node_group: attributes
+        }.to_not change(NodeGroup, :count)
+      end
+
+      it "renders the #new view" do
+        post :create, node_group: attributes
+        response.should render_template :new
+      end
     end
   end
 
@@ -72,22 +91,38 @@ describe NodeGroupsController do
       @node_group = FactoryGirl.create(:node_group, name: 'foo')
     end
 
-    context "valid attributes" do
+    context "with valid attributes" do
+      let(:attributes) { FactoryGirl.attributes_for(:node_group, name: 'bar') }
+
       it "located the requested @node_group" do
-        put :update, id: @node_group, node: FactoryGirl.attributes_for(:node_group)
+        put :update, id: @node_group, node_group: attributes
         assigns(:node_group).should eq(@node_group)
       end
 
       it "changes @node_group's attributes" do
-        put :update, id: @node_group, 
-          node_group: FactoryGirl.attributes_for(:node_group, name: 'bar')
+        put :update, id: @node_group, node_group: attributes
         @node_group.reload
         @node_group.name.should eq('bar')
       end
 
       it "redirects to show updated node group" do
-        put :update, id: @node_group, node: FactoryGirl.attributes_for(:node_group)
+        put :update, id: @node_group, node_group: attributes
         response.should redirect_to NodeGroup.last
+      end
+    end
+
+    context "with invalid attributes" do
+      let(:attributes) { FactoryGirl.attributes_for(:invalid_node_group) }
+
+      it "does not change @node_group's attributes" do
+        put :update, id: @node_group, node_group: attributes
+        @node_group.reload
+        @node_group.name.should eq('foo')
+      end
+
+      it "renders the #edit view" do
+        put :update, id: @node_group, node_group: attributes
+        response.should render_template :edit
       end
     end
   end
