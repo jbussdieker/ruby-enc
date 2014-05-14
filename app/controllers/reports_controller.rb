@@ -1,5 +1,5 @@
 class ReportsController < ApplicationController
-  before_filter :set_report, only: [:show, :parse, :destroy]
+  before_filter :set_report, only: [:show, :destroy]
 
   def index
     @reports = Report.order("time DESC").page params[:page]
@@ -19,11 +19,6 @@ class ReportsController < ApplicationController
     render :json => @history
   end
 
-  def parse
-    @report.parse
-    redirect_to reports_path
-  end
-
   def destroy
     @report.destroy
     redirect_to reports_path
@@ -31,8 +26,9 @@ class ReportsController < ApplicationController
 
   def upload
     report = Report.create
-    report.write(request.raw_post)
-    report.parse
+    processor = ReportProcessing.new(report)
+    processor.write(request.raw_post)
+    processor.parse
 
     render :text => "OK"
   end

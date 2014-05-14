@@ -51,28 +51,6 @@ describe ReportsController do
     end
   end
 
-  describe "GET #parse" do
-    before :each do
-      @report = FactoryGirl.create(:report)
-      Report.any_instance.stub(:parse)
-    end
-
-    it "assigns the requested report to @report" do
-      get :parse, id: @report
-      assigns(:report).should eq(@report)
-    end
-
-    it "parses the report" do
-      Report.any_instance.should_receive(:parse)
-      get :parse, id: @report
-    end
-
-    it "redirects back to #index" do
-      get :parse, id: @report
-      response.should redirect_to reports_path
-    end
-  end
-
   describe "DELETE #destroy" do
     before :each do
       @report = FactoryGirl.create(:report)
@@ -91,9 +69,10 @@ describe ReportsController do
   end
 
   describe "POST #upload" do
-    before :each do
-      Report.any_instance.stub(:write)
-      Report.any_instance.stub(:parse)
+    let(:report_data) { File.read("spec/fixtures/reports/puppet-3.3.2/changed.yaml") }
+
+    before do
+      @request.env['RAW_POST_DATA'] = report_data
     end
 
     it "creates a report" do
@@ -102,14 +81,22 @@ describe ReportsController do
       }.to change(Report, :count).by(1)
     end
 
-    it "writes the report" do
-      Report.any_instance.should_receive(:write)
-      post :upload
+    it "creates report logs" do
+      expect {
+        post :upload
+      }.to change(ReportLog, :count).by(5)
     end
 
-    it "parses the report" do
-      Report.any_instance.should_receive(:parse)
-      post :upload
+    it "creates resource statuses" do
+      expect {
+        post :upload
+      }.to change(ResourceStatus, :count).by(1)
+    end
+
+    it "creates metrics" do
+      expect {
+        post :upload
+      }.to change(Metric, :count).by(16)
     end
 
     it "returns OK" do
