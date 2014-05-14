@@ -71,35 +71,32 @@ describe Node do
   describe "collapse_parameters" do
     let(:node) { FactoryGirl.create(:node, name: "mynode") }
     let(:node_group) { FactoryGirl.create(:node_group, name: "mygroup") }
+    let(:global_parameter) { FactoryGirl.create(:parameter, key: "a", value: 0) }
     let(:node_parameter) { FactoryGirl.create(:parameter, key: "a", value: 1) }
     let(:group_parameter) { FactoryGirl.create(:parameter, key: "b", value: 2) }
     subject { node.collapse_parameters }
 
-    context "minimal" do
-      it { should be_kind_of Hash }
-      it { should == {} }
-    end
+    it { should be_kind_of Hash }
+    it { should == {} }
 
-    context "node with parameters" do
-      before { node.parameters << node_parameter }
-      it { should be_kind_of Hash }
-      it { should == { "a" => "1" } }
-    end
+    context "with global parameters" do
+      before { global_parameter }
+      let(:global_parameter) { FactoryGirl.create(:parameter, key: "foo", value: 0) }
 
-    context "node with group parameters" do
-      before { node.node_groups << node_group }
-      before { node_group.parameters << group_parameter }
-      it { should be_kind_of Hash }
-      it { should == { "b" => "2" } }
-    end
+      it { should == { "foo" => "0" } }
 
-    context "node with parameters and group parameters overlapping" do
-      let(:node_parameter) { FactoryGirl.create(:parameter, key: "foo", value: "bar") }
-      let(:group_parameter) { FactoryGirl.create(:parameter, key: "foo", value: "foo") }
-      before { node.node_groups << node_group }
-      before { node_group.parameters << group_parameter }
-      it { should be_kind_of Hash }
-      it { should == { "foo" => "foo" } }
+      context "with group parameters" do
+        before { node.node_groups << node_group }
+        before { FactoryGirl.create(:parameter, parameterable_type: "NodeGroup", parameterable_id: node_group.id, key: "foo", value: 1) }
+
+        it { should == { "foo" => "1" } }
+
+        context "with node parameters" do
+          before { FactoryGirl.create(:parameter, parameterable_type: "Node", parameterable_id: node.id, key: "foo", value: 2) }
+
+          it { should == { "foo" => "2" } }
+        end
+      end
     end
   end
 

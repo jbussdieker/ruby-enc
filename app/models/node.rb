@@ -50,6 +50,9 @@ class Node < ActiveRecord::Base
 
   def collapse_parameters
     {}.tap do |params|
+      Parameter.where(parameterable_id: nil).each do |parameter|
+        params[parameter.key] = parameter.value
+      end
       node_groups.each do |node_group|
         node_group.parameters.each do |parameter|
           params[parameter.key] = parameter.value
