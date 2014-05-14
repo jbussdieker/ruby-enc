@@ -17,10 +17,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def render_create(model)
+  def render_create(model, redirect = model)
     respond_to do |format|
       if model.save
-        format.html { redirect_to model, notice: "#{model.class.model_name.human} was successfully created." }
+        format.html { redirect_to redirect, notice: "#{model.class.model_name.human} was successfully created." }
         format.json { render json: model, status: :created, location: model }
       else
         format.html { render action: "new" }

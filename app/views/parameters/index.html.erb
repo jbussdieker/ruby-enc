@@ -1,0 +1,15 @@
+<div class="panel panel-default">
+  <div class="panel-heading">Parameters</div>
+
+  <div class="panel-body">
+    <table class="table table-bordered table-condensed table-striped">
+      <tr>
+        <th><%= sortable "`key`", "Key" %></th>
+        <th><%= sortable "value" %></th>
+      </tr>
+      <tbody id="parameters">
+        <%= render @parameters %>
+      </tbody>
+    </table>
+  </div>
+</div>

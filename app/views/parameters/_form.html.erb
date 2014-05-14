@@ -1,0 +1,38 @@
+<%= form_for(@parameter) do |f| %>
+  <div class="panel-body">
+    <% if @parameter.errors.any? %>
+      <div id="error_explanation">
+        <h4><%= pluralize(@parameter.errors.count, "error") %> prohibited this class from being saved:</h4>
+
+        <ul>
+        <% @parameter.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="form-group">
+      <%= f.label :key %>
+      <div class="row">
+        <div class="col-lg-6">
+          <%= f.text_field :key, :class => 'form-control' %>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :value %>
+      <div class="row">
+        <div class="col-lg-6">
+          <%= f.text_field :value, :class => 'form-control' %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel-footer">
+    <%= f.submit nil, :class => 'btn btn-sm btn-primary' %>
+    <%= link_to "Cancel", @parameter, :class => 'btn btn-sm btn-default' %>
+  </div>
+<% end %>
