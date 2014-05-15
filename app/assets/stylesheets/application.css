@@ -26,3 +26,10 @@ body {
   overflow: auto;
   font-size: 12px;
 }
+
+.log-message {
+  border: none;
+  background: none;
+  padding: 0px;
+  margin: 0px;
+}

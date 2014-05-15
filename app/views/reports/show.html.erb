@@ -11,12 +11,23 @@
 
     <div class="tabbable">
       <ul class="nav nav-tabs">
-        <li class="active"><a href="#metrics" data-toggle="tab">Metrics</a></li>
-        <li><a href="#log" data-toggle="tab">Log</a></li>
+        <li class="active"><a href="#log" data-toggle="tab">Log</a></li>
+        <li><a href="#metrics" data-toggle="tab">Metrics</a></li>
         <li><a href="#events" data-toggle="tab">Events</a></li>
       </ul>
       <div class="tab-content">
-        <div class="tab-pane active" id="metrics">
+        <div class="tab-pane active" id="log">
+          <table class="table table-bordered table-condensed table-striped">
+            <% @report.report_logs.each do |log| %>
+              <% c = "success" if log.level == "info" %>
+              <% c = "danger" if log.level == "err" or log.level == "warning" %>
+              <tr class="<%= c %>">
+                <td><pre class="log-message"><%= log.time %>: <%= log.level.sub("err", "error").capitalize %>: <%= log.source + ": " unless log.source == "Puppet" %><%= log.message %></pre></td>
+              </tr>
+            <% end %>
+          </table>
+        </div>
+        <div class="tab-pane" id="metrics">
           <% @report.metrics.select("distinct(category)").each do |category| %>
             <table class="table table-bordered table-condensed table-striped">
               <tr>
@@ -31,24 +42,6 @@
               <% end %>
             </table>
           <% end %>
-        </div>
-        <div class="tab-pane" id="log">
-          <table class="table table-bordered table-condensed table-striped">
-            <tr>
-              <th>Time</th>
-              <th>Level</th>
-              <th>Message</th>
-              <th>Source</th>
-            </tr>
-            <% @report.report_logs.each do |log| %>
-              <tr>
-                <td><%= log.time %></td>
-                <td><%= log.level %></td>
-                <td><%= log.message %></td>
-                <td><%= log.source %></td>
-              </tr>
-            <% end %>
-          </table>
         </div>
         <div class="tab-pane" id="events">
           <table class="table table-bordered table-condensed table-striped">
