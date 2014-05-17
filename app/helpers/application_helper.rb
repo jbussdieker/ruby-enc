@@ -17,4 +17,11 @@ module ApplicationHelper
     end
     link_to_function(name, "add_fields(this, \"#{association}\", \"#{escape_javascript(fields)}\")", :class => 'btn btn-sm btn-primary')
   end
+
+  def current_url(new_params)
+    options = params.dup
+    options.merge!(new_params)
+    string = options.map{ |k,v| "#{k}=#{v}" }.join("&")
+    request.fullpath.split("?")[0] + "?" + string
+  end
 end

@@ -4,3 +4,10 @@
     <%= render 'nodes/list' %>
   </div>
 </div>
+<script>
+  $(function() {
+    setInterval(function(){
+      $.getScript("<%= current_url(format: :js) %>");
+    }, 30000);
+  });
+</script>

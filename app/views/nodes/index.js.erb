@@ -1,0 +1,5 @@
+$('#sidebar').html('<%= escape_javascript(render 'layouts/sidebar') %>')
+$('#nodes').html('<%= escape_javascript(render @nodes) %>')
+$("tr[data-link]").click(function() {
+  window.location = $(this).data("link");
+});
