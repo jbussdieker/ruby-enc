@@ -13,6 +13,7 @@ Enc::Application.routes.draw do
       get 'changed'
       get 'unchanged'
       get 'unreported'
+      get 'sidebar'
     end
   end
   resources :node_groups
