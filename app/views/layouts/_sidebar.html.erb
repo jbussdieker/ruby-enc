@@ -76,10 +76,3 @@
     <%= link_to "Add Class", new_node_class_path, :class => 'btn btn-primary btn-xs' %>
   </div>
 </div>
-<script>
-  $(function() {
-    setInterval(function(){
-      $.getScript("<%= sidebar_nodes_path(format: :js) %>");
-    }, 15000);
-  });
-</script>
