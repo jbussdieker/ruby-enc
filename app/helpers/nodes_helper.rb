@@ -7,6 +7,19 @@ module NodesHelper
     end
   end
 
+  def puppet_agent_status(node)
+    status = @puppet_agent.status[node.name]
+
+    case status
+      when "idling"
+        content_tag(:span, status, :class => 'label label-default')
+      when "running"
+        content_tag(:span, status, :class => 'label label-warning')
+      else
+        content_tag(:span, "offline", :class => 'label label-danger')
+    end
+  end
+
   def node_status_badge(node)
     if node.status
       case node.status

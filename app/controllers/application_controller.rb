@@ -1,7 +1,13 @@
 class ApplicationController < ActionController::Base
+  before_filter :set_puppet_agent
+
   protect_from_forgery
 
   private
+
+  def set_puppet_agent
+    @puppet_agent = PuppetAgent.new
+  end
 
   def render_index(collection)
     respond_to do |format|
