@@ -1,6 +1,6 @@
 class NodesController < ApplicationController
   helper_method :sort_column, :sort_direction
-  before_filter :set_node, only: [:show, :edit, :update, :destroy, :facts, :resources, :status_history, :resource_times, :enable, :disable]
+  before_filter :set_node, only: [:show, :edit, :update, :destroy, :facts, :resources, :status_history, :resource_times, :enable, :disable, :runonce]
 
   def index
     @nodes = Node.order(sort_column + " " + sort_direction)
@@ -102,6 +102,11 @@ class NodesController < ApplicationController
 
   def disable
     @puppet_agent.disable(@node)
+    redirect_to :back
+  end
+
+  def runonce
+    @puppet_agent.runonce(@node)
     redirect_to :back
   end
 

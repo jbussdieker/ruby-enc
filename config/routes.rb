@@ -7,6 +7,7 @@ Enc::Application.routes.draw do
       get 'resource_times'
       get 'enable'
       get 'disable'
+      get 'runonce'
     end
     collection do
       get 'unresponsive'

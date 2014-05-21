@@ -28,11 +28,11 @@ module NodesHelper
         end +
         content_tag(:ul, class: 'dropdown-menu', role: 'menu') do
           if status == "disabled"
-            content_tag(:li, link_to("Enable", enable_node_path(node)))
+            content_tag(:li, link_to("Enable", enable_node_path(node))) +
+            content_tag(:li, link_to("Run Once", runonce_node_path(node)))
           elsif status == "idling"
-            content_tag(:li, link_to("Disable", disable_node_path(node)))
-          else
-            content_tag(:li, link_to("test", root_path))
+            content_tag(:li, link_to("Disable", disable_node_path(node))) +
+            content_tag(:li, link_to("Run Once", runonce_node_path(node)))
           end
         end
       end

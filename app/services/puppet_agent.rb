@@ -28,6 +28,14 @@ class PuppetAgent
     end
   end
 
+  def runonce(fqdn)
+    rpcclient("puppetd").tap do |mc|
+      mc.progress = false
+      mc.fact_filter "fqdn", fqdn
+      mc.runonce
+    end
+  end
+
   def enable(fqdn)
     rpcclient("puppetd").tap do |mc|
       mc.progress = false
