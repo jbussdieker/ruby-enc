@@ -8,6 +8,7 @@ gem 'rails', '3.2.18'
 db = ENV["DB"] || "pg"
 gem db
 gem 'puppet'
+gem 'mcollective-client'
 gem 'chartkick'
 gem 'groupdate'
 gem 'rails-bootstrap', '~> 3.0.0'

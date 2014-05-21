@@ -1,6 +1,6 @@
 class NodesController < ApplicationController
   helper_method :sort_column, :sort_direction
-  before_filter :set_node, only: [:show, :edit, :update, :destroy, :facts, :resources, :status_history, :resource_times]
+  before_filter :set_node, only: [:show, :edit, :update, :destroy, :facts, :resources, :status_history, :resource_times, :enable, :disable]
 
   def index
     @nodes = Node.order(sort_column + " " + sort_direction)
@@ -93,6 +93,16 @@ class NodesController < ApplicationController
       @metrics = []
     end
     render :json => @metrics
+  end
+
+  def enable
+    @puppet_agent.enable(@node)
+    redirect_to :back
+  end
+
+  def disable
+    @puppet_agent.disable(@node)
+    redirect_to :back
   end
 
   private

@@ -20,6 +20,22 @@ class PuppetAgent
     @results ||= get_statuses
   end
 
+  def disable(fqdn)
+    rpcclient("puppetd").tap do |mc|
+      mc.progress = false
+      mc.fact_filter "fqdn", fqdn
+      mc.disable
+    end
+  end
+
+  def enable(fqdn)
+    rpcclient("puppetd").tap do |mc|
+      mc.progress = false
+      mc.fact_filter "fqdn", fqdn
+      mc.enable
+    end
+  end
+
   private
 
   def agent

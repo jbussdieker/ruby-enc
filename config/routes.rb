@@ -5,6 +5,8 @@ Enc::Application.routes.draw do
       get 'resources'
       get 'status_history'
       get 'resource_times'
+      get 'enable'
+      get 'disable'
     end
     collection do
       get 'unresponsive'
