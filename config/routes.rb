@@ -32,4 +32,5 @@ Enc::Application.routes.draw do
   end
   resources :parameters, only: [:index, :new, :create]
   root :to => 'nodes#index'
+  match 'moov_check' => "home#moov_check"
 end
