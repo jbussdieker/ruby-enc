@@ -17,3 +17,4 @@
 /spool
 /config/settings.yml
 /.coveralls.yml
+/.vagrant/
