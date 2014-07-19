@@ -30,6 +30,7 @@ Enc::Application.routes.draw do
       get 'report_history'
     end
   end
+  resources :report_logs, only: [:index]
   resources :parameters, only: [:index, :new, :create]
   root :to => 'nodes#index'
 end
