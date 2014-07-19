@@ -57,3 +57,4 @@ gem 'jquery-rails'
 # gem 'debugger'
 
 gem 'sidekiq'
+gem 'sidetiq'
