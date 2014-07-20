@@ -4,7 +4,7 @@ class ReportProcessing
   end
 
   def spool_path
-    ENC_CONFIG[:spool_path] || File.expand_path("../../../spool", __FILE__)
+    Enc.config.spool_path || File.expand_path("../../../spool", __FILE__)
   end
 
   def filename

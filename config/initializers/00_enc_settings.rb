@@ -1,11 +1,12 @@
 module Enc
   class Config
-    attr_accessor :puppetdb_host, :puppetdb_port
+    attr_accessor :puppetdb_host, :puppetdb_port, :spool_path
 
     def initialize
       config = load_config || {}
-      puppetdb_host = config[:puppetdb_host]
-      puppetdb_port = config[:puppetdb_port]
+      puppetdb_host = config[:puppetdb].try([:host])
+      puppetdb_port = config[:puppetdb].try([:port])
+      spool_path = config[:spool_path]
     end
 
     def config_file

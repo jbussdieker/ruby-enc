@@ -57,12 +57,12 @@ describe ReportProcessing do
 
   describe 'spool_path' do
     it 'Uses the config setting if present' do
-      ENC_CONFIG.should_receive(:[]).with(:spool_path).and_return("/path/to")
+      Enc.config.should_receive(:spool_path).and_return("/path/to")
       @dummy.spool_path.should eql('/path/to')
     end
 
     it 'Falls back to the project directory' do
-      ENC_CONFIG.should_receive(:[]).with(:spool_path).and_return(nil)
+      Enc.config.should_receive(:spool_path).and_return(nil)
       @dummy.spool_path.should eql(File.join(Rails.root, 'spool'))
     end
   end
