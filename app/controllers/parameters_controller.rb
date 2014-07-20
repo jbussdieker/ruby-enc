@@ -18,7 +18,7 @@ class ParametersController < ApplicationController
   private
 
   def sort_column
-    params[:sort] || "'key'"
+    ActiveRecord::Base.connection.quote_column_name(params[:sort] || "key")
   end
 
   def sort_direction
