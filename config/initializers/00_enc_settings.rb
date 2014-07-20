@@ -13,7 +13,7 @@ module Enc
     end
 
     def data
-      @data ||= load_config
+      @data ||= load_config || {}
     end
 
     def config_file
