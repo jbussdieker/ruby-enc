@@ -1,4 +1,5 @@
 Enc::Application.routes.draw do
+  mount Sidekiq::Web => '/sidekiq'
   resources :nodes, :id => /[A-Za-z0-9\-\.]+?/, :format => /json|js|csv|xml|yaml/ do
     member do
       get 'facts'

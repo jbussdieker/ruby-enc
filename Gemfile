@@ -58,3 +58,4 @@ gem 'jquery-rails'
 
 gem 'sidekiq'
 gem 'sidetiq'
+gem 'sinatra', require: false

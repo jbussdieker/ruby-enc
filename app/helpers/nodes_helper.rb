@@ -8,7 +8,7 @@ module NodesHelper
   end
 
   def puppet_agent_status(node)
-    status = @puppet_agent.status[node.name]
+    status = node.agent_status
 
     if status
       case status
