@@ -5,8 +5,9 @@ gem 'rails', '3.2.18'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-db = ENV["DB"] || "pg"
-gem db
+gem 'mysql2'
+gem 'pg'
+gem 'sqlite3'
 gem 'puppet'
 gem 'mcollective-client'
 gem 'chartkick'
