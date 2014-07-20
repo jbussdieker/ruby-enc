@@ -78,7 +78,7 @@
       </div>
     </div>
 
-    <h4>Recent reports (<%= @node.reports.count %>)</h4>
+    <h4>Recent reports (<span id="reports_count"><%= @node.reports.count %></span>)</h4>
 
     <div id="paginator">
       <%= paginate @reports, :remote => true %>
@@ -99,3 +99,10 @@
     </table>
   </div>
 </div>
+<script>
+  $(function() {
+    setInterval(function(){
+      $.getScript("<%= current_url(format: :js) %>");
+    }, 5000);
+  });
+</script>

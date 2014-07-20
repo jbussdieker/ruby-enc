@@ -21,6 +21,7 @@ class ApplicationController < ActionController::Base
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: model }
+      format.js
     end
   end
 

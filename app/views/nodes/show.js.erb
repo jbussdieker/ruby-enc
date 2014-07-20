@@ -1,2 +1,3 @@
 $('#reports').html('<%= escape_javascript render(@reports) %>');
 $('#paginator').html('<%= escape_javascript(paginate(@reports, :remote => true).to_s) %>');
+$('#reports_count').text('<%= @reports.count.to_s %>');
