@@ -3,10 +3,17 @@ module Enc
     attr_accessor :puppetdb_host, :puppetdb_port, :spool_path
 
     def initialize
-      config = load_config || {}
-      puppetdb_host = config[:puppetdb].try([:host])
-      puppetdb_port = config[:puppetdb].try([:port])
-      spool_path = config[:spool_path]
+      puppetdb_host = puppetdb[:host]
+      puppetdb_port = puppetdb[:port]
+      spool_path = data[:spool_path]
+    end
+
+    def puppetdb
+      data[:puppetdb] || {}
+    end
+
+    def data
+      @data ||= load_config
     end
 
     def config_file
@@ -15,9 +22,9 @@ module Enc
 
     def load_config
       if File.exists? config_file
-        data = YAML.load_file(config_file)
-        data = data[Rails.env] || {}
-        data.with_indifferent_access
+        parsed = YAML.load_file(config_file)
+        parsed = parsed[Rails.env] || {}
+        parsed.with_indifferent_access
       end
     end
   end
