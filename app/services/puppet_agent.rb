@@ -26,6 +26,10 @@ class PuppetAgent
       mc.fact_filter "fqdn", fqdn
       mc.disable
     end
+  rescue Exception => e
+    Rails.logger.error e.message
+    Rails.logger.error e.backtrace.join("\n")
+    nil
   end
 
   def runonce(fqdn)
@@ -34,6 +38,10 @@ class PuppetAgent
       mc.fact_filter "fqdn", fqdn
       mc.runonce
     end
+  rescue Exception => e
+    Rails.logger.error e.message
+    Rails.logger.error e.backtrace.join("\n")
+    nil
   end
 
   def enable(fqdn)
@@ -42,6 +50,10 @@ class PuppetAgent
       mc.fact_filter "fqdn", fqdn
       mc.enable
     end
+  rescue Exception => e
+    Rails.logger.error e.message
+    Rails.logger.error e.backtrace.join("\n")
+    nil
   end
 
   private
@@ -54,5 +66,9 @@ class PuppetAgent
 
   def get_statuses
     agent.status
+  rescue Exception => e
+    Rails.logger.error e.message
+    Rails.logger.error e.backtrace.join("\n")
+    nil
   end
 end

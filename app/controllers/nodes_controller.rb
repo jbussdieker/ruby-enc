@@ -96,17 +96,17 @@ class NodesController < ApplicationController
   end
 
   def enable
-    @puppet_agent.enable(@node)
+    flash[:notice] = "Failed to enable puppet on #{@node}" unless @puppet_agent.enable(@node)
     redirect_to :back
   end
 
   def disable
-    @puppet_agent.disable(@node)
+    flash[:notice] = "Failed to disable puppet on #{@node}" unless @puppet_agent.disable(@node)
     redirect_to :back
   end
 
   def runonce
-    @puppet_agent.runonce(@node)
+    flash[:notice] = "Failed to trigger puppet run on #{@node}" unless @puppet_agent.runonce(@node)
     redirect_to :back
   end
 
