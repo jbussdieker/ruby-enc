@@ -3,7 +3,7 @@ class PuppetAgent
   include MCollective::RPC
 
   def each(&block)
-    results.each { |result| yield(result) }
+    (results || []).each { |result| yield(result) }
   end
 
   def find_by_sender(sender)
