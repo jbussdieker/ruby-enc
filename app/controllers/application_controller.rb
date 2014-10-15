@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
 
   def render_index(collection)
     respond_to do |format|
-      format.html # index.html.erb
+      format.html { render 'index' } # index.html.erb
       format.json { render json: collection }
       format.js
     end
