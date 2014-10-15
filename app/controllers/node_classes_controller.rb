@@ -4,7 +4,7 @@ class NodeClassesController < ApplicationController
 
   def index
     @node_classes = NodeClass.order(sort_column + " " + sort_direction)
-    render_index(@node_classes)
+    render_collection(@node_classes)
   end
 
   def show

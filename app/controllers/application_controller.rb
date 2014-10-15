@@ -9,9 +9,9 @@ class ApplicationController < ActionController::Base
     @puppet_agent = PuppetAgent.new
   end
 
-  def render_index(collection)
+  def render_collection(collection, template = nil)
     respond_to do |format|
-      format.html { render 'index' } # index.html.erb
+      format.html { render template }
       format.json { render json: collection }
       format.js
     end

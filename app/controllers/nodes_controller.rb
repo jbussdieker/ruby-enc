@@ -4,7 +4,7 @@ class NodesController < ApplicationController
 
   def index
     @nodes = Node.order(sort_column + " " + sort_direction)
-    render_index(@nodes)
+    render_collection(@nodes)
   end
 
   def show
@@ -37,32 +37,32 @@ class NodesController < ApplicationController
 
   def unresponsive
     @nodes = Node.unresponsive.order(sort_column + " " + sort_direction)
-    render_index(@nodes)
+    render_collection(@nodes, 'index')
   end
 
   def failed
     @nodes = Node.failed.order(sort_column + " " + sort_direction)
-    render_index(@nodes)
+    render_collection(@nodes, 'index')
   end
 
   def pending
     @nodes = Node.pending.order(sort_column + " " + sort_direction)
-    render_index(@nodes)
+    render_collection(@nodes, 'index')
   end
 
   def changed
     @nodes = Node.changed.order(sort_column + " " + sort_direction)
-    render_index(@nodes)
+    render_collection(@nodes, 'index')
   end
 
   def unchanged
     @nodes = Node.unchanged.order(sort_column + " " + sort_direction)
-    render_index(@nodes)
+    render_collection(@nodes, 'index')
   end
 
   def unreported
     @nodes = Node.unreported.order(sort_column + " " + sort_direction)
-    render_index(@nodes)
+    render_collection(@nodes, 'index')
   end
 
   def facts

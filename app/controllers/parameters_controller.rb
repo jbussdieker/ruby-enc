@@ -3,7 +3,7 @@ class ParametersController < ApplicationController
 
   def index
     @parameters = Parameter.where(parameterable_id: nil).order(sort_column + " " + sort_direction)
-    render_index(@parameters)
+    render_collection(@parameters)
   end
 
   def new

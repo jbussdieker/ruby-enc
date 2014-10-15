@@ -4,7 +4,7 @@ class NodeGroupsController < ApplicationController
 
   def index
     @node_groups = NodeGroup.order(sort_column + " " + sort_direction)
-    render_index(@node_groups)
+    render_collection(@node_groups)
   end
 
   def show
