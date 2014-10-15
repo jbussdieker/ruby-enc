@@ -37,32 +37,32 @@ class NodesController < ApplicationController
 
   def unresponsive
     @nodes = Node.unresponsive.order(sort_column + " " + sort_direction)
-    render 'index'
+    render_index(@nodes)
   end
 
   def failed
     @nodes = Node.failed.order(sort_column + " " + sort_direction)
-    render 'index'
+    render_index(@nodes)
   end
 
   def pending
     @nodes = Node.pending.order(sort_column + " " + sort_direction)
-    render 'index'
+    render_index(@nodes)
   end
 
   def changed
     @nodes = Node.changed.order(sort_column + " " + sort_direction)
-    render 'index'
+    render_index(@nodes)
   end
 
   def unchanged
     @nodes = Node.unchanged.order(sort_column + " " + sort_direction)
-    render 'index'
+    render_index(@nodes)
   end
 
   def unreported
     @nodes = Node.unreported.order(sort_column + " " + sort_direction)
-    render 'index'
+    render_index(@nodes)
   end
 
   def facts
