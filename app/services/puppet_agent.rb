@@ -20,6 +20,18 @@ class PuppetAgent
     @results ||= get_statuses
   end
 
+  def node_status(fqdn)
+    mc = rpcclient("puppetd").tap do |mc|
+      mc.progress = false
+      mc.fact_filter "fqdn", fqdn
+    end
+    mc.status.first.results[:data][:status]
+  rescue Exception => e
+    Rails.logger.error e.message
+    Rails.logger.error e.backtrace.join("\n")
+    nil
+  end
+
   def disable(fqdn)
     rpcclient("puppetd").tap do |mc|
       mc.progress = false
