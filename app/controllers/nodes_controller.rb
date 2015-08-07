@@ -9,6 +9,7 @@ class NodesController < ApplicationController
 
   def show
     @reports = @node.reports.order("time DESC").page params[:page]
+    expires_in 61.minutes, :public => true
 
     respond_to do |format|
       format.html # show.html.erb
