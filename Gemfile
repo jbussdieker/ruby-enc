@@ -5,9 +5,9 @@ gem 'rails', '3.2.18'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-db = ENV["DB"] || "pg"
+db = ENV["DB"] || "sqlite3"
 gem db
-gem 'puppet'
+#gem 'puppet'
 gem 'mcollective-client'
 gem 'chartkick'
 gem 'groupdate'
@@ -26,20 +26,22 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-group :development, :test do
-  gem 'rspec-rails'
-  gem 'factory_girl_rails'
-  gem 'coveralls', require: false
-end
+#group :development, :test do
+#  gem 'rspec-rails'
+#  gem 'factory_girl_rails'
+#  gem 'coveralls', require: false
+#end
 
-group :test do
-  gem 'faker'
-  gem 'capybara'
-  gem 'selenium-webdriver'
-  gem 'database_cleaner'
-end
+#group :test do
+#  gem 'faker'
+#  gem 'capybara'
+#  gem 'selenium-webdriver'
+#  gem 'database_cleaner'
+#end
 
 gem 'jquery-rails'
+
+gem 'salt-api', '0.1.0'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

@@ -1,6 +1,5 @@
 class PuppetAgent
   include Enumerable
-  include MCollective::RPC
 
   def each(&block)
     (results || []).each { |result| yield(result) }
