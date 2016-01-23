@@ -32,6 +32,7 @@ def event_handler(event)
             skipped = true
             result = true
           elsif status['result'] == true
+            node_status = "changed"
             result = true
           else
             result = false
