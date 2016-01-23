@@ -34,6 +34,7 @@ def event_handler(event)
           elsif status['result'] == true
             node_status = "changed"
             result = true
+            node_status = "changed"
           else
             result = false
             skipped = true # Should we assume we skip failed resources?
@@ -43,7 +44,7 @@ def event_handler(event)
           @report.report_logs.create({
             :time => Time.now,
             :level => (result ? 'info' : 'err'),
-            :message => changes,
+            :message => status.to_json,
             :source => id
           })
         end
