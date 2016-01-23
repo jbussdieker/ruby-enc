@@ -82,8 +82,12 @@ while true do
     end
 
     puts "Error reading events: #{err}"
-    puts err.backtrace.join("\n") if DEBUG
-    puts "Reconnecting in 10 seconds..."
-    sleep 10
+    puts err.backtrace.join("\n")
+  rescue Exception => err
+    puts "Unhandled exception: #{err}"
+    puts err.backtrace.join("\n")
   end
+
+  puts "Reconnecting in 10 seconds..."
+  sleep 10
 end
