@@ -60,6 +60,7 @@ GEM
       stomp
       systemu
     mime-types (1.25.1)
+    minitest (5.8.4)
     multi_json (1.10.0)
     polyglot (0.3.4)
     rack (1.4.5)
@@ -123,6 +124,7 @@ DEPENDENCIES
   jquery-rails
   kaminari
   mcollective-client
+  minitest
   rails (= 3.2.18)
   rails-bootstrap (~> 3.0.0)
   salt-api (= 0.1.0)
@@ -131,4 +133,4 @@ DEPENDENCIES
   uglifier (>= 1.0.3)
 
 BUNDLED WITH
-   1.10.6
+   1.11.2

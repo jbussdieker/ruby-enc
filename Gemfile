@@ -26,11 +26,12 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-#group :development, :test do
+group :development, :test do
+  gem 'minitest'
 #  gem 'rspec-rails'
 #  gem 'factory_girl_rails'
 #  gem 'coveralls', require: false
-#end
+end
 
 #group :test do
 #  gem 'faker'
