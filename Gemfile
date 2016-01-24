@@ -42,7 +42,7 @@ end
 
 gem 'jquery-rails'
 
-gem 'salt-api', '0.1.0'
+gem 'salt-api', '0.1.1'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
