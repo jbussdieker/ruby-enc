@@ -89,7 +89,7 @@ GEM
     rake (10.3.1)
     rdoc (3.12.2)
       json (~> 1.4)
-    salt-api (0.1.0)
+    salt-api (0.1.2)
       json
     sass (3.3.7)
     sass-rails (3.2.6)
@@ -127,7 +127,7 @@ DEPENDENCIES
   minitest
   rails (= 3.2.18)
   rails-bootstrap (~> 3.0.0)
-  salt-api (= 0.1.0)
+  salt-api (= 0.1.2)
   sass-rails (~> 3.2.3)
   sqlite3
   uglifier (>= 1.0.3)
