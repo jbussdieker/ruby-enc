@@ -19,10 +19,14 @@
         <div class="tab-pane active" id="log">
           <% @report.report_logs.each do |log| %>
             <div class="panel panel-default">
-              <div class="panel-heading"><%= log.source %></div>
+              <div class="panel-heading">
+                <div class="row">
+                  <div class="col-md-8"><%= log.message["comment"] %> (<%= log.message["name"] %>)</div>
+                </div>
+              </div>
 
               <div class="panel-body">
-                <pre><code class="diff"><%= log.message %></code></pre>
+                <%= render_salt_log(log.message) %>
               </div>
             </div>
           <% end %>

@@ -24,4 +24,33 @@ module ApplicationHelper
     string = options.map{ |k,v| "#{k}=#{v}" }.join("&")
     request.fullpath.split("?")[0] + "?" + string
   end
+
+  def render_salt_log(message)
+    if message["changes"].kind_of?(Hash)
+      if message["changes"].has_key?("diff")
+        content_tag("pre") do
+          content_tag("code", class: "diff") do
+            message["changes"]["diff"]
+          end
+        end
+      elsif message["changes"].find { |k,v| v.kind_of?(Hash) && v.has_key?("diff") }
+        message["changes"].collect do |file, file_changes|
+          content_tag("div", file) +
+          content_tag("pre") do
+            content_tag("code", class: "diff") do
+              file_changes["diff"]
+            end
+          end
+        end.join().html_safe
+      else
+        content_tag("pre") do
+          content_tag("code", class: "yaml") do
+            message.to_yaml
+          end
+        end
+      end
+    else
+      "hi you must be array"
+    end
+  end
 end
