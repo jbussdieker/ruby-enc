@@ -50,7 +50,9 @@ module ApplicationHelper
         end
       end
     else
-      "hi you must be array"
+      content_tag("pre") do
+        message["error"].join("\n")
+      end
     end
   end
 end
