@@ -77,6 +77,8 @@ def event_handler(event)
   end
 end
 
+$stdout.sync = true
+
 while true do
   begin
     err = Salt::Api.events do |event|
