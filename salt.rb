@@ -16,31 +16,23 @@ def event_handler(event)
         skipped = false
 
 	if status['result'] == nil
-	  node_status = "pending" # This is terrible but assume the run is pending if we skip a resource
+          # This is terrible but assume the run is pending if we skip a resource
+	  node_status = "pending"
 	  skipped = true
 	  result = true
 	elsif status['result'] == true
 	  node_status = "changed"
 	  result = true
-          node_status = "changed"
 	else
 	  result = false
-	  skipped = true # Should we assume we skip failed resources?
+          # Should we assume we skip failed resources?
+	  skipped = true
 	  node_status = "failed"
 	end
 
 
         if status['changes'].length > 0
           ischanged = true
-          changed = true
-          changes = ""
-
-          if status['changes'].kind_of?(Hash)
-            changes = (status.reject {|k,v| k == 'diff'}).to_yaml
-            changes += status['changes']['diff'] || ""
-          else
-            changes = status['changes']
-          end
 
           @report.report_logs.create({
             :time => Time.now,
@@ -56,7 +48,6 @@ def event_handler(event)
           :skipped => skipped,
           :failed => (result == false)
         })
-
       end
     else
       node_status = "failed"
