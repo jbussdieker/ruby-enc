@@ -15,6 +15,21 @@ def event_handler(event)
         ischanged = false
         skipped = false
 
+	if status['result'] == nil
+	  node_status = "pending" # This is terrible but assume the run is pending if we skip a resource
+	  skipped = true
+	  result = true
+	elsif status['result'] == true
+	  node_status = "changed"
+	  result = true
+          node_status = "changed"
+	else
+	  result = false
+	  skipped = true # Should we assume we skip failed resources?
+	  node_status = "failed"
+	end
+
+
         if status['changes'].length > 0
           ischanged = true
           changed = true
@@ -25,20 +40,6 @@ def event_handler(event)
             changes += status['changes']['diff'] || ""
           else
             changes = status['changes']
-          end
-
-          if status['result'] == nil
-            node_status = "pending" # This is terrible but assume the run is pending if we skip a resource
-            skipped = true
-            result = true
-          elsif status['result'] == true
-            node_status = "changed"
-            result = true
-            node_status = "changed"
-          else
-            result = false
-            skipped = true # Should we assume we skip failed resources?
-            node_status = "failed"
           end
 
           @report.report_logs.create({
