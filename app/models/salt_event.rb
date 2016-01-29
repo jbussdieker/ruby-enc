@@ -13,9 +13,38 @@ class SaltEvent
     event['data']['fun'].to_s
   end
 
+  def stamp
+    event['data']['_stamp']
+  end
+
+  def args
+    event['data']['fun_args']
+  end
+
+  def test?
+    if args.find {|arg| arg["test"] == true }
+      true
+    else
+      false
+    end
+  end
+
   def results
     event['data']['return']
   end
+
+  def event_statuses
+    if results.kind_of?(Hash)
+      results.collect { |id, status| SaltEventStatus.new(id, status) }
+    else
+      []
+    end
+  end
+
+  def event_status
+    event_statuses.collect(&:result)
+  end
+
 
   def handle_state_return
     @node = Node.find_or_create_by_name(minion_id)
@@ -39,15 +68,22 @@ class SaltEvent
           result = false
           # Should we assume we skip failed resources?
           skipped = true
-          node_status = "failed"
-        end
 
+          if test?
+            node_status = "pending"
+          else
+            node_status = "failed"
+          end
+        end
 
         if status['changes'].length > 0
           ischanged = true
 
           node_status = "changed" if node_status == "unchanged" && result == true
+        end
 
+        # Only create logs for changes and failures
+        if status['changes'].length > 0 || result == false
           @report.report_logs.create({
             :time => Time.now,
             :level => (result ? 'info' : 'err'),
@@ -56,15 +92,20 @@ class SaltEvent
           })
         end
 
-        @report.resource_statuses.create({
-          :title => id,
-          :is_changed => ischanged,
-          :skipped => skipped,
-          :failed => (result == false)
-        })
+        #@report.resource_statuses.create({
+        #  :title => id,
+        #  :is_changed => ischanged,
+        #  :skipped => skipped,
+        #  :failed => (result == false)
+        #})
       end
     else
-      node_status = "failed"
+      # Failed to compile. Treat as pending for test and error for normal runs.
+      if test?
+        node_status = "pending"
+      else
+        node_status = "failed"
+      end
 
       @report.report_logs.create({
         :time => Time.now,
