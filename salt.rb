@@ -25,52 +25,52 @@ class SaltEvent
 
     if results.kind_of?(Hash)
       results.each do |id, status|
-	ischanged = false
-	skipped = false
+        ischanged = false
+        skipped = false
 
-	if status['result'] == nil
-	  # This is terrible but assume the run is pending if we skip a resource
-	  node_status = "pending" if node_status == "unchanged"
-	  skipped = true
-	  result = true
-	elsif status['result'] == true
-	  result = true
-	elsif status['result'] == false
-	  result = false
-	  # Should we assume we skip failed resources?
-	  skipped = true
-	  node_status = "failed"
-	end
+        if status['result'] == nil
+          # This is terrible but assume the run is pending if we skip a resource
+          node_status = "pending" if node_status == "unchanged"
+          skipped = true
+          result = true
+        elsif status['result'] == true
+          result = true
+        elsif status['result'] == false
+          result = false
+          # Should we assume we skip failed resources?
+          skipped = true
+          node_status = "failed"
+        end
 
 
-	if status['changes'].length > 0
-	  ischanged = true
+        if status['changes'].length > 0
+          ischanged = true
 
-	  node_status = "changed" if node_status == "unchanged" && result == true
+          node_status = "changed" if node_status == "unchanged" && result == true
 
-	  @report.report_logs.create({
-	    :time => Time.now,
-	    :level => (result ? 'info' : 'err'),
-	    :message => status.to_json,
-	    :source => id
-	  })
-	end
+          @report.report_logs.create({
+            :time => Time.now,
+            :level => (result ? 'info' : 'err'),
+            :message => status.to_json,
+            :source => id
+          })
+        end
 
-	@report.resource_statuses.create({
-	  :title => id,
-	  :is_changed => ischanged,
-	  :skipped => skipped,
-	  :failed => (result == false)
-	})
+        @report.resource_statuses.create({
+          :title => id,
+          :is_changed => ischanged,
+          :skipped => skipped,
+          :failed => (result == false)
+        })
       end
     else
       node_status = "failed"
 
       @report.report_logs.create({
-	:time => Time.now,
-	:level => 'err',
-	:message => { error: results }.to_json,
-	:source => ''
+        :time => Time.now,
+        :level => 'err',
+        :message => { error: results }.to_json,
+        :source => ''
       })
     end
 
