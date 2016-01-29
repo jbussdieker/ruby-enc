@@ -63,7 +63,7 @@ def event_handler(event)
       @report.report_logs.create({
         :time => Time.now,
         :level => 'err',
-        :message => event['data']['return'],
+        :message => { error: event['data']['return'] }.to_json,
         :source => ''
       })
     end
