@@ -2,7 +2,7 @@ def event_handler(event)
   node_name ||= event['data']['id']
 
   puts event.to_yaml
-  if event['data']['fun'] == "state.highstate" && event['data']['return'] != nil
+  if event['data']['fun'].to_s.start_with?("state.") && event['data']['return'] != nil
     puts "HIGHSTATE"
 
     @node = Node.find_or_create_by_name(node_name)
