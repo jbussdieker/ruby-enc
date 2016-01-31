@@ -51,11 +51,20 @@ class SaltEvent
     @report = Report.create(node_id: @node.id, time: Time.now)
 
     node_status = "unchanged"
+    metric_totals = Hash.new(0.0)
 
     if results.kind_of?(Hash)
       results.each do |id, status|
         ischanged = false
         skipped = false
+        resource_type, resource_id, name, action =id.split("_|-", 4)
+        category = resource_type + "." + action
+        metric_totals[category] += status["duration"]
+        @report.metrics.create(
+          category: category,
+          name: resource_id,
+          value: status["duration"]
+        )
 
         if status['result'] == nil
           # This is terrible but assume the run is pending if we skip a resource
@@ -113,6 +122,14 @@ class SaltEvent
         :message => { error: results }.to_json,
         :source => ''
       })
+    end
+
+    metric_totals.each do |name, value|
+      @report.metrics.create(
+        category: name,
+        name: "Total",
+        value: value
+      )
     end
 
     @report.update_attributes(:status => node_status)
