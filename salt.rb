@@ -1,3 +1,12 @@
+pid_file = File.join(Rails.root, "tmp", "pids", "worker.pid")
+File.open(pid_file, 'w') do |f|
+  f.write($$)
+end
+
+at_exit do
+  File.delete(pid_file)
+end
+
 $stdout.sync = true
 
 while true do
@@ -19,3 +28,4 @@ while true do
   puts "Reconnecting in 10 seconds..."
   sleep 10
 end
+
