@@ -57,7 +57,7 @@ class SaltEvent
       results.each do |id, status|
         ischanged = false
         skipped = false
-        resource_type, resource_id, name, action =id.split("_|-", 4)
+        resource_type, resource_id, name, action = id.split("_|-", 4)
         category = resource_type + "." + action
         metric_totals[category] += status["duration"]
         @report.metrics.create(
@@ -101,12 +101,12 @@ class SaltEvent
           })
         end
 
-        #@report.resource_statuses.create({
-        #  :title => id,
-        #  :is_changed => ischanged,
-        #  :skipped => skipped,
-        #  :failed => (result == false)
-        #})
+        @report.resource_statuses.create({
+          :title => "#{category}: #{resource_id}",
+          :is_changed => ischanged,
+          :skipped => skipped,
+          :failed => (result == false)
+        })
       end
     else
       # Failed to compile. Treat as pending for test and error for normal runs.
