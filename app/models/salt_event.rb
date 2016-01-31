@@ -18,11 +18,11 @@ class SaltEvent
   end
 
   def args
-    event['data']['fun_args'] || []
+    event['data']['fun_args']
   end
 
   def test?
-    if args.find {|arg| arg["test"] == true }
+    if args && args.find {|arg| arg["test"] == true }
       true
     else
       false
