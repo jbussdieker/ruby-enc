@@ -18,7 +18,7 @@ class SaltEvent
   end
 
   def args
-    event['data']['fun_args']
+    event['data']['fun_args'] || []
   end
 
   def test?
