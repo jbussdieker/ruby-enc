@@ -17,7 +17,7 @@ while true do
 
     puts "Error reading events: #{err}"
     puts err.backtrace.join("\n")
-  rescue SIGTERM => err
+  rescue SignalException => err
     puts "Received exit signal"
     exit 0
   rescue Interrupt => err
