@@ -59,7 +59,7 @@ class SaltEvent
         skipped = false
         resource_type, resource_id, name, action = id.split("_|-", 4)
         category = resource_type + "." + action
-        metric_totals[category] += status["duration"]
+        metric_totals[category] += status["duration"] || 0.0
         @report.metrics.create(
           category: category,
           name: resource_id,
