@@ -9,5 +9,5 @@ ext_pillar:
 /usr/bin/enc-ext-nodes
 ```bash
 #!/bin/bash
-curl -s "http://ruby-enc/nodes/$1.yaml"
+curl --max-time 2 -s "http://ruby-enc:3000/nodes/$1.yaml"
 ```
