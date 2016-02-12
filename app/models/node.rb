@@ -86,4 +86,8 @@ class Node < ActiveRecord::Base
   def highstate_test
     Salt::Api.run(client: 'local_async', tgt: name, fun: 'state.highstate', kwarg: { test: true})
   end
+
+  def restart_salt
+    Salt::Api.run(client: 'local_async', tgt: name, fun: 'service.restart', kwarg: { name: 'salt-minion'})
+  end
 end

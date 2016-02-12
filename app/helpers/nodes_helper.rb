@@ -15,7 +15,8 @@ module NodesHelper
       end +
       content_tag(:ul, class: 'dropdown-menu', role: 'menu') do
         content_tag(:li, link_to("Highstate", highstate_node_path(node))) +
-        content_tag(:li, link_to("Highstate Test", highstate_test_node_path(node)))
+        content_tag(:li, link_to("Highstate Test", highstate_test_node_path(node))) +
+        content_tag(:li, link_to("Restart Salt", restart_salt_node_path(node)))
       end
     end
   end

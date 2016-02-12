@@ -8,6 +8,7 @@ Enc::Application.routes.draw do
       get 'enable'
       get 'highstate_test'
       get 'highstate'
+      get 'restart_salt'
     end
     collection do
       get 'unresponsive'

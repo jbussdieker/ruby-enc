@@ -1,6 +1,6 @@
 class NodesController < ApplicationController
   helper_method :sort_column, :sort_direction
-  before_filter :set_node, only: [:show, :edit, :update, :destroy, :facts, :resources, :status_history, :resource_times, :enable, :highstate, :highstate_test]
+  before_filter :set_node, only: [:show, :edit, :update, :destroy, :facts, :resources, :status_history, :resource_times, :enable, :highstate, :highstate_test, :restart_salt]
 
   def index
     @nodes = Node.order(sort_column + " " + sort_direction)
@@ -106,6 +106,11 @@ class NodesController < ApplicationController
 
   def highstate_test
     flash[:notice] = "Failed to trigger highstate test run on #{@node}" unless @node.highstate_test
+    redirect_to :back
+  end
+
+  def restart_salt
+    flash[:notice] = "Failed to trigger service.restart for salt on #{@node}" unless @node.restart_salt
     redirect_to :back
   end
 
