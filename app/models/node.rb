@@ -80,8 +80,10 @@ class Node < ActiveRecord::Base
   end
 
   def highstate
+    Salt::Api.run(client: 'local_async', tgt: name, fun: 'state.highstate')
   end
 
   def highstate_test
+    Salt::Api.run(client: 'local_async', tgt: name, fun: 'state.highstate', kwarg: { test: true})
   end
 end
