@@ -18,7 +18,7 @@
       <div class="tab-content">
         <div class="tab-pane active" id="log">
           <% @report.report_logs.each do |log| %>
-            <div class="panel panel-default">
+            <div class="panel panel-<%= log.level == "err" ? "danger" : "default" %>">
               <div class="panel-heading">
                 <div class="row">
                   <div class="col-md-8"><%= log.message["comment"] %> (<%= log.message["name"] %>)</div>
