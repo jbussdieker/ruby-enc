@@ -6,8 +6,8 @@ Enc::Application.routes.draw do
       get 'status_history'
       get 'resource_times'
       get 'enable'
-      get 'disable'
-      get 'runonce'
+      get 'highstate_test'
+      get 'highstate'
     end
     collection do
       get 'unresponsive'

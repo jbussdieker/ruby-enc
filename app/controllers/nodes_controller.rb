@@ -1,6 +1,6 @@
 class NodesController < ApplicationController
   helper_method :sort_column, :sort_direction
-  before_filter :set_node, only: [:show, :edit, :update, :destroy, :facts, :resources, :status_history, :resource_times, :enable, :disable, :runonce]
+  before_filter :set_node, only: [:show, :edit, :update, :destroy, :facts, :resources, :status_history, :resource_times, :enable, :highstate, :highstate_test]
 
   def index
     @nodes = Node.order(sort_column + " " + sort_direction)
@@ -99,13 +99,13 @@ class NodesController < ApplicationController
     redirect_to :back
   end
 
-  def disable
-    flash[:notice] = "Failed to disable puppet on #{@node}" unless @puppet_agent.disable(@node)
+  def highstate
+    flash[:notice] = "Failed to trigger highstate run on #{@node}" unless @node.highstate
     redirect_to :back
   end
 
-  def runonce
-    flash[:notice] = "Failed to trigger puppet run on #{@node}" unless @puppet_agent.runonce(@node)
+  def highstate_test
+    flash[:notice] = "Failed to trigger highstate test run on #{@node}" unless @node.highstate_test
     redirect_to :back
   end
 
