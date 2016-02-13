@@ -7,18 +7,26 @@ module NodesHelper
     end
   end
 
-  def puppet_agent_node_status(node)
+  def salt_action_dropdown(type, obj)
     css = 'default'
     content_tag(:div, class: 'btn-group') do
       content_tag(:button, type: :button, class: "btn btn-#{css} btn-sm dropdown-toggle", 'data-toggle' => :dropdown) do
         "Action ".html_safe + tag(:span, class: :caret)
       end +
       content_tag(:ul, class: 'dropdown-menu', role: 'menu') do
-        content_tag(:li, link_to("Highstate", highstate_node_path(node))) +
-        content_tag(:li, link_to("Highstate Test", highstate_test_node_path(node))) +
-        content_tag(:li, link_to("Restart Salt", restart_salt_node_path(node)))
+        content_tag(:li, link_to("Highstate", send("highstate_#{type}_path", obj))) +
+        content_tag(:li, link_to("Highstate Test", send("highstate_test_#{type}_path", obj))) +
+        content_tag(:li, link_to("Restart Salt", send("restart_salt_#{type}_path", obj)))
       end
     end
+  end
+
+  def node_salt_action_dropdown(node)
+    salt_action_dropdown("node", node)
+  end
+
+  def node_group_salt_action_dropdown(group)
+    salt_action_dropdown("node_group", group)
   end
 
   def node_status_badge(node)

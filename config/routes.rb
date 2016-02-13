@@ -1,11 +1,9 @@
 Enc::Application.routes.draw do
   resources :nodes, :id => /[A-Za-z0-9\-\.]+?/, :format => /json|js|csv|xml|yaml/ do
     member do
-      get 'facts'
-      get 'resources'
+      get 'grains'
       get 'status_history'
       get 'resource_times'
-      get 'enable'
       get 'highstate_test'
       get 'highstate'
       get 'restart_salt'
@@ -20,7 +18,13 @@ Enc::Application.routes.draw do
       get 'sidebar'
     end
   end
-  resources :node_groups
+  resources :node_groups do
+    member do
+      get 'highstate_test'
+      get 'highstate'
+      get 'restart_salt'
+    end
+  end
   resources :node_classes
   resources :reports do
     member do

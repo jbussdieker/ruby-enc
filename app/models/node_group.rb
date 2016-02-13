@@ -27,4 +27,16 @@ class NodeGroup < ActiveRecord::Base
   def to_param
     name
   end
+
+  def highstate
+    Salt::Api.run(client: 'local_async', tgt: nodes.collect(&:name), expr_form: 'list', fun: 'state.highstate')
+  end
+
+  def highstate_test
+    Salt::Api.run(client: 'local_async', tgt: nodes.collect(&:name), expr_form: 'list', fun: 'state.highstate', kwarg: { test: true})
+  end
+
+  def restart_salt
+    Salt::Api.run(client: 'local_async', tgt: nodes.collect(&:name), expr_form: 'list', fun: 'service.restart', kwarg: { name: 'salt-minion'})
+  end
 end

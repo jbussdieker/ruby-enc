@@ -1,0 +1,12 @@
+<div class="panel panel-default">
+  <div class="panel-heading">Node Grains: <%= @node %></div>
+
+  <div class="panel-body">
+    <div class="btn-toolbar">
+      <%= link_to "Back", @node, :class => 'btn btn-sm btn-default' %>
+    </div>
+    
+    <h4>Facts</h4>
+    <pre><%= @node.grains.first[1].to_yaml %></pre>
+  </div>
+</div>

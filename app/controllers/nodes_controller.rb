@@ -1,6 +1,6 @@
 class NodesController < ApplicationController
   helper_method :sort_column, :sort_direction
-  before_filter :set_node, only: [:show, :edit, :update, :destroy, :facts, :resources, :status_history, :resource_times, :enable, :highstate, :highstate_test, :restart_salt]
+  before_filter :set_node, only: [:show, :edit, :update, :destroy, :grains, :status_history, :resource_times, :highstate, :highstate_test, :restart_salt]
 
   def index
     @nodes = Node.order(sort_column + " " + sort_direction)
@@ -65,10 +65,10 @@ class NodesController < ApplicationController
     render_collection(@nodes, 'index')
   end
 
-  def facts
+  def grains
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @node.facts }
+      format.json { render json: @node.grains }
     end
   end
 
@@ -92,11 +92,6 @@ class NodesController < ApplicationController
       @metrics = []
     end
     render :json => @metrics
-  end
-
-  def enable
-    flash[:notice] = "Failed to enable puppet on #{@node}" unless @puppet_agent.enable(@node)
-    redirect_to :back
   end
 
   def highstate

@@ -79,6 +79,10 @@ class Node < ActiveRecord::Base
     name
   end
 
+  def grains
+    Salt::Api.run(client: 'local', tgt: name, fun: 'grains.items')
+  end
+
   def highstate
     Salt::Api.run(client: 'local_async', tgt: name, fun: 'state.highstate')
   end
