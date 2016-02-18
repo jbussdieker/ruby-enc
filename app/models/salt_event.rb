@@ -54,7 +54,9 @@ class SaltEvent
     metric_totals = Hash.new(0.0)
 
     if results.kind_of?(Hash)
-      results.each do |id, status|
+      results.sort_by do |id, status|
+        status['__run_num__']
+      end.each do |id, status|
         ischanged = false
         skipped = false
         resource_type, resource_id, name, action = id.split("_|-", 4)
