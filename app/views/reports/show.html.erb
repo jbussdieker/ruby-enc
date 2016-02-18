@@ -17,7 +17,7 @@
       </ul>
       <div class="tab-content">
         <div class="tab-pane active" id="log">
-          <% @report.report_logs.each do |log| %>
+          <% @report.report_logs.order(:id).each do |log| %>
             <div class="panel panel-<%= log.level == "err" ? "danger" : "default" %>">
               <div class="panel-heading">
                 <div class="row">
@@ -38,7 +38,7 @@
                 <th><%= category.category %></th>
                 <th></th>
               </tr>
-              <% @report.metrics.where(:category => category.category).each do |metric| %>
+              <% @report.metrics.where(:category => category.category).order(:id).each do |metric| %>
                 <tr>
                   <td><%= metric.name %></td>
                   <td><%= metric.value %></td>
@@ -55,7 +55,7 @@
               <th>Skipped</th>
               <th>Failed</th>
             </tr>
-            <% @report.resource_statuses.each do |status| %>
+            <% @report.resource_statuses.order(:id).each do |status| %>
               <tr>
                 <td><%= status.title %></td>
                 <td><%= status.is_changed ? "Changed" : "" %></td>
