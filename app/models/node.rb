@@ -83,6 +83,10 @@ class Node < ActiveRecord::Base
     Salt::Api.run(client: 'local', tgt: name, fun: 'grains.items')
   end
 
+  def delete_salt_key
+    Salt::Api.run(client: 'wheel', fun: 'key.delete', match: name)
+  end
+
   def highstate
     Salt::Api.run(client: 'local_async', tgt: name, fun: 'state.highstate')
   end

@@ -32,6 +32,7 @@ class NodesController < ApplicationController
   end
 
   def destroy
+    @node.delete_salt_key
     render_destroy(@node)
   end
 
