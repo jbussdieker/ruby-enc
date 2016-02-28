@@ -13,6 +13,10 @@ class SaltEvent
     event['data']['id']
   end
 
+  def act
+    event['data']['act']
+  end
+
   def function
     event['data']['fun'].to_s
   end
@@ -147,12 +151,30 @@ class SaltEvent
   end
 
   def handle_salt_auth
+    puts "handle_salt_auth"
     @node = Node.find_or_create_by_name(minion_id)
   end
 
+  def handle_classify
+    puts "handle_classify"
+    @node = Node.find_or_create_by_name(minion_id)
+    @node.classify
+  end
+
+  def handle_salt_leave
+    puts "handle_salt_leave"
+    @node = Node.find_or_create_by_name(minion_id)
+    @node.destroy
+  end
+
   def handle
+    puts "#{tag}: #{function}"
     if function.start_with?("state.") && results != nil
       handle_state_return
+    elsif tag == 'salt/key' && act == 'accept'
+      handle_classify
+    elsif tag == 'salt/key' && act == 'delete'
+      handle_salt_leave
     elsif tag == 'salt/auth'
       handle_salt_auth
     end
