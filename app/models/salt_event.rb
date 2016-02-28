@@ -5,6 +5,10 @@ class SaltEvent
     @event = event
   end
 
+  def tag
+    event['tag']
+  end
+
   def minion_id
     event['data']['id']
   end
@@ -142,9 +146,15 @@ class SaltEvent
     )
   end
 
+  def handle_salt_auth
+    @node = Node.find_or_create_by_name(minion_id)
+  end
+
   def handle
     if function.start_with?("state.") && results != nil
       handle_state_return
+    elsif tag == 'salt/auth'
+      handle_salt_auth
     end
   end
 end
