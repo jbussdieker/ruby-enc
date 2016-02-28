@@ -25,10 +25,11 @@ class ReportsController < ApplicationController
   end
 
   def upload
-    report = Report.create
-    processor = ReportProcessing.new(report)
-    processor.write(request.raw_post)
-    processor.parse
+    SaltEvent.new({ "data" => params }).handle
+    #report = Report.create
+    #processor = ReportProcessing.new(report)
+    #processor.write(request.raw_post)
+    #processor.parse
 
     render :text => "OK"
   end
