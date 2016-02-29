@@ -81,6 +81,10 @@ class Node < ActiveRecord::Base
     name
   end
 
+  def last_report
+    Report.find(last_apply_report_id)
+  end
+
   def grains
     Salt::Api.run(client: 'local', tgt: name, fun: 'grains.items')
   end
