@@ -51,7 +51,11 @@ module ApplicationHelper
       end
     else
       content_tag("pre") do
-        message["error"].join("\n")
+        if message["error"].kind_of? Array
+          message["error"].join("\n")
+        else
+          message["error"]
+        end
       end
     end
   end
