@@ -5,6 +5,10 @@ class SaltEvent
     @event = event
   end
 
+  def node
+    @node ||= Node.find_or_create_by_name(minion_id)
+  end
+
   def tag
     event['tag']
   end
@@ -55,11 +59,14 @@ class SaltEvent
 
 
   def handle_state_return
-    @node = Node.find_or_create_by_name(minion_id)
-    @report = Report.create(node_id: @node.id, time: Time.now)
+    @report = Report.create(node_id: node.id, time: Time.now)
 
     node_status = "unchanged"
     metric_totals = Hash.new(0.0)
+
+    unless node.environment?
+      handle_classify
+    end
 
     if results.kind_of?(Hash)
       results.sort_by do |id, status|
@@ -143,7 +150,7 @@ class SaltEvent
     end
 
     @report.update_attributes(:status => node_status)
-    @node.update_attributes(
+    node.update_attributes(
       status: node_status,
       reported_at: Time.now,
       last_apply_report_id: @report.id
@@ -151,24 +158,18 @@ class SaltEvent
   end
 
   def handle_salt_auth
-    puts "handle_salt_auth"
-    @node = Node.find_or_create_by_name(minion_id)
+    node
   end
 
   def handle_classify
-    puts "handle_classify"
-    @node = Node.find_or_create_by_name(minion_id)
-    @node.classify
+    node.classify
   end
 
   def handle_salt_leave
-    puts "handle_salt_leave"
-    @node = Node.find_or_create_by_name(minion_id)
-    @node.destroy
+    node.destroy
   end
 
   def handle
-    puts "#{tag}: #{function}"
     if function.start_with?("state.") && results != nil
       handle_state_return
     elsif tag == 'salt/key' && act == 'accept'
