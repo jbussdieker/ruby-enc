@@ -2,5 +2,9 @@
   <td><%= link_to node, node %></td>
   <td class="hidden-xs"><%= node_status_badge(node) %></td>
   <td class="hidden-xs"><%= node.environment %></td>
+  <%- if node.last_apply_report_id %>
   <td class="hidden-xs"><%= link_to node_report_time(node.reported_at), node.last_report %></td>
+  <%- else %>
+  <td class="hidden-xs"><%= node_report_time(node.reported_at) %></td>
+  <%- end %>
 </tr>
