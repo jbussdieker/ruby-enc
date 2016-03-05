@@ -52,6 +52,7 @@ gem 'salt-api', '0.1.4'
 
 # Use unicorn as the app server
 gem 'unicorn'
+gem 'thin'
 
 # Deploy with Capistrano
 # gem 'capistrano'
