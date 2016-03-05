@@ -32,7 +32,10 @@ class NodesController < ApplicationController
   end
 
   def destroy
-    @node.deprovision
+    begin
+      @node.deprovision
+    rescue Exception => e
+    end
     render_destroy(@node)
   end
 
