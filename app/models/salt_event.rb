@@ -109,7 +109,7 @@ class SaltEvent
         end
 
         # Only create logs for changes and failures
-        if status['changes'].length > 0 || result == false
+        if status['changes'].length > 0 || result == false || skipped == true
           @report.report_logs.create({
             :time => Time.now,
             :level => (result ? 'info' : 'err'),
