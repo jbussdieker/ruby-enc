@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140509184854) do
+ActiveRecord::Schema.define(:version => 20160503213802) do
 
   create_table "metrics", :force => true do |t|
     t.integer  "report_id",                                 :null => false
@@ -45,6 +45,8 @@ ActiveRecord::Schema.define(:version => 20140509184854) do
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
   end
+
+  add_index "node_group_memberships", ["node_group_id"], :name => "index_node_group_memberships_on_node_group_id"
 
   create_table "node_groups", :force => true do |t|
     t.string   "name",       :null => false
