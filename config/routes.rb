@@ -32,5 +32,7 @@ Enc::Application.routes.draw do
   end
   resources :parameters, only: [:index, :new, :create]
   root :to => 'nodes#index'
-  match 'moov_check' => "home#moov_check"
+  # Rails 4.0 requires that routes using match must specify the request method
+  # match 'moov_check' => "home#moov_check"
+  get 'moov_check' => 'home#moov_check'
 end

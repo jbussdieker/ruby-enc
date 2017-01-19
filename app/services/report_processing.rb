@@ -80,7 +80,7 @@ class ReportProcessing
   def parse
     node_name = parsed.name
 
-    @report.node = Node.find_or_create_by_name(node_name)
+    @report.node = Node.find_or_create_by(name: node_name)
     @report.report_logs.create(parse_logs)
     @report.metrics.create(parse_metrics)
     @report.resource_statuses.create(parse_resource_statuses)

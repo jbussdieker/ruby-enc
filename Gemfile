@@ -1,11 +1,8 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.18'
-
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
-
-gem 'mysql2'
+gem 'rails', '4.0.6'
+gem 'mysql2', '0.3.17'
+gem 'syslogger', git: 'https://github.com/jbussdieker/syslogger.git', :branch => 'implement_log_formatter'
 gem 'puppet'
 gem 'mcollective-client'
 gem 'chartkick'
@@ -14,18 +11,19 @@ gem 'rails-bootstrap', '~> 3.0.0'
 gem 'kaminari'
 gem 'unicorn'
 
+gem 'sass-rails',   '~> 4.0.0'
+gem 'coffee-rails', '~> 4.0.0'
+gem 'uglifier', '>= 1.0.3'
+gem 'jquery-rails'
+gem 'awesome_print', require:"ap"
 
-# Gems used only for assets and not required
-# in production environments by default.
-group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
-  gem 'coffee-rails', '~> 3.2.1'
+# attr_accessible` is extracted out of Rails into a gem.
+# Please use new recommended protection model for params(strong_parameters)
+# or add `protected_attributes` to your Gemfile to use old one
+gem 'protected_attributes'
 
-  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  # gem 'therubyracer', :platforms => :ruby
-
-  gem 'uglifier', '>= 1.0.3'
-end
+# See https://github.com/sstephenson/execjs#readme for more supported runtimes
+# gem 'therubyracer', :platforms => :ruby
 
 group :development, :test do
   gem 'rspec-rails'
@@ -40,11 +38,6 @@ group :test do
   gem 'database_cleaner'
 end
 
-gem 'jquery-rails'
-
-# To use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
-
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'
 
@@ -56,5 +49,3 @@ gem 'jquery-rails'
 
 # To use debugger
 # gem 'debugger'
-
-gem 'syslogger', git: 'https://github.com/jbussdieker/syslogger.git', :branch => 'implement_log_formatter'
