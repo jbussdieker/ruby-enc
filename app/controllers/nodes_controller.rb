@@ -4,11 +4,12 @@ class NodesController < ApplicationController
 
   def index
     @nodes = Node.order(sort_column + " " + sort_direction)
-    render_collection(@nodes)
+    render_collection(@nodes, 'index')
   end
 
   def show
     @reports = @node.reports.order("time DESC").page params[:page]
+    expires_in 5.minutes, :public => true
 
     respond_to do |format|
       format.html # show.html.erb
