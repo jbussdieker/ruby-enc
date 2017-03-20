@@ -87,7 +87,7 @@ class NodesController < ApplicationController
   def resource_times
     @report = @node.reports.order("time DESC").first
     if @report
-      @metrics = @report.metrics.where(:category => "Time")
+      @metrics = @report.metrics.where(:category => "Time").to_a
       @metrics.reject! {|n| n.name == "Total"}
       @metrics = @metrics.collect {|n| [n.name, n.value]}
     else
