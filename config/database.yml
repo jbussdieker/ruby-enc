@@ -18,15 +18,27 @@ postgresql: &pg
 defaults: &defaults
   pool: 16
   timeout: 5000
-  host: localhost
   <<: *<%= ENV['DB'] || "mysql2" %>
 
 development:
-  <<: *defaults
+  adapter: mysql2
+  encoding: utf8
+  host: enc-dashboard.c1phlpd5jvwq.us-west-2.rds.amazonaws.com
+  port: 3306
+  database: dashboard_development
+  username: dashboard
+  password: d4aca968
 
 test:
   <<: *defaults
+  host: localhost
 
 production:
-  <<: *defaults
+  # <<: *defaults
   # presumably, we'd erb-echo the production password from /etc/something here.
+  adapter: mysql2
+  encoding: utf8
+  host: enc-dashboard
+  database: dashboard_production
+  username: dashboard
+  password: d4aca968
