@@ -23,7 +23,7 @@ Enc::Application.configure do
   # Expands the lines which load the assets
   config.assets.debug = true
 
-  config.serve_static_assets = true
+  config.serve_static_files = true
   config.assets.compile = false
   config.paths['config/database'] = '/etc/enc_dashboard/database.yml' if File.exists? '/etc/enc_dashboard/database.yml'
 end
