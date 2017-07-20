@@ -2,7 +2,7 @@ class ParametersController < ApplicationController
   helper_method :sort_column, :sort_direction
 
   def index
-    @parameters = Parameter.where(parameterable_id: nil).order(sort_column + " " + sort_direction)
+    @parameters = Parameter.where(parameterable_id: nil).order(sort_column + " " + sort_direction).to_a
     render_collection(@parameters)
   end
 

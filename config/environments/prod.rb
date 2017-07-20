@@ -63,6 +63,9 @@ Enc::Application.configure do
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
 
+  config.serve_static_files = true
+  config.paths['config/database'] = '/etc/enc_dashboard/database.yml' if File.exists? '/etc/enc_dashboard/database.yml'
+
   # Setup custom logger to stdout and log level to debug
   config.logger = Logger.new(STDOUT)
   config.logger.level = :debug

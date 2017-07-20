@@ -17,7 +17,7 @@
       <div class="btn-group">
         <%= puppet_agent_node_status(@node) %>
       </div>
-      <%= link_to "Delete", @node, :method => :delete, :confirm => "Are you sure?", :class => 'btn btn-sm btn-danger pull-right' %>
+      <%= link_to "Delete", @node, :method => :delete, :data => { :confirm => "Are you sure?" }, :class => 'btn btn-sm btn-danger pull-right' %>
     </div>
 
     <h4>Parameters</h4>
