@@ -24,6 +24,8 @@ gem 'protected_attributes'
 
 gem 'responders', '~> 2.0'
 
+gem 'newrelic_rpm'
+
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', :platforms => :ruby
 
